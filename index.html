@@ -6,56 +6,82 @@
 <title>Tu Tienda — Catálogo</title>
 <style>
   :root{
+    /* Paleta Apple-like */
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
     --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
-    --radius:12px; --thumb:74px;
-    --fs-h1:28px; --fs-name:14px; --fs-price:16px; --fs-body:13px;
+    --radius:14px; --gap:10px;
+    --card-h-sm: 180px; /* ← alto objetivo de la tarjeta en móvil (sube/baja para 3–4 por pantalla) */
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
 
-  /* NAV minimalista (estilo apple.com) */
+  /* NAV estilo apple.com */
   .apple-nav{ position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
     backdrop-filter:saturate(1.8) blur(20px); background:rgba(255,255,255,.86); }
-  .nav-inner{ max-width:1200px; margin:0 auto; height:100%;
-    display:flex; align-items:center; justify-content:center; gap:8px; padding:0 12px; }
-  .logo{ height:22px; width:auto; display:block; filter:none; }
-  .logo-fallback{ font-weight:800; font-size:16px; letter-spacing:.2px; }
+  .nav-inner{ max-width:1200px; margin:0 auto; height:100%; display:flex; align-items:center; justify-content:center; padding:0 12px; }
+  .logo{ height:22px; width:auto; display:block; }
 
-  /* HERO */
-  .hero{ max-width:1200px; margin:10px auto 6px; padding:8px 12px 0; }
-  .hero h1{ margin:0; font-size:var(--fs-h1); line-height:1.1; font-weight:800; }
+  .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
+  .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
 
-  /* MÓVIL: lista horizontal compacta */
-  main .grid{ display:grid; grid-template-columns:1fr; gap:8px; padding:10px; max-width:1200px; margin:0 auto; }
-  .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    display:grid; grid-template-columns:var(--thumb) 1fr; align-items:center; min-height:calc(var(--thumb) + 14px);
-    transition:border-color .2s, box-shadow .2s; }
-  .card:hover{ border-color:#dedee2; box-shadow:0 6px 14px rgba(0,0,0,.05); }
-  .img-wrap{ width:var(--thumb); height:var(--thumb); display:flex; align-items:center; justify-content:center;
-    background:var(--surface-2); border-right:1px solid var(--line); border-top-left-radius:var(--radius); border-bottom-left-radius:var(--radius); }
-  .img-wrap img{ width:86%; height:86%; object-fit:contain; }
-  .no-img{ color:var(--muted); font-size:12px; }
-  .body{ padding:8px 10px; display:flex; flex-direction:column; gap:2px; }
-  .top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  .name{ font-size:var(--fs-name); line-height:1.15; margin:0; font-weight:800; color:#000;
-    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .badge{ background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; padding:3px 8px; border-radius:999px; white-space:nowrap; flex-shrink:0; }
-  .price-line{ display:flex; align-items:baseline; gap:8px; }
-  .price{ font-size:var(--fs-price); font-weight:800; color:#000; }
-  .cuotas{ font-size:12px; color:#1b6f43; font-weight:600; }
-  .meta{ font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
-  /* DESKTOP/TABLET: grid de cards verticales */
-  @media (min-width:768px){
-    main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px; padding:16px; }
-    .card{ grid-template-columns:1fr; min-height:auto; }
-    .img-wrap{ width:auto; height:auto; aspect-ratio:1/1; border-right:none; border-bottom:1px solid var(--line);
-      border-top-left-radius:var(--radius); border-bottom-left-radius:0; }
-    .body{ padding:12px 14px; gap:6px; }
-    .meta{ white-space:normal; }
+  /* GRID compacto en móvil: 2 cols (entra 3–4 filas por viewport) */
+  main .grid{
+    display:grid; gap:var(--gap);
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-auto-rows: var(--card-h-sm);
+    padding:10px; max-width:1200px; margin:0 auto;
   }
+  @media (min-width:600px){
+    main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width:992px){
+    main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; }
+  }
+
+  /* CARD */
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    display:flex; flex-direction:column; overflow:hidden;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
+
+  .img{ position:relative; background:var(--surface-2); display:flex; align-items:center; justify-content:center; }
+  /* para mantener altura razonable dentro del target de la card */
+  .img{ flex: 1 1 58%; min-height: 0; }
+  .img img{ width:86%; height:86%; object-fit:contain; }
+  .no-img{ color:var(--muted); font-size:13px; }
+
+  .status{
+    position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
+    background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
+  }
+
+  .info{ flex: 1 1 42%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:4px; }
+  .name{
+    margin:0; font-weight:800; font-size:14.5px; line-height:1.15;
+    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .price{ font-size:18px; font-weight:800; color:#000; }
+  .sub{ font-size:12.5px; color:#1b6f43; font-weight:600; }
+
+  .meta{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chip{
+    background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
+    font-size:12px; padding:5px 8px; border-radius:999px;
+  }
+  .dot{ display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:6px; background:var(--dot, #d1d5db); border:1px solid rgba(0,0,0,.08); vertical-align:-1px; }
+
+  /* Barra de batería inspirada en UI Apple */
+  .batt{ position:relative; height:6px; background:#eef0f3; border-radius:999px; overflow:hidden; margin-top:2px; }
+  .batt .bar{ position:absolute; inset:0; width:calc(var(--pct,0) * 1%); background:linear-gradient(90deg,#34d399,#10b981); }
+  .batt .batt-txt{ position:absolute; right:6px; top:-16px; font-size:11px; color:#6e6e73; }
+
+  /* Estado por color (sutil) */
+  [data-status="vendido"] .status{ background:#fff0f0; color:#b00020; border-color:#ffd6d6; }
+  [data-status="reservado"] .status{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
+  [data-status="disponible"] .status{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
 
   footer{ color:#6e6e73; font-size:12px; text-align:center; padding:16px 12px; border-top:1px solid var(--line); background:var(--surface-2); }
 </style>
@@ -64,7 +90,7 @@
 
 <nav class="apple-nav">
   <div class="nav-inner">
-    <a href="#" aria-label="Tu Tienda"><img class="logo" src="data:image/webp;base64,UklGRlx9AABXRUJQVlA4WAoAAAAQAAAANwQARQUAQUxQSLlmAAABGUdu20gS7N4yY/X/H1xb923mFtH/CdAv3a99N16Dt7iB+xWQnqv0j4mVxwH8yqC7OQ0J3T8s2zC2yX2lZ6Ztq6mQ2b4f8J4b1Nq8vL6ZQ0nX5V0p3wGq6fKQxw5xQ3uXy8bGZ3d8r8d7m/7h4fJc2dGfmV+2mGf3QbNw6H5F8pS6pQh8q8k1YJ6Xb7QbS1b8aXo7n9m1Yk2dK9jV8Yd8cA8x1y3IuM7y3t2mNQ7kq0bLe3U8d7z+v8w+0ZcYgQy8VbqkqY8I0o5Gg3M4n7VQdV9Yf8iQ2m4cYcD1KQ3m4Py0Z+R7K2igbY0T3yRz6P9D7LQf3GJ2v7rVv4tJ0F3M2ZQk7z8l2yX9yD8yGQh4Y0p9j4mJ8k9+F6mFZQ4WAoAAABQAgCdASoQABAAANuQAAfN2Hq7y3q9P3J3+WQf9cK3Hq2R8d9gQ4QYJwJ0o7l7CzQ4xZ0gG0C1Q0p2rj0zv9j2JdQwz0j8p2m2F0QwX+O9VQb4zN0B8mP7X8Q==" alt="Tu Tienda" /></a>
+    <a href="#" aria-label="Tu Tienda"><img class="logo" src="https://tu-dominio.com/logo.png" alt="Tu Tienda" /></a>
   </div>
 </nav>
 
@@ -75,140 +101,194 @@
 <main>
   <div class="grid" id="grid">
     
-  <div class="card" data-name="iphone 13 pro " data-status="" data-storage="—">
-    <div class="img-wrap"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13 Pro " loading="lazy" /></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="iPhone 13 Pro ">iPhone 13 Pro </h3>
-        
-      </div>
-      <div class="price-line">
-        <span class="price">USD 550</span>
-        
-      </div>
-      <div class="meta">iPhone 13 Pro  • Blanco • Batería 100%</div>
-    </div>
-  </div>
+  <article class="card"
+    data-name="iphone 13 pro "
+    data-status=""
+    data-storage="—">
 
-  <div class="card" data-name="" data-status="" data-storage="—">
-    <div class="img-wrap"><div class="no-img">Sin imagen</div></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title=""></h3>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13 Pro " loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iPhone 13 Pro ">iPhone 13 Pro </h3>
+      <div class="price">USD 550</div>
+      
+
+      <div class="meta">
+        
+        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span>
+      </div>
+
+      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-name=""
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><div class="no-img">Sin imagen</div></div>
+
+    <div class="info">
+      <h3 class="name" title=""></h3>
+      <div class="price">—</div>
+      
+
+      <div class="meta">
+        
         
       </div>
-      <div class="price-line">
-        <span class="price">—</span>
-        
-      </div>
+
       
     </div>
-  </div>
+  </article>
 
-  <div class="card" data-name="iphone 15 pro" data-status="" data-storage="—">
-    <div class="img-wrap"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
-        
-      </div>
-      <div class="price-line">
-        <span class="price">—</span>
-        
-      </div>
-      <div class="meta">iPhone 15 Pro • Negro • Batería 100%</div>
-    </div>
-  </div>
+  <article class="card"
+    data-name="iphone 15 pro"
+    data-status=""
+    data-storage="—">
 
-  <div class="card" data-name="iphone 15" data-status="" data-storage="—">
-    <div class="img-wrap"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="iPhone 15">iPhone 15</h3>
-        
-      </div>
-      <div class="price-line">
-        <span class="price">—</span>
-        
-      </div>
-      <div class="meta">iPhone 15 • Negro • Batería 100%</div>
-    </div>
-  </div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /></div>
 
-  <div class="card" data-name="iphone 13" data-status="" data-storage="—">
-    <div class="img-wrap"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="iPhone 13">iPhone 13</h3>
-        
-      </div>
-      <div class="price-line">
-        <span class="price">USD 350</span>
-        
-      </div>
-      <div class="meta">iPhone 13 • negro • Batería 85%</div>
-    </div>
-  </div>
+    <div class="info">
+      <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
+      <div class="price">—</div>
+      
 
-  <div class="card" data-name="iphone 13" data-status="" data-storage="—">
-    <div class="img-wrap"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="iPhone 13">iPhone 13</h3>
+      <div class="meta">
         
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span>
       </div>
-      <div class="price-line">
-        <span class="price">USD 350</span>
-        
-      </div>
-      <div class="meta">iPhone 13 • Batería 85%</div>
-    </div>
-  </div>
 
-  <div class="card" data-name="iphone 14" data-status="" data-storage="—">
-    <div class="img-wrap"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iphone 14" loading="lazy" /></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="iphone 14">iphone 14</h3>
-        
-      </div>
-      <div class="price-line">
-        <span class="price">USD 400</span>
-        
-      </div>
-      <div class="meta">iphone 14 • Batería 100%</div>
+      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
     </div>
-  </div>
+  </article>
 
-  <div class="card" data-name="iphone 13" data-status="" data-storage="—">
-    <div class="img-wrap"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="iPhone 13">iPhone 13</h3>
-        
-      </div>
-      <div class="price-line">
-        <span class="price">USD 350</span>
-        
-      </div>
-      <div class="meta">iPhone 13 • Batería 85%</div>
-    </div>
-  </div>
+  <article class="card"
+    data-name="iphone 15"
+    data-status=""
+    data-storage="—">
 
-  <div class="card" data-name="iphone 11" data-status="" data-storage="—">
-    <div class="img-wrap"><div class="no-img">Sin imagen</div></div>
-    <div class="body">
-      <div class="top">
-        <h3 class="name" title="Iphone 11">Iphone 11</h3>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iPhone 15">iPhone 15</h3>
+      <div class="price">—</div>
+      
+
+      <div class="meta">
         
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span>
       </div>
-      <div class="price-line">
-        <span class="price">USD 270</span>
-        
-      </div>
-      <div class="meta">Iphone 11 • negro • Batería 87%</div>
+
+      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
     </div>
-  </div>
+  </article>
+
+  <article class="card"
+    data-name="iphone 13"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iPhone 13">iPhone 13</h3>
+      <div class="price">USD 350</div>
+      
+
+      <div class="meta">
+        
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span>
+      </div>
+
+      <div class="batt" title="Batería 85%"><span class="bar" style="--pct:85"></span><span class="batt-txt">85%</span></div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-name="iphone 13"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iPhone 13">iPhone 13</h3>
+      <div class="price">USD 350</div>
+      
+
+      <div class="meta">
+        
+        
+      </div>
+
+      <div class="batt" title="Batería 85%"><span class="bar" style="--pct:85"></span><span class="batt-txt">85%</span></div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-name="iphone 14"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iphone 14" loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iphone 14">iphone 14</h3>
+      <div class="price">USD 400</div>
+      
+
+      <div class="meta">
+        
+        
+      </div>
+
+      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-name="iphone 13"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iPhone 13">iPhone 13</h3>
+      <div class="price">USD 350</div>
+      
+
+      <div class="meta">
+        
+        
+      </div>
+
+      <div class="batt" title="Batería 85%"><span class="bar" style="--pct:85"></span><span class="batt-txt">85%</span></div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-name="iphone 11"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><div class="no-img">Sin imagen</div></div>
+
+    <div class="info">
+      <h3 class="name" title="Iphone 11">Iphone 11</h3>
+      <div class="price">USD 270</div>
+      
+
+      <div class="meta">
+        
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span>
+      </div>
+
+      <div class="batt" title="Batería 87%"><span class="bar" style="--pct:87"></span><span class="batt-txt">87%</span></div>
+    </div>
+  </article>
   </div>
 </main>
 
@@ -217,7 +297,7 @@
 </footer>
 
 <script>
-  // Sin buscador ni filtros.
+  // Sin buscador ni filtros: visual puro.
 </script>
 </body>
 </html>
