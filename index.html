@@ -3,43 +3,58 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Catálogo | Actualizado automático</title>
+<title>Tu Tienda — Catálogo</title>
 <style>
   :root{
-    /* PALETA PRINCIPAL (blancos/grises) */
-    --bg:#ffffff;        /* fondo de la página */
-    --surface:#ffffff;   /* fondo tarjetas */
-    --surface-2:#f5f5f7; /* inputs / gris leve */
+    /* Paleta Apple-like (blancos/grises/azul acento) */
+    --bg:#ffffff;
+    --surface:#ffffff;
+    --surface-2:#f5f5f7;
     --line:#e6e6e9;
-    --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
+    --ink:#1d1d1f;
+    --muted:#6e6e73;
+    --accent:#0071e3;
 
     --radius:12px;
-    --thumb:74px;        /* miniatura en móvil (bajalo a 68/64 si querés aún más compacto) */
-    --fs-h1:20px; --fs-name:14px; --fs-price:16px; --fs-body:13px;
+    --thumb:74px;        /* miniatura en móvil (bajalo a 68/64 para más densidad) */
+    --fs-h1:28px;        /* hero title */
+    --fs-name:14px; --fs-price:16px; --fs-body:13px;
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
 
-  header{
-    position:sticky; top:0; z-index:10;
-    background:rgba(255,255,255,.92); border-bottom:1px solid var(--line);
-    backdrop-filter:saturate(1.1) blur(6px);
+  /* === NAV minimalista al estilo apple.com === */
+  .apple-nav{
+    position:sticky; top:0; z-index:20;
+    height:44px; border-bottom:1px solid var(--line);
+    backdrop-filter:saturate(1.8) blur(20px);
+    background:rgba(255,255,255,.86);
   }
-  .wrap{max-width:1200px; margin:0 auto; padding:10px 12px;}
-  h1{margin:0; font-size:var(--fs-h1); font-weight:800}
-
-  /* Controles */
-  .controls{ display:grid; grid-template-columns:1fr; gap:8px; margin-top:10px; }
-  @media (min-width:880px){ .controls{ grid-template-columns:1fr 200px 200px; } }
-  input[type="search"], select{
-    background:var(--surface-2); border:1px solid var(--line); color:var(--ink);
-    padding:10px 12px; border-radius:16px; outline:none; font-size:13px;
+  .nav-inner{
+    max-width:1200px; margin:0 auto; height:100%;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    padding:0 12px;
   }
-  input[type="search"]::placeholder{color:var(--muted)}
+  .logo{
+    height:22px; width:auto; display:block;
+    filter:none;
+  }
+  .logo-fallback{
+    font-weight:800; font-size:16px; letter-spacing:.2px;
+  }
 
-  /* === MÓVIL: lista horizontal compacta (tarjetas más anchas que altas) === */
-  main .grid{ display:grid; grid-template-columns:1fr; gap:8px; padding:10px; max-width:100%; }
+  /* === HERO (título de sección) === */
+  .hero{
+    max-width:1200px; margin:10px auto 6px; padding:8px 12px 0;
+  }
+  .hero h1{
+    margin:0; font-size:var(--fs-h1); line-height:1.1; font-weight:800;
+  }
+  @media (min-width:768px){ .hero{ padding:18px 16px 0; } }
+
+  /* === MÓVIL: lista horizontal compacta === */
+  main .grid{ display:grid; grid-template-columns:1fr; gap:8px; padding:10px; max-width:1200px; margin:0 auto; }
   .card{
     background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
     display:grid; grid-template-columns:var(--thumb) 1fr; align-items:center;
@@ -72,42 +87,30 @@
   .cuotas{ font-size:12px; color:#1b6f43; font-weight:600; }
   .meta{ font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-  /* === TABLET/ESCRITORIO: grid de cards verticales === */
+  /* === DESKTOP/TABLET: grid de cards verticales === */
   @media (min-width:768px){
-    main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px; padding:16px; max-width:1200px; margin:0 auto; }
+    main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px; padding:16px; }
     .card{ grid-template-columns:1fr; min-height:auto; }
     .img-wrap{ width:auto; height:auto; aspect-ratio:1/1; border-right:none; border-bottom:1px solid var(--line); border-top-left-radius:var(--radius); border-bottom-left-radius:0; }
     .body{ padding:12px 14px; gap:6px; }
     .meta{ white-space:normal; }
   }
 
-  /* Colores de estado (opcional) */
-  [data-status="vendido"] .badge{ background:#fff0f0; color:#b00020; border-color:#ffd6d6; }
-  [data-status="reservado"] .badge{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
-  [data-status="disponible"] .badge{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
-
   footer{ color:#6e6e73; font-size:12px; text-align:center; padding:16px 12px; border-top:1px solid var(--line); background:var(--surface-2); }
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <h1>iPhone — Catálogo</h1>
-    <div class="controls">
-      <input id="q" type="search" placeholder="Buscar por nombre…" />
-      <select id="fStatus">
-        <option value="">Estado: Todos</option>
-        <option>Disponible</option>
-        <option>Reservado</option>
-        <option>Vendido</option>
-      </select>
-      <select id="fStorage">
-        <option value="">Almacenamiento: Todos</option>
-        <option>64GB</option><option>128GB</option><option>256GB</option><option>512GB</option><option>1TB</option>
-      </select>
-    </div>
+
+<!-- NAV con tu logo (sin buscador ni filtros) -->
+<nav class="apple-nav">
+  <div class="nav-inner">
+    <a href="#" aria-label="Tu Tienda"><img class="logo" src="https://tu-dominio.com/logo.png" alt="Tu Tienda" /></a>
   </div>
-</header>
+</nav>
+
+<section class="hero">
+  <h1>iPhone — Catálogo</h1>
+</section>
 
 <main>
   <div class="grid" id="grid">
@@ -254,28 +257,7 @@
 </footer>
 
 <script>
-  const q = document.getElementById('q');
-  const fStatus = document.getElementById('fStatus');
-  const fStorage = document.getElementById('fStorage');
-  const grid = document.getElementById('grid');
-
-  function applyFilters(){
-    const term = (q.value || '').toLowerCase().trim();
-    const st = (fStatus.value || '').toLowerCase();
-    const stg = (fStorage.value || '').toLowerCase();
-    Array.from(grid.children).forEach(card=>{
-      const name = card.dataset.name || '';
-      const status = card.dataset.status || '';
-      const storage = card.dataset.storage || '';
-      const okTerm = !term || name.includes(term);
-      const okStatus = !st || status === st;
-      const okStg = !stg || storage === stg;
-      card.style.display = (okTerm && okStatus && okStg) ? '' : 'none';
-    });
-  }
-  q.addEventListener('input', applyFilters);
-  fStatus.addEventListener('change', applyFilters);
-  fStorage.addEventListener('change', applyFilters);
+  // Ya no hay buscador ni filtros: dejamos solo dataset para posibles mejoras futuras.
 </script>
 </body>
 </html>
