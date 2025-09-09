@@ -6,38 +6,38 @@
 <title>Tu Tienda — Catálogo</title>
 <style>
   :root{
-    /* Paleta Apple-like */
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
     --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
     --radius:14px; --gap:10px;
-    --card-h-sm: 180px; /* ← alto objetivo de la tarjeta en móvil (sube/baja para 3–4 por pantalla) */
+    --card-h-sm: 200px; /* alto objetivo en móvil (ajusta para 3–4 filas por viewport) */
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
 
-  /* NAV estilo apple.com */
+  /* NAV estilo apple.com, con fallback si el logo no carga */
   .apple-nav{ position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
     backdrop-filter:saturate(1.8) blur(20px); background:rgba(255,255,255,.86); }
-  .nav-inner{ max-width:1200px; margin:0 auto; height:100%; display:flex; align-items:center; justify-content:center; padding:0 12px; }
-  .logo{ height:22px; width:auto; display:block; }
+  .nav-inner{ max-width:1200px; margin:0 auto; height:100%;
+    display:flex; align-items:center; justify-content:center; padding:0 12px; }
+  .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; color:inherit; }
+  .logo-img{ height:22px; width:auto; display:block; }
+  .logo-fallback{ display:none; font-weight:800; font-size:16px; letter-spacing:.2px; }
+  .brand.broken .logo-img{ display:none; }
+  .brand.broken .logo-fallback{ display:block; }
 
   .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
   .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
 
-  /* GRID compacto en móvil: 2 cols (entra 3–4 filas por viewport) */
+  /* GRID: 2 cols móvil, 3 cols phablet, 4 cols tablet/desktop */
   main .grid{
     display:grid; gap:var(--gap);
     grid-template-columns:repeat(2, minmax(0, 1fr));
     grid-auto-rows: var(--card-h-sm);
     padding:10px; max-width:1200px; margin:0 auto;
   }
-  @media (min-width:600px){
-    main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
-  }
-  @media (min-width:992px){
-    main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; }
-  }
+  @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
+  @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; } }
 
   /* CARD */
   .card{
@@ -47,38 +47,30 @@
   }
   .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
 
-  .img{ position:relative; background:var(--surface-2); display:flex; align-items:center; justify-content:center; }
-  /* para mantener altura razonable dentro del target de la card */
-  .img{ flex: 1 1 58%; min-height: 0; }
+  .img{ position:relative; background:var(--surface-2); display:flex; align-items:center; justify-content:center; flex:1 1 58%; min-height:0; }
   .img img{ width:86%; height:86%; object-fit:contain; }
   .no-img{ color:var(--muted); font-size:13px; }
-
   .status{
     position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
     background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
   }
 
-  .info{ flex: 1 1 42%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:4px; }
+  .info{ flex:1 1 42%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:4px; }
   .name{
-    margin:0; font-weight:800; font-size:14.5px; line-height:1.15;
+    margin:0; font-weight:800; font-size:15px; line-height:1.15;
     display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden;
   }
   .price{ font-size:18px; font-weight:800; color:#000; }
-  .sub{ font-size:12.5px; color:#1b6f43; font-weight:600; }
+  .sub{ font-size:12.5px; color:#0071e3; font-weight:600; } /* azul Apple */
 
   .meta{ display:flex; flex-wrap:wrap; gap:6px; }
   .chip{
     background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
-    font-size:12px; padding:5px 8px; border-radius:999px;
+    font-size:12px; padding:5px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:6px;
   }
-  .dot{ display:inline-block; width:10px; height:10px; border-radius:999px; margin-right:6px; background:var(--dot, #d1d5db); border:1px solid rgba(0,0,0,.08); vertical-align:-1px; }
+  .dot{ width:10px; height:10px; border-radius:999px; background:var(--dot, #d1d5db); border:1px solid rgba(0,0,0,.08); }
 
-  /* Barra de batería inspirada en UI Apple */
-  .batt{ position:relative; height:6px; background:#eef0f3; border-radius:999px; overflow:hidden; margin-top:2px; }
-  .batt .bar{ position:absolute; inset:0; width:calc(var(--pct,0) * 1%); background:linear-gradient(90deg,#34d399,#10b981); }
-  .batt .batt-txt{ position:absolute; right:6px; top:-16px; font-size:11px; color:#6e6e73; }
-
-  /* Estado por color (sutil) */
+  /* Estados por color (sutil) */
   [data-status="vendido"] .status{ background:#fff0f0; color:#b00020; border-color:#ffd6d6; }
   [data-status="reservado"] .status{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
   [data-status="disponible"] .status{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
@@ -90,7 +82,11 @@
 
 <nav class="apple-nav">
   <div class="nav-inner">
-    <a href="#" aria-label="Tu Tienda"><img class="logo" src="https://tu-dominio.com/logo.png" alt="Tu Tienda" /></a>
+    <a class="brand" href="#" aria-label="Tu Tienda">
+      <img class="logo-img" src="https://tu-dominio.com/logo.png" alt="Tu Tienda"
+           onerror="this.closest('.brand').classList.add('broken')" />
+      <span class="logo-fallback">Tu Tienda</span>
+    </a>
   </div>
 </nav>
 
@@ -102,6 +98,23 @@
   <div class="grid" id="grid">
     
   <article class="card"
+    data-name="iphone 11"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><div class="no-img">Sin imagen</div></div>
+
+    <div class="info">
+      <h3 class="name" title="Iphone 11">Iphone 11</h3>
+      <div class="price">USD 270</div>
+      
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span><span class="chip"><i class="dot" style="--dot:hsl(104 70% 45%)"></i>87%</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="card"
     data-name="iphone 13 pro "
     data-status=""
     data-storage="—">
@@ -112,76 +125,9 @@
       <h3 class="name" title="iPhone 13 Pro ">iPhone 13 Pro </h3>
       <div class="price">USD 550</div>
       
-
       <div class="meta">
-        
-        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span>
+        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
-
-      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
-    </div>
-  </article>
-
-  <article class="card"
-    data-name=""
-    data-status=""
-    data-storage="—">
-
-    <div class="img"><div class="no-img">Sin imagen</div></div>
-
-    <div class="info">
-      <h3 class="name" title=""></h3>
-      <div class="price">—</div>
-      
-
-      <div class="meta">
-        
-        
-      </div>
-
-      
-    </div>
-  </article>
-
-  <article class="card"
-    data-name="iphone 15 pro"
-    data-status=""
-    data-storage="—">
-
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /></div>
-
-    <div class="info">
-      <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
-      <div class="price">—</div>
-      
-
-      <div class="meta">
-        
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span>
-      </div>
-
-      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
-    </div>
-  </article>
-
-  <article class="card"
-    data-name="iphone 15"
-    data-status=""
-    data-storage="—">
-
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /></div>
-
-    <div class="info">
-      <h3 class="name" title="iPhone 15">iPhone 15</h3>
-      <div class="price">—</div>
-      
-
-      <div class="meta">
-        
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span>
-      </div>
-
-      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
     </div>
   </article>
 
@@ -196,13 +142,9 @@
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">USD 350</div>
       
-
       <div class="meta">
-        
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
       </div>
-
-      <div class="batt" title="Batería 85%"><span class="bar" style="--pct:85"></span><span class="batt-txt">85%</span></div>
     </div>
   </article>
 
@@ -217,13 +159,26 @@
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">USD 350</div>
       
-
       <div class="meta">
-        
-        
+        <span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
       </div>
+    </div>
+  </article>
 
-      <div class="batt" title="Batería 85%"><span class="bar" style="--pct:85"></span><span class="batt-txt">85%</span></div>
+  <article class="card"
+    data-name="iphone 13"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iPhone 13">iPhone 13</h3>
+      <div class="price">USD 350</div>
+      
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
+      </div>
     </div>
   </article>
 
@@ -238,55 +193,60 @@
       <h3 class="name" title="iphone 14">iphone 14</h3>
       <div class="price">USD 400</div>
       
-
       <div class="meta">
-        
-        
+        <span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
-
-      <div class="batt" title="Batería 100%"><span class="bar" style="--pct:100"></span><span class="batt-txt">100%</span></div>
     </div>
   </article>
 
   <article class="card"
-    data-name="iphone 13"
+    data-name="iphone 15 pro"
     data-status=""
     data-storage="—">
 
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /></div>
 
     <div class="info">
-      <h3 class="name" title="iPhone 13">iPhone 13</h3>
-      <div class="price">USD 350</div>
+      <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
+      <div class="price">—</div>
       
-
       <div class="meta">
-        
-        
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
-
-      <div class="batt" title="Batería 85%"><span class="bar" style="--pct:85"></span><span class="batt-txt">85%</span></div>
     </div>
   </article>
 
   <article class="card"
-    data-name="iphone 11"
+    data-name="iphone 15"
+    data-status=""
+    data-storage="—">
+
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /></div>
+
+    <div class="info">
+      <h3 class="name" title="iPhone 15">iPhone 15</h3>
+      <div class="price">—</div>
+      
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-name=""
     data-status=""
     data-storage="—">
 
     <div class="img"><div class="no-img">Sin imagen</div></div>
 
     <div class="info">
-      <h3 class="name" title="Iphone 11">Iphone 11</h3>
-      <div class="price">USD 270</div>
+      <h3 class="name" title=""></h3>
+      <div class="price">—</div>
       
-
       <div class="meta">
         
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span>
       </div>
-
-      <div class="batt" title="Batería 87%"><span class="bar" style="--pct:87"></span><span class="batt-txt">87%</span></div>
     </div>
   </article>
   </div>
@@ -297,7 +257,7 @@
 </footer>
 
 <script>
-  // Sin buscador ni filtros: visual puro.
+  // Sin buscador ni filtros. El logo tiene fallback textual si la URL falla.
 </script>
 </body>
 </html>
