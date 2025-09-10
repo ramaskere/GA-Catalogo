@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Tu Tienda — Catálogo</title>
+<title>GO APPLE — Catálogo</title>
 <style>
   :root{
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
@@ -22,9 +22,7 @@
     display:flex; align-items:center; justify-content:center; padding:0 12px; }
   .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; color:inherit; }
   .logo-img{ height:22px; width:auto; display:block; }
-  .logo-fallback{ display:none; font-weight:800; font-size:16px; letter-spacing:.2px; }
-  .brand.broken .logo-img{ display:none; }
-  .brand.broken .logo-fallback{ display:block; }
+  .logo-fallback{ font-weight:800; font-size:16px; letter-spacing:.2px; }
 
   .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
   .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
@@ -75,6 +73,21 @@
   [data-status="reservado"] .status{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
   [data-status="disponible"] .status{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
 
+  /* POPUP de beneficios */
+  .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:40; }
+  .modal{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,.25); overflow:hidden; }
+  .modal header{ padding:18px 22px 0; text-align:center; }
+  .modal h2{ margin:0; font-size:24px; font-weight:800; }
+  .modal p.lead{ margin:6px 0 14px; color:#424245; font-size:15px; }
+  .benefits{ padding:0 18px 6px; }
+  .benefits li{ list-style:none; display:flex; align-items:flex-start; gap:10px; margin:10px 0; color:#1d1d1f; }
+  .benefits li .tick{ flex:0 0 auto; width:22px; height:22px; border-radius:999px; display:grid; place-items:center; background:#e6f0ff; color:#0071e3; font-weight:800; }
+  .modal footer{ display:flex; gap:10px; justify-content:center; padding:16px 18px 22px; background:#f5f5f7; border-top:1px solid var(--line); }
+  .cta{ appearance:none; padding:10px 16px; border-radius:999px; font-weight:700; cursor:pointer; border:1px solid #cfd2d8; background:#fff; }
+  .cta.primary{ background:#0071e3; color:#fff; border-color:#0071e3; }
+  .cta.primary:hover{ filter:brightness(.98); }
+  .cta:hover{ border-color:#bfc4cc; }
+
   footer{ color:#6e6e73; font-size:12px; text-align:center; padding:16px 12px; border-top:1px solid var(--line); background:var(--surface-2); }
 </style>
 </head>
@@ -82,10 +95,10 @@
 
 <nav class="apple-nav">
   <div class="nav-inner">
-    <a class="brand" href="#" aria-label="Tu Tienda">
-      <img class="logo-img" src="https://tu-dominio.com/logo.png" alt="Tu Tienda"
-           onerror="this.closest('.brand').classList.add('broken')" />
-      <span class="logo-fallback">Tu Tienda</span>
+    <a class="brand" href="#" aria-label="GO APPLE">
+      <img class="logo-img" src="https://tu-dominio.com/logo.png" alt="GO APPLE"
+           onerror="this.nextElementSibling.style.display='inline-block'; this.remove()" />
+      <span class="logo-fallback">GO APPLE</span>
     </a>
   </div>
 </nav>
@@ -252,12 +265,43 @@
   </div>
 </main>
 
+<!-- Popup beneficios -->
+<div class="overlay" id="welcome">
+  <div class="modal" role="dialog" aria-labelledby="w-title" aria-modal="true">
+    <header>
+      <h2 id="w-title">Bienvenido a GO APPLE</h2>
+      <p class="lead">Comprá con tranquilidad: sumamos valor en cada equipo.</p>
+    </header>
+    <ul class="benefits">
+      <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado.</div></li>
+      <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
+      <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que te sea más cómodo.</div></li>
+      <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> para clientes GO APPLE.</div></li>
+    </ul>
+    <footer>
+      <button class="cta" id="dismiss">Después</button>
+      <button class="cta primary" id="see">Quiero ver los modelos</button>
+    </footer>
+  </div>
+</div>
+
 <footer>
   <div class="wrap">Se actualiza automáticamente cuando cambias la base de Notion (pull por CRON).</div>
 </footer>
 
 <script>
-  // Sin buscador ni filtros. El logo tiene fallback textual si la URL falla.
+  // Mostrar popup una vez por sesión
+  (function(){
+    const key = 'goapple_welcome_seen';
+    const seen = sessionStorage.getItem(key);
+    const $ov = document.getElementById('welcome');
+    if(!seen){ $ov.style.display = 'flex'; }
+    function close(){ $ov.style.display='none'; sessionStorage.setItem(key,'1'); }
+    document.getElementById('dismiss').addEventListener('click', close);
+    document.getElementById('see').addEventListener('click', close);
+    $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
+  })();
 </script>
+
 </body>
 </html>
