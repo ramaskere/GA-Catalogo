@@ -8,14 +8,12 @@
   :root{
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
     --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
-    --radius:14px; --gap:10px;
-    --card-h-sm: 200px; /* alto objetivo en móvil (ajusta para 3–4 filas por viewport) */
+    --radius:14px; --gap:10px; --card-h-sm: 200px;
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
 
-  /* NAV estilo apple.com, con fallback si el logo no carga */
   .apple-nav{ position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
     backdrop-filter:saturate(1.8) blur(20px); background:rgba(255,255,255,.86); }
   .nav-inner{ max-width:1200px; margin:0 auto; height:100%;
@@ -27,7 +25,6 @@
   .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
   .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
 
-  /* GRID: 2 cols móvil, 3 cols phablet, 4 cols tablet/desktop */
   main .grid{
     display:grid; gap:var(--gap);
     grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -37,14 +34,14 @@
   @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
   @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; } }
 
-  /* CARD */
   .card{
+    position:relative;
     background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
     display:flex; flex-direction:column; overflow:hidden;
     transition:transform .2s, box-shadow .2s, border-color .2s;
   }
   .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
-
+  .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
   .img{ position:relative; background:var(--surface-2); display:flex; align-items:center; justify-content:center; flex:1 1 58%; min-height:0; }
   .img img{ width:86%; height:86%; object-fit:contain; }
   .no-img{ color:var(--muted); font-size:13px; }
@@ -52,28 +49,21 @@
     position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
     background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
   }
-
-  .info{ flex:1 1 42%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:4px; }
-  .name{
-    margin:0; font-weight:800; font-size:15px; line-height:1.15;
-    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden;
-  }
+  .info{ flex:1 1 42%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
+  .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
+    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
   .price{ font-size:18px; font-weight:800; color:#000; }
-  .sub{ font-size:12.5px; color:#0071e3; font-weight:600; } /* azul Apple */
-
+  .sub{ font-size:12.5px; color:#0071e3; font-weight:600; }
   .meta{ display:flex; flex-wrap:wrap; gap:6px; }
-  .chip{
-    background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
-    font-size:12px; padding:5px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:6px;
-  }
+  .chip{ background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
+    font-size:12px; padding:5px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; }
   .dot{ width:10px; height:10px; border-radius:999px; background:var(--dot, #d1d5db); border:1px solid rgba(0,0,0,.08); }
 
-  /* Estados por color (sutil) */
   [data-status="vendido"] .status{ background:#fff0f0; color:#b00020; border-color:#ffd6d6; }
   [data-status="reservado"] .status{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
   [data-status="disponible"] .status{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
 
-  /* POPUP de beneficios */
+  /* POPUP beneficios (ya lo teníamos) */
   .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:40; }
   .modal{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,.25); overflow:hidden; }
   .modal header{ padding:18px 22px 0; text-align:center; }
@@ -88,7 +78,28 @@
   .cta.primary:hover{ filter:brightness(.98); }
   .cta:hover{ border-color:#bfc4cc; }
 
-  footer{ color:#6e6e73; font-size:12px; text-align:center; padding:16px 12px; border-top:1px solid var(--line); background:var(--surface-2); }
+  /* DETALLE PRODUCTO */
+  .overlay.detail{ z-index:50; }
+  .modal.detail{ width:min(900px,96vw); display:grid; grid-template-columns:1fr; }
+  .detail-media{ background:var(--surface-2); display:grid; place-items:center; padding:24px; border-bottom:1px solid var(--line); }
+  .detail-media img{ width:min(520px,88%); height:auto; object-fit:contain; }
+  .detail-body{ padding:18px 18px 20px; display:grid; gap:10px; }
+  .detail-title{ margin:0; font-size:22px; font-weight:800; }
+  .detail-meta{ display:flex; flex-wrap:wrap; gap:8px; }
+  .prices{ display:grid; gap:6px; }
+  .p-usd{ font-size:20px; font-weight:800; color:#000; }
+  .p-ars{ font-size:16px; font-weight:700; color:#111; }
+  .p-cuotas{ font-size:13.5px; color:#0071e3; font-weight:600; }
+  .detail-actions{ display:flex; gap:8px; justify-content:flex-end; }
+  .close-x{ position:absolute; top:10px; right:12px; border:0; background:transparent; font-size:24px; line-height:1; cursor:pointer; }
+
+  @media (min-width:780px){
+    .modal.detail{ grid-template-columns:1.1fr 1fr; }
+    .detail-media{ border-bottom:0; border-right:1px solid var(--line); }
+    .close-x{ top:6px; right:10px; }
+  }
+
+  footer{ color:#6e6e73; font-size:12px; text-align:center; padding:16px 12px; border-top:1px solid var(--line); background:#f5f5f7; }
 </style>
 </head>
 <body>
@@ -111,148 +122,148 @@
   <div class="grid" id="grid">
     
   <article class="card"
+    data-idx="0"
     data-name="iphone 11"
     data-status=""
-    data-storage="—">
-
+    data-storage="64gb">
+    <button class="card-hit" aria-label="Ver Iphone 11"></button>
     <div class="img"><div class="no-img">Sin imagen</div></div>
-
     <div class="info">
       <h3 class="name" title="Iphone 11">Iphone 11</h3>
       <div class="price">USD 270</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span><span class="chip"><i class="dot" style="--dot:hsl(104 70% 45%)"></i>87%</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>64GB</span><span class="chip"><i class="dot" style="--dot:hsl(104 70% 45%)"></i>87%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="1"
     data-name="iphone 13 pro "
     data-status=""
-    data-storage="—">
-
+    data-storage="256gb">
+    <button class="card-hit" aria-label="Ver iPhone 13 Pro "></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13 Pro " loading="lazy" /></div>
-
     <div class="info">
       <h3 class="name" title="iPhone 13 Pro ">iPhone 13 Pro </h3>
       <div class="price">USD 550</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="2"
     data-name="iphone 13"
     data-status=""
-    data-storage="—">
-
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
-
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">USD 350</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="3"
     data-name="iphone 13"
     data-status=""
-    data-storage="—">
-
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
-
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">USD 350</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
+        <span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="4"
     data-name="iphone 13"
     data-status=""
-    data-storage="—">
-
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
-
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">USD 350</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
+        <span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="5"
     data-name="iphone 14"
     data-status=""
-    data-storage="—">
-
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iphone 14"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iphone 14" loading="lazy" /></div>
-
     <div class="info">
       <h3 class="name" title="iphone 14">iphone 14</h3>
       <div class="price">USD 400</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+        <span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="6"
     data-name="iphone 15 pro"
     data-status=""
-    data-storage="—">
-
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 15 Pro"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /></div>
-
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
       <div class="price">—</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="7"
     data-name="iphone 15"
     data-status=""
-    data-storage="—">
-
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 15"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /></div>
-
     <div class="info">
       <h3 class="name" title="iPhone 15">iPhone 15</h3>
       <div class="price">—</div>
       
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
     </div>
   </article>
 
   <article class="card"
+    data-idx="8"
     data-name=""
     data-status=""
     data-storage="—">
-
+    <button class="card-hit" aria-label="Ver "></button>
     <div class="img"><div class="no-img">Sin imagen</div></div>
-
     <div class="info">
       <h3 class="name" title=""></h3>
       <div class="price">—</div>
@@ -265,23 +276,44 @@
   </div>
 </main>
 
-<!-- Popup beneficios -->
+<!-- Popup beneficios (una vez por sesión) -->
 <div class="overlay" id="welcome">
   <div class="modal" role="dialog" aria-labelledby="w-title" aria-modal="true">
     <header>
       <h2 id="w-title">Bienvenido a GO APPLE</h2>
-      <p class="lead">Comprá con tranquilidad: sumamos valor en cada equipo.</p>
+      <p class="lead">Elegí tu iPhone con beneficios que suman de verdad.</p>
     </header>
     <ul class="benefits">
       <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado.</div></li>
       <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
-      <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que te sea más cómodo.</div></li>
-      <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> para clientes GO APPLE.</div></li>
+      <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que pagues cómodo.</div></li>
+      <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> por ser cliente GO APPLE.</div></li>
     </ul>
     <footer>
       <button class="cta" id="dismiss">Después</button>
-      <button class="cta primary" id="see">Quiero ver los modelos</button>
+      <button class="cta primary" id="see">Ver modelos</button>
     </footer>
+  </div>
+</div>
+
+<!-- Modal de detalle producto -->
+<div class="overlay detail" id="detail">
+  <div class="modal detail" role="dialog" aria-labelledby="d-title" aria-modal="true">
+    <button class="close-x" id="d-close" aria-label="Cerrar">×</button>
+    <div class="detail-media"><img id="d-img" alt="Producto" /></div>
+    <div class="detail-body">
+      <h2 class="detail-title" id="d-title"></h2>
+      <div class="detail-meta" id="d-meta"></div>
+      <div class="prices">
+        <div class="p-usd" id="d-usd"></div>
+        <div class="p-ars" id="d-ars"></div>
+        <div class="p-cuotas" id="d-cuotas"></div>
+      </div>
+      <div class="detail-actions">
+        <button class="cta" id="d-later">Después</button>
+        <button class="cta primary" id="d-contact">Consultar</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -290,16 +322,83 @@
 </footer>
 
 <script>
-  // Mostrar popup una vez por sesión
+  // Dataset embebido
+  window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyJpZCI6IjI2ODQ2MzBiLWExMzUtODAwYy05NzE1LWQ5ODg3NjYxMzBiZiIsIm5hbWUiOiJJcGhvbmUgMTEiLCJ1cmwiOiJodHRwczovL3d3dy5ub3Rpb24uc28vSXBob25lLTExLTI2ODQ2MzBiYTEzNTgwMGM5NzE1ZDk4ODc2NjEzMGJmIiwicHJvcGVydHlfYWxtYWNlbmFtaWVudG8iOiI2NEdCIiwicHJvcGVydHlfY29sb3IiOiJuZWdybyIsInByb3BlcnR5X3ByZWNpb191c2QiOjI3MCwicHJvcGVydHlfcHJlY2lvX2FycyI6bnVsbCwicHJvcGVydHlfNl9jdW90YXMiOm51bGwsInByb3BlcnR5XzNfY3VvdGEiOm51bGwsInByb3BlcnR5X2JhdGVyaWEiOjAuODcsInByb3BlcnR5X21vZGVsbyI6IklwaG9uZSAxMSJ9LCJOYW1lIjoiSXBob25lIDExIiwiUHJpY2VVU0QiOjI3MCwiUHJpY2VBUlMiOm51bGwsIlByaWNlTGFiZWwiOiJVU0QgMjcwIiwiQmF0dGVyeSI6ODcsIlN0b3JhZ2UiOiI2NEdCIiwiTW9kZWxvIjoiSXBob25lIDExIiwiQ29sb3IiOiJuZWdybyIsIkN1b3RhMyI6bnVsbCwiQ3VvdGE2IjpudWxsLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6IiJ9LHsiX3JhdyI6eyJpZCI6IjI2OTQ2MzBiLWExMzUtODA3NC04NmM4LWRjZDhmNjg2NmRiNCIsIm5hbWUiOiJpUGhvbmUgMTMgUHJvICIsInVybCI6Imh0dHBzOi8vd3d3Lm5vdGlvbi5zby9pUGhvbmUtMTMtUHJvLTI2OTQ2MzBiYTEzNTgwNzQ4NmM4ZGNkOGY2ODY2ZGI0IiwicHJvcGVydHlfYWxtYWNlbmFtaWVudG8iOiIyNTZHQiIsInByb3BlcnR5X2NvbG9yIjoiQmxhbmNvIiwicHJvcGVydHlfcHJlY2lvX3VzZCI6NTUwLCJwcm9wZXJ0eV9wcmVjaW9fYXJzIjpudWxsLCJwcm9wZXJ0eV82X2N1b3RhcyI6bnVsbCwicHJvcGVydHlfM19jdW90YSI6bnVsbCwicHJvcGVydHlfYmF0ZXJpYSI6MSwicHJvcGVydHlfbW9kZWxvIjoiaVBob25lIDEzIFBybyAifSwiTmFtZSI6ImlQaG9uZSAxMyBQcm8gIiwiUHJpY2VVU0QiOjU1MCwiUHJpY2VBUlMiOm51bGwsIlByaWNlTGFiZWwiOiJVU0QgNTUwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMjU2R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMgUHJvICIsIkNvbG9yIjoiQmxhbmNvIiwiQ3VvdGEzIjpudWxsLCJDdW90YTYiOm51bGwsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7ImlkIjoiMjY5NDYzMGItYTEzNS04MDQ1LTlkNTQtYzZlOGZlYmU5N2ZkIiwibmFtZSI6ImlQaG9uZSAxMyIsInVybCI6Imh0dHBzOi8vd3d3Lm5vdGlvbi5zby9pUGhvbmUtMTMtMjY5NDYzMGJhMTM1ODA0NTlkNTRjNmU4ZmViZTk3ZmQiLCJwcm9wZXJ0eV9hbG1hY2VuYW1pZW50byI6IjEyOEdCIiwicHJvcGVydHlfY29sb3IiOiJuZWdybyIsInByb3BlcnR5X3ByZWNpb191c2QiOjM1MCwicHJvcGVydHlfcHJlY2lvX2FycyI6bnVsbCwicHJvcGVydHlfNl9jdW90YXMiOm51bGwsInByb3BlcnR5XzNfY3VvdGEiOm51bGwsInByb3BlcnR5X2JhdGVyaWEiOjAuODUsInByb3BlcnR5X21vZGVsbyI6ImlQaG9uZSAxMyJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjM1MCwiUHJpY2VBUlMiOm51bGwsIlByaWNlTGFiZWwiOiJVU0QgMzUwIiwiQmF0dGVyeSI6ODUsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjoibmVncm8iLCJDdW90YTMiOm51bGwsIkN1b3RhNiI6bnVsbCwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiaWQiOiIyNjk0NjMwYi1hMTM1LTgwMzAtYTM1OS1kZDQ4NDY1MDJkYzQiLCJuYW1lIjoiaVBob25lIDEzIiwidXJsIjoiaHR0cHM6Ly93d3cubm90aW9uLnNvL2lQaG9uZS0xMy0yNjk0NjMwYmExMzU4MDMwYTM1OWRkNDg0NjUwMmRjNCIsInByb3BlcnR5X2FsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJwcm9wZXJ0eV9jb2xvciI6IiIsInByb3BlcnR5X3ByZWNpb191c2QiOjM1MCwicHJvcGVydHlfcHJlY2lvX2FycyI6bnVsbCwicHJvcGVydHlfNl9jdW90YXMiOm51bGwsInByb3BlcnR5XzNfY3VvdGEiOm51bGwsInByb3BlcnR5X2JhdGVyaWEiOjAuODUsInByb3BlcnR5X21vZGVsbyI6ImlQaG9uZSAxMyJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjM1MCwiUHJpY2VBUlMiOm51bGwsIlByaWNlTGFiZWwiOiJVU0QgMzUwIiwiQmF0dGVyeSI6ODUsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjpudWxsLCJDdW90YTMiOm51bGwsIkN1b3RhNiI6bnVsbCwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiaWQiOiIyNjg0NjMwYi1hMTM1LTgwNWEtODRjYy1lZmZhZjMwZTY4MjAiLCJuYW1lIjoiaVBob25lIDEzIiwidXJsIjoiaHR0cHM6Ly93d3cubm90aW9uLnNvL2lQaG9uZS0xMy0yNjg0NjMwYmExMzU4MDVhODRjY2VmZmFmMzBlNjgyMCIsInByb3BlcnR5X2FsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJwcm9wZXJ0eV9jb2xvciI6IiIsInByb3BlcnR5X3ByZWNpb191c2QiOjM1MCwicHJvcGVydHlfcHJlY2lvX2FycyI6bnVsbCwicHJvcGVydHlfNl9jdW90YXMiOm51bGwsInByb3BlcnR5XzNfY3VvdGEiOm51bGwsInByb3BlcnR5X2JhdGVyaWEiOjAuODUsInByb3BlcnR5X21vZGVsbyI6ImlQaG9uZSAxMyJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjM1MCwiUHJpY2VBUlMiOm51bGwsIlByaWNlTGFiZWwiOiJVU0QgMzUwIiwiQmF0dGVyeSI6ODUsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjpudWxsLCJDdW90YTMiOm51bGwsIkN1b3RhNiI6bnVsbCwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiaWQiOiIyNjg0NjMwYi1hMTM1LTgwZmEtODc2OS1kNTgxYzcyMTM5ODAiLCJuYW1lIjoiaXBob25lIDE0IiwidXJsIjoiaHR0cHM6Ly93d3cubm90aW9uLnNvL2lwaG9uZS0xNC0yNjg0NjMwYmExMzU4MGZhODc2OWQ1ODFjNzIxMzk4MCIsInByb3BlcnR5X2FsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJwcm9wZXJ0eV9jb2xvciI6IiIsInByb3BlcnR5X3ByZWNpb191c2QiOjQwMCwicHJvcGVydHlfcHJlY2lvX2FycyI6bnVsbCwicHJvcGVydHlfNl9jdW90YXMiOm51bGwsInByb3BlcnR5XzNfY3VvdGEiOm51bGwsInByb3BlcnR5X2JhdGVyaWEiOjEsInByb3BlcnR5X21vZGVsbyI6ImlwaG9uZSAxNCJ9LCJOYW1lIjoiaXBob25lIDE0IiwiUHJpY2VVU0QiOjQwMCwiUHJpY2VBUlMiOm51bGwsIlByaWNlTGFiZWwiOiJVU0QgNDAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpcGhvbmUgMTQiLCJDb2xvciI6bnVsbCwiQ3VvdGEzIjpudWxsLCJDdW90YTYiOm51bGwsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDMvaW1hZ2VfMjU2L2lQaG9uZSUyMDE0In0seyJfcmF3Ijp7ImlkIjoiMjY5NDYzMGItYTEzNS04MGY5LTllYjEtZWNjZGUzNDcxNzk5IiwibmFtZSI6ImlQaG9uZSAxNSBQcm8iLCJ1cmwiOiJodHRwczovL3d3dy5ub3Rpb24uc28vaVBob25lLTE1LVByby0yNjk0NjMwYmExMzU4MGY5OWViMWVjY2RlMzQ3MTc5OSIsInByb3BlcnR5X2FsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJwcm9wZXJ0eV9jb2xvciI6Ik5lZ3JvIiwicHJvcGVydHlfcHJlY2lvX3VzZCI6bnVsbCwicHJvcGVydHlfcHJlY2lvX2FycyI6bnVsbCwicHJvcGVydHlfNl9jdW90YXMiOm51bGwsInByb3BlcnR5XzNfY3VvdGEiOm51bGwsInByb3BlcnR5X2JhdGVyaWEiOjEsInByb3BlcnR5X21vZGVsbyI6ImlQaG9uZSAxNSBQcm8ifSwiTmFtZSI6ImlQaG9uZSAxNSBQcm8iLCJQcmljZVVTRCI6bnVsbCwiUHJpY2VBUlMiOm51bGwsIlByaWNlTGFiZWwiOiLigJQiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8iLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjpudWxsLCJDdW90YTYiOm51bGwsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7ImlkIjoiMjY5NDYzMGItYTEzNS04MDBkLTk0NzItZmU3MGJkNGQ2NjY4IiwibmFtZSI6ImlQaG9uZSAxNSIsInVybCI6Imh0dHBzOi8vd3d3Lm5vdGlvbi5zby9pUGhvbmUtMTUtMjY5NDYzMGJhMTM1ODAwZDk0NzJmZTcwYmQ0ZDY2NjgiLCJwcm9wZXJ0eV9hbG1hY2VuYW1pZW50byI6IjEyOEdCIiwicHJvcGVydHlfY29sb3IiOiJOZWdybyIsInByb3BlcnR5X3ByZWNpb191c2QiOm51bGwsInByb3BlcnR5X3ByZWNpb19hcnMiOm51bGwsInByb3BlcnR5XzZfY3VvdGFzIjpudWxsLCJwcm9wZXJ0eV8zX2N1b3RhIjpudWxsLCJwcm9wZXJ0eV9iYXRlcmlhIjoxLCJwcm9wZXJ0eV9tb2RlbG8iOiJpUGhvbmUgMTUifSwiTmFtZSI6ImlQaG9uZSAxNSIsIlByaWNlVVNEIjpudWxsLCJQcmljZUFSUyI6bnVsbCwiUHJpY2VMYWJlbCI6IuKAlCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6bnVsbCwiQ3VvdGE2IjpudWxsLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9LHsiX3JhdyI6eyJpZCI6IjI2OTQ2MzBiLWExMzUtODAyNC05NTk5LWQ3MTdmYjgyN2EwZSIsIm5hbWUiOiIiLCJ1cmwiOiJodHRwczovL3d3dy5ub3Rpb24uc28vMjY5NDYzMGJhMTM1ODAyNDk1OTlkNzE3ZmI4MjdhMGUiLCJwcm9wZXJ0eV9hbG1hY2VuYW1pZW50byI6IiIsInByb3BlcnR5X2NvbG9yIjoiIiwicHJvcGVydHlfcHJlY2lvX3VzZCI6bnVsbCwicHJvcGVydHlfcHJlY2lvX2FycyI6bnVsbCwicHJvcGVydHlfNl9jdW90YXMiOm51bGwsInByb3BlcnR5XzNfY3VvdGEiOm51bGwsInByb3BlcnR5X2JhdGVyaWEiOm51bGwsInByb3BlcnR5X21vZGVsbyI6IiJ9LCJOYW1lIjoiIiwiUHJpY2VVU0QiOm51bGwsIlByaWNlQVJTIjpudWxsLCJQcmljZUxhYmVsIjoi4oCUIiwiQmF0dGVyeSI6bnVsbCwiU3RvcmFnZSI6IuKAlCIsIk1vZGVsbyI6bnVsbCwiQ29sb3IiOm51bGwsIkN1b3RhMyI6bnVsbCwiQ3VvdGE2IjpudWxsLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6IiJ9XQ=='));
+
+  // Beneficios una vez por sesión
   (function(){
     const key = 'goapple_welcome_seen';
     const seen = sessionStorage.getItem(key);
     const $ov = document.getElementById('welcome');
     if(!seen){ $ov.style.display = 'flex'; }
     function close(){ $ov.style.display='none'; sessionStorage.setItem(key,'1'); }
-    document.getElementById('dismiss').addEventListener('click', close);
-    document.getElementById('see').addEventListener('click', close);
+    document.getElementById('dismiss')?.addEventListener('click', close);
+    document.getElementById('see')?.addEventListener('click', close);
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
+  })();
+
+  // Helpers en el cliente (mismos que arriba)
+  const COLOR_MAP = {"negro":"#111827","black":"#111827","midnight":"#0b1324","graphite":"#3a3a3c","blanco":"#f9fafb","white":"#f9fafb","starlight":"#f5f1e6","silver":"#d1d5db","azul":"#1d4ed8","blue":"#1d4ed8","deep purple":"#5b21b6","purple":"#7c3aed","rojo":"#dc2626","red":"#dc2626","verde":"#16a34a","green":"#16a34a","dorado":"#eab308","gold":"#eab308","rosa":"#fb7185","pink":"#fb7185"};
+  const colorToHex = (name)=>{ if(!name) return '#d1d5db'; const key=String(name).trim().toLowerCase(); for(const k in COLOR_MAP){ if(key.includes(k)) return COLOR_MAP[k]; } return '#d1d5db'; };
+  const battColor = (pct)=>{ const p=Math.max(0,Math.min(100,Number(pct)||0)); const h=Math.round(p*1.2); return `hsl(${h} 70% 45%)`; };
+  const esc = (s)=> String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmtMoney = (v,currency)=>{ if (v==null||v==='') return null; const n=Number(v); if(!isFinite(n)) return null; if(currency==='ARS') return '$ '+n.toLocaleString('es-AR'); if(currency==='USD') return 'USD '+n.toLocaleString('en-US'); return '$'+n; };
+
+  // Abrir detalle al click
+  const grid = document.getElementById('grid');
+  grid.addEventListener('click', (e)=>{
+    const hit = e.target.closest('.card');
+    if(!hit) return;
+    const idx = Number(hit.dataset.idx);
+    const p = window.__PRODUCTS__[idx];
+    if(!p) return;
+
+    const $ov = document.getElementById('detail');
+    const $img = document.getElementById('d-img');
+    const $title = document.getElementById('d-title');
+    const $meta = document.getElementById('d-meta');
+    const $usd = document.getElementById('d-usd');
+    const $ars = document.getElementById('d-ars');
+    const $cuo = document.getElementById('d-cuotas');
+
+    $img.src = p.ImageURL || '';
+    $img.alt = p.Name;
+    $title.textContent = p.Name;
+
+    // chips: Color • Almacenamiento • Batería
+    const chips = [];
+    if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
+    if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
+    if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
+    $meta.innerHTML = chips.join('');
+
+    // precios: USD (arriba), ARS (abajo)
+    $usd.textContent = fmtMoney(p.PriceUSD,'USD') ?? 'USD —';
+    $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
+
+    // cuotas
+    const c3 = p.Cuota3 ? `3x ${esc(p.Cuota3)}` : '';
+    const c6 = p.Cuota6 ? `6x ${esc(p.Cuota6)}` : '';
+    $cuo.textContent = (c3 || c6) ? [c3,c6].filter(Boolean).join('  •  ') : 'Consultar financiación';
+
+    // acciones
+    document.getElementById('d-contact').onclick = ()=>{
+      const msg = encodeURIComponent(`Hola, me interesa el ${p.Name}. ¿Está disponible?`);
+      window.open('https://wa.me/5490000000000?text='+msg, '_blank'); // ← cambia al número real
+    };
+
+    // abrir y bindings de cierre
+    $ov.style.display = 'flex';
+  });
+
+  // Cerrar modal de detalle
+  (function(){
+    const $ov = document.getElementById('detail');
+    function close(){ $ov.style.display='none'; }
+    document.getElementById('d-close').addEventListener('click', close);
+    document.getElementById('d-later').addEventListener('click', close);
+    $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
   })();
 </script>
 
