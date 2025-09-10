@@ -381,11 +381,13 @@
     const c6 = p.Cuota6 ? `6x ${esc(p.Cuota6)}` : '';
     $cuo.textContent = (c3 || c6) ? [c3,c6].filter(Boolean).join('  •  ') : 'Consultar financiación';
 
-    // acciones
-    document.getElementById('d-contact').onclick = ()=>{
-      const msg = encodeURIComponent(`Hola, me interesa el ${p.Name}. ¿Está disponible?`);
-      window.open('https://wa.me/5490000000000?text='+msg, '_blank'); // ← cambia al número real
+        // acciones (WhatsApp)
+    document.getElementById('d-contact').onclick = function () {
+      const msg = encodeURIComponent('Hola, me interesa el ' + p.Name + '. ¿Está disponible?');
+      const url = 'https://wa.me/' + '5492646721845' + '?text=' + msg;
+      window.open(url, '_blank');
     };
+
 
     // abrir y bindings de cierre
     $ov.style.display = 'flex';
