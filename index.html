@@ -4,33 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>GO APPLE — Catálogo</title>
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '650415544428771');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
 <style>
   :root{
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
     --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
-    --radius:14px; --gap:10px;
-    --card-h-sm: 210px;            /* alto base de card */
-    --img-h-mobile: 150px;         /* 💥 altura fija para la imagen en móvil */
-    --img-h-phablet: 160px;
+    --radius:14px; --gap:10px; --card-h-sm: 200px;
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
@@ -53,12 +31,8 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
     grid-auto-rows: var(--card-h-sm);
     padding:10px; max-width:1200px; margin:0 auto;
   }
-  @media (min-width:600px){
-    main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
-  }
-  @media (min-width:992px){
-    main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; }
-  }
+  @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
+  @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; } }
 
   .card{
     position:relative;
@@ -68,35 +42,19 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
   }
   .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
   .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
-
-  /* 💥 Imagen grande en móvil: altura fija y la foto ocupa el alto completo */
-  .img{
-    position:relative; background:var(--surface-2);
-    display:flex; align-items:center; justify-content:center;
-    flex:0 0 var(--img-h-mobile); padding:10px;
-  }
-  .img img{ width:auto; height:100%; max-width:92%; object-fit:contain; }
-  @media (min-width:600px){
-    .img{ flex:0 0 var(--img-h-phablet); }
-  }
-  @media (min-width:992px){
-    .img{ flex:1 1 58%; min-height:180px; }
-    .img img{ height:auto; width:88%; max-height:240px; }
-  }
-
+  .img{ position:relative; background:var(--surface-2); display:flex; align-items:center; justify-content:center; flex:1 1 58%; min-height:0; }
+  .img img{ width:86%; height:86%; object-fit:contain; }
   .no-img{ color:var(--muted); font-size:13px; }
   .status{
     position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
     background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
   }
-
-  .info{ flex:1 1 auto; padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
+  .info{ flex:1 1 42%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
   .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
     display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
   .price{ font-size:18px; font-weight:800; color:#000; }
   .sub{ font-size:12.5px; color:#0071e3; font-weight:600; }
   .cuotas-hint{ cursor:default; }
-
   .meta{ display:flex; flex-wrap:wrap; gap:6px; }
   .chip{ background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
     font-size:12px; padding:5px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; }
@@ -143,7 +101,27 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
     .detail-media{ border-bottom:0; border-right:1px solid var(--line); }
     .close-x{ top:6px; right:10px; }
   }
+
+  footer{ color:#6e6e73; font-size:12px; text-align:center; padding:16px 12px; border-top:1px solid var(--line); background:#f5f5f7; }
 </style>
+
+<!-- Meta Pixel Code (ID: 650415544428771) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '650415544428771');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -377,9 +355,17 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
   </div>
 </div>
 
+<footer>
+  <div class="wrap">Se actualiza automáticamente cuando cambias la base de Notion (pull por CRON).</div>
+</footer>
+
 <script>
   // Dataset embebido
   window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIxNDEwIjoiIiwicm93X251bWJlciI6MiwiTW9kZWxvIjoiaVBob25lIDExIiwiQmF0ZXLDrWEiOiI4NyUiLCJBbG1hY2VuYW1pZW50byI6IjY0R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6MjcwLCJQcmVjaW8gQVJTIjozODA3MDAsIjMgQ3VvdGEiOjE1MDUwMy40LCI2IEN1b3RhcyI6ODA1MDUuMzYsIlVTRCBIT1kiOjE0MTB9LCJOYW1lIjoiaVBob25lIDExIiwiUHJpY2VVU0QiOjI3MCwiUHJpY2VBUlMiOjM4MDcwMCwiUHJpY2VMYWJlbCI6IiQgMzgwLjcwMCIsIkJhdHRlcnkiOjg3LCJTdG9yYWdlIjoiNjRHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDE1MC41MDMiLCJDdW90YTYiOiIkIDgwLjUwNSIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiIn0seyJfcmF3Ijp7IjE0MTAiOiIiLCJyb3dfbnVtYmVyIjozLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJCYXRlcsOtYSI6Ijg1JSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6MzUwLCJQcmVjaW8gQVJTIjo0OTM1MDAsIjMgQ3VvdGEiOjE5NTA5NywiNiBDdW90YXMiOjEwNDM1OC44LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTMiLCJQcmljZVVTRCI6MzUwLCJQcmljZUFSUyI6NDkzNTAwLCJQcmljZUxhYmVsIjoiJCA0OTMuNTAwIiwiQmF0dGVyeSI6ODUsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDE5NS4wOTciLCJDdW90YTYiOiIkIDEwNC4zNTkiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIxNDEwIjoiIiwicm93X251bWJlciI6NCwiTW9kZWxvIjoiaVBob25lIDEzIiwiQmF0ZXLDrWEiOiI4NSUiLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjM1MCwiUHJlY2lvIEFSUyI6NDkzNTAwLCIzIEN1b3RhIjoxOTUwOTcsIjYgQ3VvdGFzIjoxMDQzNTguOCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjM1MCwiUHJpY2VBUlMiOjQ5MzUwMCwiUHJpY2VMYWJlbCI6IiQgNDkzLjUwMCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAxOTUuMDk3IiwiQ3VvdGE2IjoiJCAxMDQuMzU5IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMTQxMCI6IiIsInJvd19udW1iZXIiOjUsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjoiODUlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiQXp1bCIsIlByZWNpbyBVU0QiOjM1MCwiUHJlY2lvIEFSUyI6NDkzNTAwLCIzIEN1b3RhIjoxOTUwOTcsIjYgQ3VvdGFzIjoxMDQzNTguOCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjM1MCwiUHJpY2VBUlMiOjQ5MzUwMCwiUHJpY2VMYWJlbCI6IiQgNDkzLjUwMCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6IkF6dWwiLCJDdW90YTMiOiIkIDE5NS4wOTciLCJDdW90YTYiOiIkIDEwNC4zNTkiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIxNDEwIjoiIiwicm93X251bWJlciI6NiwiTW9kZWxvIjoiaVBob25lIDEzIFBybyIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IkJsYW5jbyIsIlByZWNpbyBVU0QiOjU1MCwiUHJlY2lvIEFSUyI6Nzc1NTAwLCIzIEN1b3RhIjozMDY1ODEsIjYgQ3VvdGFzIjoxNjM5OTIuNCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIFBybyIsIlByaWNlVVNEIjo1NTAsIlByaWNlQVJTIjo3NzU1MDAsIlByaWNlTGFiZWwiOiIkIDc3NS41MDAiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIyNTZHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyBQcm8iLCJDb2xvciI6IkJsYW5jbyIsIkN1b3RhMyI6IiQgMzA2LjU4MSIsIkN1b3RhNiI6IiQgMTYzLjk5MiIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7IjE0MTAiOiIiLCJyb3dfbnVtYmVyIjo3LCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJCYXRlcsOtYSI6IjEwMCUiLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJSb2pvIiwiUHJlY2lvIFVTRCI6NDAwLCJQcmVjaW8gQVJTIjo1NjQwMDAsIjMgQ3VvdGEiOjIyMjk2OCwiNiBDdW90YXMiOjExOTI2Ny4yLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTQiLCJQcmljZVVTRCI6NDAwLCJQcmljZUFSUyI6NTY0MDAwLCJQcmljZUxhYmVsIjoiJCA1NjQuMDAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJDb2xvciI6IlJvam8iLCJDdW90YTMiOiIkIDIyMi45NjgiLCJDdW90YTYiOiIkIDExOS4yNjciLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNCJ9LHsiX3JhdyI6eyIxNDEwIjoiIiwicm93X251bWJlciI6OCwiTW9kZWxvIjoiaVBob25lIDE0IiwiQmF0ZXLDrWEiOiIxMDAlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiQ2VsZXN0ZSIsIlByZWNpbyBVU0QiOjQwMCwiUHJlY2lvIEFSUyI6NTY0MDAwLCIzIEN1b3RhIjoyMjI5NjgsIjYgQ3VvdGFzIjoxMTkyNjcuMiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE0IiwiUHJpY2VVU0QiOjQwMCwiUHJpY2VBUlMiOjU2NDAwMCwiUHJpY2VMYWJlbCI6IiQgNTY0LjAwMCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE0IiwiQ29sb3IiOiJDZWxlc3RlIiwiQ3VvdGEzIjoiJCAyMjIuOTY4IiwiQ3VvdGE2IjoiJCAxMTkuMjY3IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMy9pbWFnZV8yNTYvaVBob25lJTIwMTQifSx7Il9yYXciOnsiMTQxMCI6IiIsInJvd19udW1iZXIiOjksIk1vZGVsbyI6ImlQaG9uZSAxNCBQcm8iLCJCYXRlcsOtYSI6IjEwMCUiLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjc1MCwiUHJlY2lvIEFSUyI6MTA1NzUwMCwiMyBDdW90YSI6NDE4MDY1LCI2IEN1b3RhcyI6MjIzNjI2LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTQgUHJvIiwiUHJpY2VVU0QiOjc1MCwiUHJpY2VBUlMiOjEwNTc1MDAsIlByaWNlTGFiZWwiOiIkIDEuMDU3LjUwMCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE0IFBybyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDQxOC4wNjUiLCJDdW90YTYiOiIkIDIyMy42MjYiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNCJ9LHsiX3JhdyI6eyIxNDEwIjoiIiwicm93X251bWJlciI6MTAsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NjcwLCJQcmVjaW8gQVJTIjo5NDQ3MDAsIjMgQ3VvdGEiOjM3MzQ3MS4zOTk5OTk5OTk5NywiNiBDdW90YXMiOjE5OTc3Mi41NTk5OTk5OTk5NywiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE1IiwiUHJpY2VVU0QiOjY3MCwiUHJpY2VBUlMiOjk0NDcwMCwiUHJpY2VMYWJlbCI6IiQgOTQ0LjcwMCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgMzczLjQ3MSIsIkN1b3RhNiI6IiQgMTk5Ljc3MyIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjE0MTAiOiIiLCJyb3dfbnVtYmVyIjoxMSwiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6OTAwLCJQcmVjaW8gQVJTIjoxMjY5MDAwLCIzIEN1b3RhIjo1MDE2NzgsIjYgQ3VvdGFzIjoyNjgzNTEuMiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE1IFBybyIsIlByaWNlVVNEIjo5MDAsIlByaWNlQVJTIjoxMjY5MDAwLCJQcmljZUxhYmVsIjoiJCAxLjI2OS4wMDAiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8iLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCA1MDEuNjc4IiwiQ3VvdGE2IjoiJCAyNjguMzUxIiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMS9pbWFnZV8yNTYvaVBob25lJTIwMTUifV0='));
+
+  // Helpers Meta Pixel (seguros si fbq no cargó aún)
+  function mpTrack(ev, data){ try{ window.fbq && fbq('track', ev, data||{}); }catch(e){} }
+  function mpCustom(ev, data){ try{ window.fbq && fbq('trackCustom', ev, data||{}); }catch(e){} }
 
   // Popup beneficios una vez por sesión
   (function(){
@@ -421,14 +407,14 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
     $img.alt = p.Name;
     $title.textContent = p.Name;
 
-    // chips
+    // chips: Color • Almacenamiento • Batería
     const chips = [];
     if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
     if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
     if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
     $meta.innerHTML = chips.join('');
 
-    // precios
+    // precios: USD y ARS
     $usd.textContent = fmtMoney(p.PriceUSD,'USD') ?? 'USD —';
     $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
 
@@ -438,14 +424,38 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
     if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
     $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar financiación</div>';
 
-    // WhatsApp
+    // —— Meta Pixel: ViewContent
+    mpTrack('ViewContent', {
+      content_name: p.Name,
+      content_category: 'iPhone',
+      content_ids: [p.Modelo || p.Name],
+      content_type: 'product',
+      value: (p.PriceARS ?? p.PriceUSD ?? 0),
+      currency: (p.PriceARS ? 'ARS' : 'USD')
+    });
+
+    // abrir
+    $ov.style.display = 'flex';
+
+    // botón WhatsApp (Contact/Lead)
     document.getElementById('d-contact').onclick = function () {
+      // Meta Pixel: Contact + (opcional) Lead
+      mpTrack('Contact', {
+        content_name: p.Name,
+        content_category: 'iPhone',
+        content_ids: [p.Modelo || p.Name],
+        content_type: 'product'
+      });
+      mpTrack('Lead', {
+        content_name: p.Name,
+        value: (p.PriceARS ?? p.PriceUSD ?? 0),
+        currency: (p.PriceARS ? 'ARS' : 'USD')
+      });
+
       const msg = encodeURIComponent('Me interesa el ' + p.Name + '. ¿Está disponible?');
       const url = 'https://wa.me/5492646721845?text=' + msg;
       window.open(url, '_blank');
     };
-
-    $ov.style.display = 'flex';
   });
 
   // Cerrar modal de detalle
