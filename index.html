@@ -4,14 +4,25 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>GO APPLE — Catálogo</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','650415544428771'); fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
   :root{
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
     --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
-    --radius:14px; --gap:10px;
-    /* alturas de imagen en móvil/phablet */
-    --img-h-mobile: 150px;
-    --img-h-phablet: 170px;
+    --radius:14px; --gap:10px; --card-h-sm: 210px;
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
@@ -28,50 +39,44 @@
   .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
   .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
 
-  /* GRID con filas auto (no recorta contenido) */
   main .grid{
     display:grid; gap:var(--gap);
     grid-template-columns:repeat(2, minmax(0, 1fr));
-    grid-auto-rows:auto;
+    grid-auto-rows: var(--card-h-sm);
     padding:10px; max-width:1200px; margin:0 auto;
   }
   @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
-  @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); } }
+  @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; } }
 
   .card{
-    position:relative;
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    display:flex; flex-direction:column; overflow:hidden;
-    transition:transform .2s, box-shadow .2s, border-color .2s;
+    position:relative; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    display:flex; flex-direction:column; overflow:hidden; transition:transform .2s, box-shadow .2s, border-color .2s;
   }
   .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
   .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
-
-  /* Imagen grande y estable en móvil */
-  .img{
-    position:relative; background:var(--surface-2);
-    display:flex; align-items:center; justify-content:center;
-    flex:0 0 var(--img-h-mobile); padding:10px;
-  }
-  .img img{
-    width:auto; max-width:92%;
-    height:auto; max-height:100%;
-    object-fit:contain;
-  }
-  @media (min-width:600px){
-    .img{ flex:0 0 var(--img-h-phablet); }
-  }
-  @media (min-width:992px){
-    .img{ flex:1 1 58%; min-height:190px; }
-    .img img{ width:88%; height:auto; max-height:240px; }
-  }
-
+  .img{ position:relative; background:var(--surface-2); display:flex; align-items:center; justify-content:center; flex:1 1 64%; min-height:140px; }
+  .img img{ width:92%; height:92%; object-fit:contain; }
   .no-img{ color:var(--muted); font-size:13px; }
   .status{
     position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
     background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
   }
-  .info{ flex:1 1 auto; padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
+
+  /* === Sticker 10% OFF (visual) === */
+  .promo{
+    position:absolute; top:10px; right:-42px;
+    transform:rotate(45deg);
+    background:linear-gradient(135deg, #ff3b30, #ff1f1f);
+    color:#fff; font-weight:800; font-size:11px; letter-spacing:.6px; text-transform:uppercase;
+    padding:6px 54px; pointer-events:none;
+    box-shadow:0 6px 16px rgba(0,0,0,.18);
+  }
+  .promo-pill{
+    display:inline-block; margin-left:8px; padding:4px 10px; border-radius:999px;
+    background:#ffe8e8; color:#c81e1e; font-weight:800; font-size:11.5px; letter-spacing:.3px;
+  }
+
+  .info{ flex:1 1 36%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
   .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
     display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
   .price{ font-size:18px; font-weight:800; color:#000; }
@@ -86,23 +91,10 @@
   [data-status="reservado"] .status{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
   [data-status="disponible"] .status{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
 
-  /* POPUP beneficios */
-  .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:40; }
-  .modal{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,.25); overflow:hidden; }
-  .modal header{ padding:18px 22px 0; text-align:center; }
-  .modal h2{ margin:0; font-size:24px; font-weight:800; }
-  .modal p.lead{ margin:6px 0 14px; color:#424245; font-size:15px; }
-  .benefits{ padding:0 18px 6px; }
-  .benefits li{ list-style:none; display:flex; align-items:flex-start; gap:10px; margin:10px 0; color:#1d1d1f; }
-  .benefits li .tick{ flex:0 0 auto; width:22px; height:22px; border-radius:999px; display:grid; place-items:center; background:#e6f0ff; color:#0071e3; font-weight:800; }
-  .modal footer{ display:flex; gap:10px; justify-content:center; padding:16px 18px 22px; background:#f5f5f7; border-top:1px solid var(--line); }
-  .cta{ appearance:none; padding:10px 16px; border-radius:999px; font-weight:700; cursor:pointer; border:1px solid #cfd2d8; background:#fff; }
-  .cta.primary{ background:#0071e3; color:#fff; border-color:#0071e3; }
-  .cta.primary:hover{ filter:brightness(.98); }
-  .cta:hover{ border-color:#bfc4cc; }
-
   /* DETALLE PRODUCTO */
+  .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:40; }
   .overlay.detail{ z-index:50; }
+  .modal{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,.25); overflow:hidden; }
   .modal.detail{ width:min(900px,96vw); display:grid; grid-template-columns:1fr; }
   .detail-media{ background:var(--surface-2); display:grid; place-items:center; padding:24px; border-bottom:1px solid var(--line); }
   .detail-media img{ width:min(520px,88%); height:auto; object-fit:contain; }
@@ -124,22 +116,6 @@
     .close-x{ top:6px; right:10px; }
   }
 </style>
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '650415544428771'); fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-
 </head>
 <body>
 
@@ -160,197 +136,117 @@ fbq('init', '650415544428771'); fbq('track', 'PageView');
 <main>
   <div class="grid" id="grid">
     
-  <article class="card"
-    data-idx="0"
-    data-name="iphone 11"
-    data-status=""
-    data-storage="64gb">
+  <article class="card" data-idx="0">
     <button class="card-hit" aria-label="Ver iPhone 11"></button>
-    <div class="img"><div class="no-img">Sin imagen</div></div>
+    <div class="img"><div class="no-img">Sin imagen</div><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 11">iPhone 11</h3>
       <div class="price">$ 402.300</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>64GB</span><span class="chip"><i class="dot" style="--dot:hsl(104 70% 45%)"></i>87%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>64GB</span><span class="chip"><i class="dot" style="--dot:hsl(104 70% 45%)"></i>87%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="1"
-    data-name="iphone 13"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="1">
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">$ 670.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="2"
-    data-name="iphone 13"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="2">
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">$ 670.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="3"
-    data-name="iphone 13"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="3">
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">$ 670.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#1d4ed8"></i>Azul</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#1d4ed8"></i>Azul</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="4"
-    data-name="iphone 13 pro"
-    data-status=""
-    data-storage="256gb">
+  <article class="card" data-idx="4">
     <button class="card-hit" aria-label="Ver iPhone 13 Pro"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13 Pro" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13 Pro" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 13 Pro">iPhone 13 Pro</h3>
       <div class="price">$ 819.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="5"
-    data-name="iphone 14"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="5">
     <button class="card-hit" aria-label="Ver iPhone 14"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 14">iPhone 14</h3>
       <div class="price">$ 789.700</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#dc2626"></i>Rojo</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#dc2626"></i>Rojo</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="6"
-    data-name="iphone 14"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="6">
     <button class="card-hit" aria-label="Ver iPhone 14"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 14">iPhone 14</h3>
       <div class="price">$ 789.700</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Celeste</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Celeste</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="7"
-    data-name="iphone 14 pro"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="7">
     <button class="card-hit" aria-label="Ver iPhone 14 Pro"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14 Pro" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14 Pro" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 14 Pro">iPhone 14 Pro</h3>
       <div class="price">$ 1.117.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="8"
-    data-name="iphone 15"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="8">
     <button class="card-hit" aria-label="Ver iPhone 15"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 15">iPhone 15</h3>
       <div class="price">$ 998.300</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
     </div>
   </article>
 
-  <article class="card"
-    data-idx="9"
-    data-name="iphone 15 pro"
-    data-status=""
-    data-storage="128gb">
+  <article class="card" data-idx="9">
     <button class="card-hit" aria-label="Ver iPhone 15 Pro"></button>
-    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /></div>
+    <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /><div class="promo">10% OFF</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
       <div class="price">$ 1.341.000</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
-      </div>
+      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
     </div>
   </article>
   </div>
 </main>
-
-<!-- Popup beneficios -->
-<div class="overlay" id="welcome">
-  <div class="modal" role="dialog" aria-labelledby="w-title" aria-modal="true">
-    <header>
-      <h2 id="w-title">Bienvenido a GO APPLE</h2>
-      <p class="lead">Elegí tu iPhone con beneficios que suman de verdad.</p>
-    </header>
-    <ul class="benefits">
-      <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado.</div></li>
-      <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
-      <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que pagues cómodo.</div></li>
-      <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> por ser cliente GO APPLE.</div></li>
-    </ul>
-    <footer>
-      <button class="cta" id="dismiss">Después</button>
-      <button class="cta primary" id="see">Ver modelos</button>
-    </footer>
-  </div>
-</div>
 
 <!-- Modal de detalle producto -->
 <div class="overlay detail" id="detail">
@@ -358,7 +254,7 @@ fbq('init', '650415544428771'); fbq('track', 'PageView');
     <button class="close-x" id="d-close" aria-label="Cerrar">×</button>
     <div class="detail-media"><img id="d-img" alt="Producto" /></div>
     <div class="detail-body">
-      <h2 class="detail-title" id="d-title"></h2>
+      <h2 class="detail-title" id="d-title">iPhone <span class="promo-pill">10% OFF</span></h2>
       <div class="detail-meta" id="d-meta"></div>
       <div class="prices">
         <div class="p-usd" id="d-usd"></div>
@@ -377,19 +273,37 @@ fbq('init', '650415544428771'); fbq('track', 'PageView');
   // Dataset embebido
   window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6MiwiTW9kZWxvIjoiaVBob25lIDExIiwiQmF0ZXLDrWEiOiI4NyUiLCJBbG1hY2VuYW1pZW50byI6IjY0R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6MjcwLCJQcmVjaW8gQVJTIjo0MDIzMDAsIjMgQ3VvdGEiOjE1OTA0Mi42LCI2IEN1b3RhcyI6ODUwNzMuMDQsIlVTRCBIT1kiOjE0OTB9LCJOYW1lIjoiaVBob25lIDExIiwiUHJpY2VVU0QiOjI3MCwiUHJpY2VBUlMiOjQwMjMwMCwiUHJpY2VMYWJlbCI6IiQgNDAyLjMwMCIsIkJhdHRlcnkiOjg3LCJTdG9yYWdlIjoiNjRHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDE1OS4wNDMiLCJDdW90YTYiOiIkIDg1LjA3MyIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiIn0seyJfcmF3Ijp7IjE0OTAiOiIiLCJyb3dfbnVtYmVyIjozLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJCYXRlcsOtYSI6Ijg1JSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NDUwLCJQcmVjaW8gQVJTIjo2NzA1MDAsIjMgQ3VvdGEiOjI2NTA3MSwiNiBDdW90YXMiOjE0MTc4OC40LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTMiLCJQcmljZVVTRCI6NDUwLCJQcmljZUFSUyI6NjcwNTAwLCJQcmljZUxhYmVsIjoiJCA2NzAuNTAwIiwiQmF0dGVyeSI6ODUsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDI2NS4wNzEiLCJDdW90YTYiOiIkIDE0MS43ODgiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6NCwiTW9kZWxvIjoiaVBob25lIDEzIiwiQmF0ZXLDrWEiOiI4NSUiLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjQ1MCwiUHJlY2lvIEFSUyI6NjcwNTAwLCIzIEN1b3RhIjoyNjUwNzEsIjYgQ3VvdGFzIjoxNDE3ODguNCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjQ1MCwiUHJpY2VBUlMiOjY3MDUwMCwiUHJpY2VMYWJlbCI6IiQgNjcwLjUwMCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAyNjUuMDcxIiwiQ3VvdGE2IjoiJCAxNDEuNzg4IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMTQ5MCI6IiIsInJvd19udW1iZXIiOjUsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjoiODUlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiQXp1bCIsIlByZWNpbyBVU0QiOjQ1MCwiUHJlY2lvIEFSUyI6NjcwNTAwLCIzIEN1b3RhIjoyNjUwNzEsIjYgQ3VvdGFzIjoxNDE3ODguNCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjQ1MCwiUHJpY2VBUlMiOjY3MDUwMCwiUHJpY2VMYWJlbCI6IiQgNjcwLjUwMCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6IkF6dWwiLCJDdW90YTMiOiIkIDI2NS4wNzEiLCJDdW90YTYiOiIkIDE0MS43ODgiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6NiwiTW9kZWxvIjoiaVBob25lIDEzIFBybyIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IkJsYW5jbyIsIlByZWNpbyBVU0QiOjU1MCwiUHJlY2lvIEFSUyI6ODE5NTAwLCIzIEN1b3RhIjozMjM5NzUuNjY2NjY2NjY2NywiNiBDdW90YXMiOjE3MzI5Ni45MzMzMzMzMzMzMiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIFBybyIsIlByaWNlVVNEIjo1NTAsIlByaWNlQVJTIjo4MTk1MDAsIlByaWNlTGFiZWwiOiIkIDgxOS41MDAiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIyNTZHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyBQcm8iLCJDb2xvciI6IkJsYW5jbyIsIkN1b3RhMyI6IiQgMzIzLjk3NiIsIkN1b3RhNiI6IiQgMTczLjI5NyIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7IjE0OTAiOiIiLCJyb3dfbnVtYmVyIjo3LCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJCYXRlcsOtYSI6IjEwMCUiLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJSb2pvIiwiUHJlY2lvIFVTRCI6NTMwLCJQcmVjaW8gQVJTIjo3ODk3MDAsIjMgQ3VvdGEiOjMxMjE5NC43MzMzMzMzMzMzNCwiNiBDdW90YXMiOjE2Njk5NS4yMjY2NjY2NjY2NSwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE0IiwiUHJpY2VVU0QiOjUzMCwiUHJpY2VBUlMiOjc4OTcwMCwiUHJpY2VMYWJlbCI6IiQgNzg5LjcwMCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE0IiwiQ29sb3IiOiJSb2pvIiwiQ3VvdGEzIjoiJCAzMTIuMTk1IiwiQ3VvdGE2IjoiJCAxNjYuOTk1IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMy9pbWFnZV8yNTYvaVBob25lJTIwMTQifSx7Il9yYXciOnsiMTQ5MCI6IiIsInJvd19udW1iZXIiOjgsIk1vZGVsbyI6ImlQaG9uZSAxNCIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6IkNlbGVzdGUiLCJQcmVjaW8gVVNEIjo1MzAsIlByZWNpbyBBUlMiOjc4OTcwMCwiMyBDdW90YSI6MzEyMTk0LjczMzMzMzMzMzM0LCI2IEN1b3RhcyI6MTY2OTk1LjIyNjY2NjY2NjY1LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTQiLCJQcmljZVVTRCI6NTMwLCJQcmljZUFSUyI6Nzg5NzAwLCJQcmljZUxhYmVsIjoiJCA3ODkuNzAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJDb2xvciI6IkNlbGVzdGUiLCJDdW90YTMiOiIkIDMxMi4xOTUiLCJDdW90YTYiOiIkIDE2Ni45OTUiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNCJ9LHsiX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6OSwiTW9kZWxvIjoiaVBob25lIDE0IFBybyIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NzUwLCJQcmVjaW8gQVJTIjoxMTE3NTAwLCIzIEN1b3RhIjo0NDE3ODUsIjYgQ3VvdGFzIjoyMzYzMTQsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNCBQcm8iLCJQcmljZVVTRCI6NzUwLCJQcmljZUFSUyI6MTExNzUwMCwiUHJpY2VMYWJlbCI6IiQgMS4xMTcuNTAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTQgUHJvIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgNDQxLjc4NSIsIkN1b3RhNiI6IiQgMjM2LjMxNCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDMvaW1hZ2VfMjU2L2lQaG9uZSUyMDE0In0seyJfcmF3Ijp7IjE0OTAiOiIiLCJyb3dfbnVtYmVyIjoxMCwiTW9kZWxvIjoiaVBob25lIDE1IiwiQmF0ZXLDrWEiOiIxMDAlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo2NzAsIlByZWNpbyBBUlMiOjk5ODMwMCwiMyBDdW90YSI6Mzk0NjYxLjI2NjY2NjY2NjY2LCI2IEN1b3RhcyI6MjExMTA3LjE3MzMzMzMzMzM0LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUiLCJQcmljZVVTRCI6NjcwLCJQcmljZUFSUyI6OTk4MzAwLCJQcmljZUxhYmVsIjoiJCA5OTguMzAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAzOTQuNjYxIiwiQ3VvdGE2IjoiJCAyMTEuMTA3IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMS9pbWFnZV8yNTYvaVBob25lJTIwMTUifSx7Il9yYXciOnsiMTQ5MCI6IiIsInJvd19udW1iZXIiOjExLCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIiwiQmF0ZXLDrWEiOiIxMDAlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo5MDAsIlByZWNpbyBBUlMiOjEzNDEwMDAsIjMgQ3VvdGEiOjUzMDE0MiwiNiBDdW90YXMiOjI4MzU3Ni44LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUgUHJvIiwiUHJpY2VVU0QiOjkwMCwiUHJpY2VBUlMiOjEzNDEwMDAsIlByaWNlTGFiZWwiOiIkIDEuMzQxLjAwMCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDUzMC4xNDIiLCJDdW90YTYiOiIkIDI4My41NzciLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9XQ=='));
 
-  // Popup beneficios una vez por sesión
+  // Popup beneficios (una vez por sesión)
   (function(){
     const key = 'goapple_welcome_seen';
-    const seen = sessionStorage.getItem(key);
-    const $ov = document.getElementById('welcome');
-    if(!seen){ $ov.style.display = 'flex'; }
+    const $ov = document.createElement('div');
+    $ov.className = 'overlay'; $ov.id = 'welcome';
+    $ov.innerHTML = `
+      <div class="modal" role="dialog" aria-labelledby="w-title" aria-modal="true">
+        <header>
+          <h2 id="w-title">Bienvenido a GO APPLE</h2>
+          <p class="lead">Elegí tu iPhone con beneficios que suman de verdad.</p>
+        </header>
+        <ul class="benefits">
+          <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado.</div></li>
+          <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
+          <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que pagues cómodo.</div></li>
+          <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> por ser cliente GO APPLE.</div></li>
+        </ul>
+        <footer>
+          <button class="cta" id="dismiss">Después</button>
+          <button class="cta primary" id="see">Ver modelos</button>
+        </footer>
+      </div>`;
+    document.body.appendChild($ov);
     function close(){ $ov.style.display='none'; sessionStorage.setItem(key,'1'); }
-    document.getElementById('dismiss')?.addEventListener('click', close);
-    document.getElementById('see')?.addEventListener('click', close);
+    if(!sessionStorage.getItem(key)) $ov.style.display='flex';
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
+    $ov.querySelector('#dismiss').onclick = close;
+    $ov.querySelector('#see').onclick = close;
   })();
 
-  // Helpers en el cliente
+  // Helpers cliente
   const COLOR_MAP = {"negro":"#111827","black":"#111827","midnight":"#0b1324","graphite":"#3a3a3c","blanco":"#f9fafb","white":"#f9fafb","starlight":"#f5f1e6","silver":"#d1d5db","azul":"#1d4ed8","blue":"#1d4ed8","deep purple":"#5b21b6","purple":"#7c3aed","rojo":"#dc2626","red":"#dc2626","verde":"#16a34a","green":"#16a34a","dorado":"#eab308","gold":"#eab308","rosa":"#fb7185","pink":"#fb7185"};
   const colorToHex = (name)=>{ if(!name) return '#d1d5db'; const key=String(name).trim().toLowerCase(); for(const k in COLOR_MAP){ if(key.includes(k)) return COLOR_MAP[k]; } return '#d1d5db'; };
   const battColor = (pct)=>{ const p=Math.max(0,Math.min(100,Number(String(pct).replace('%',''))||0)); const h=Math.round(p*1.2); return `hsl(${h} 70% 45%)`; };
@@ -397,8 +311,7 @@ fbq('init', '650415544428771'); fbq('track', 'PageView');
   const fmtMoney = (v,currency)=>{ if (v==null||v==='') return null; const n=Number(v); if(!isFinite(n)) return null; if(currency==='ARS') return '$ '+n.toLocaleString('es-AR',{maximumFractionDigits:0}); if(currency==='USD') return 'USD '+n.toLocaleString('en-US',{maximumFractionDigits:0}); return '$'+n; };
 
   // Abrir detalle al click
-  const grid = document.getElementById('grid');
-  grid.addEventListener('click', (e)=>{
+  document.getElementById('grid').addEventListener('click', (e)=>{
     const el = e.target.closest('.card');
     if(!el) return;
     const idx = Number(el.dataset.idx);
@@ -415,26 +328,22 @@ fbq('init', '650415544428771'); fbq('track', 'PageView');
 
     $img.src = p.ImageURL || '';
     $img.alt = p.Name;
-    $title.textContent = p.Name;
+    $title.childNodes[0].nodeValue = p.Name + ' '; // conserva el pill 10% OFF
 
-    // chips: Color • Almacenamiento • Batería
     const chips = [];
     if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
     if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
     if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
     $meta.innerHTML = chips.join('');
 
-    // precios: USD y ARS
     $usd.textContent = fmtMoney(p.PriceUSD,'USD') ?? 'USD —';
     $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
 
-    // cuotas (dos líneas)
     const lines = [];
     if (p.Cuota3) lines.push('3 cuotas de ' + '<strong>' + p.Cuota3 + '</strong>');
     if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
     $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar financiación</div>';
 
-    // WhatsApp
     document.getElementById('d-contact').onclick = function () {
       const msg = encodeURIComponent('Me interesa el ' + p.Name + '. ¿Está disponible?');
       const url = 'https://wa.me/5492646721845?text=' + msg;
@@ -454,6 +363,5 @@ fbq('init', '650415544428771'); fbq('track', 'PageView');
     window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
   })();
 </script>
-
 </body>
 </html>
