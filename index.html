@@ -4,25 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>GO APPLE — Catálogo</title>
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','650415544428771'); fbq('track','PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
-
 <style>
   :root{
     --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
     --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
-    --radius:14px; --gap:10px; --card-h-sm: 210px;
+    --radius:14px; --gap:10px;
+    /* alturas de imagen en móvil/phablet */
+    --img-h-mobile: 150px;
+    --img-h-phablet: 170px;
   }
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
@@ -39,27 +28,50 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
   .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
   .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
 
+  /* GRID con filas auto (no recorta contenido) */
   main .grid{
     display:grid; gap:var(--gap);
     grid-template-columns:repeat(2, minmax(0, 1fr));
-    grid-auto-rows: var(--card-h-sm);
+    grid-auto-rows:auto;
     padding:10px; max-width:1200px; margin:0 auto;
   }
   @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
-  @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); grid-auto-rows:auto; } }
+  @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); } }
 
   .card{
-    position:relative; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    display:flex; flex-direction:column; overflow:hidden; transition:transform .2s, box-shadow .2s, border-color .2s;
+    position:relative;
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    display:flex; flex-direction:column; overflow:hidden;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
   }
   .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
   .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
-  .img{ position:relative; background:var(--surface-2); display:flex; align-items:center; justify-content:center; flex:1 1 64%; min-height:140px; }
-  .img img{ width:92%; height:92%; object-fit:contain; }
+
+  /* Imagen grande y estable en móvil */
+  .img{
+    position:relative; background:var(--surface-2);
+    display:flex; align-items:center; justify-content:center;
+    flex:0 0 var(--img-h-mobile); padding:10px;
+  }
+  .img img{
+    width:auto; max-width:92%;
+    height:auto; max-height:100%;
+    object-fit:contain;
+  }
+  @media (min-width:600px){
+    .img{ flex:0 0 var(--img-h-phablet); }
+  }
+  @media (min-width:992px){
+    .img{ flex:1 1 58%; min-height:190px; }
+    .img img{ width:88%; height:auto; max-height:240px; }
+  }
+
   .no-img{ color:var(--muted); font-size:13px; }
-  .status{ position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
-    background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600; }
-  .info{ flex:1 1 36%; padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
+  .status{
+    position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
+    background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
+  }
+  .info{ flex:1 1 auto; padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
   .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
     display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
   .price{ font-size:18px; font-weight:800; color:#000; }
@@ -111,20 +123,23 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
     .detail-media{ border-bottom:0; border-right:1px solid var(--line); }
     .close-x{ top:6px; right:10px; }
   }
-
-  /* GATE de formulario (2 pasos) */
-  .overlay.gate{ z-index:60; }
-  .modal.gate{ width:min(620px,94vw); }
-  .gate-body{ padding:18px 18px 22px; display:grid; gap:12px; }
-  .gate .row{ display:grid; gap:8px; }
-  .gate label{ font-size:13px; color:#424245; font-weight:600; }
-  .gate input, .gate select{
-    width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
-    background:#fafafa; font-size:14px; outline:none;
-  }
-  .gate .actions{ display:flex; gap:10px; justify-content:flex-end; margin-top:8px; }
-  .hidden{ display:none !important; }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '650415544428771'); fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -138,49 +153,6 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
   </div>
 </nav>
 
-<!-- Gate: formulario previo -->
-<div class="overlay gate" id="leadGate" style="display:none">
-  <div class="modal gate" role="dialog" aria-modal="true" aria-labelledby="lg-title">
-    <button class="close-x" id="lg-close" aria-label="Cerrar">×</button>
-    <header style="text-align:center; padding:18px 22px 0;">
-      <h2 id="lg-title" style="margin:0; font-size:22px; font-weight:800;">Antes de seguir 👋</h2>
-      <p class="lead" style="margin:6px 0 14px; color:#424245; font-size:15px;">Contanos tus datos para ayudarte mejor.</p>
-    </header>
-    <div class="gate-body">
-      <!-- Paso 1 -->
-      <div id="lg-step1" class="row">
-        <div>
-          <label for="lf-name">Nombre</label>
-          <input id="lf-name" type="text" placeholder="Tu nombre" autocomplete="name" />
-        </div>
-        <div>
-          <label for="lf-email">Correo</label>
-          <input id="lf-email" type="email" placeholder="tu@email.com" autocomplete="email" />
-        </div>
-        <div>
-          <label for="lf-phone">WhatsApp</label>
-          <input id="lf-phone" type="tel" placeholder="+54 9 ..." inputmode="tel" autocomplete="tel" />
-        </div>
-        <div class="actions">
-          <button class="cta" id="lg-cancel">Después</button>
-          <button class="cta primary" id="lg-next">Continuar</button>
-        </div>
-      </div>
-      <!-- Paso 2 -->
-      <div id="lg-step2" class="row hidden">
-        <div>
-          <label for="lf-budget">¿Cuál es tu presupuesto (ARS)?</label>
-          <input id="lf-budget" type="number" min="0" step="1000" placeholder="Ej: 500000" />
-        </div>
-        <div class="actions">
-          <button class="cta" id="lg-back">Volver</button>
-          <button class="cta primary" id="lg-send">Enviar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <section class="hero">
   <h1>iPhone — Catálogo</h1>
 </section>
@@ -188,113 +160,173 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
 <main>
   <div class="grid" id="grid">
     
-  <article class="card" data-idx="0">
+  <article class="card"
+    data-idx="0"
+    data-name="iphone 11"
+    data-status=""
+    data-storage="64gb">
     <button class="card-hit" aria-label="Ver iPhone 11"></button>
     <div class="img"><div class="no-img">Sin imagen</div></div>
     <div class="info">
       <h3 class="name" title="iPhone 11">iPhone 11</h3>
       <div class="price">$ 402.300</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>64GB</span><span class="chip"><i class="dot" style="--dot:hsl(104 70% 45%)"></i>87%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>64GB</span><span class="chip"><i class="dot" style="--dot:hsl(104 70% 45%)"></i>87%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="1">
+  <article class="card"
+    data-idx="1"
+    data-name="iphone 13"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">$ 670.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="2">
+  <article class="card"
+    data-idx="2"
+    data-name="iphone 13"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">$ 670.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="3">
+  <article class="card"
+    data-idx="3"
+    data-name="iphone 13"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">$ 670.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#1d4ed8"></i>Azul</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#1d4ed8"></i>Azul</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="4">
+  <article class="card"
+    data-idx="4"
+    data-name="iphone 13 pro"
+    data-status=""
+    data-storage="256gb">
     <button class="card-hit" aria-label="Ver iPhone 13 Pro"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13 Pro" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 13 Pro">iPhone 13 Pro</h3>
       <div class="price">$ 819.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="5">
+  <article class="card"
+    data-idx="5"
+    data-name="iphone 14"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 14"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 14">iPhone 14</h3>
       <div class="price">$ 789.700</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#dc2626"></i>Rojo</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#dc2626"></i>Rojo</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="6">
+  <article class="card"
+    data-idx="6"
+    data-name="iphone 14"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 14"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 14">iPhone 14</h3>
       <div class="price">$ 789.700</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Celeste</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Celeste</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="7">
+  <article class="card"
+    data-idx="7"
+    data-name="iphone 14 pro"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 14 Pro"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14 Pro" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 14 Pro">iPhone 14 Pro</h3>
       <div class="price">$ 1.117.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="8">
+  <article class="card"
+    data-idx="8"
+    data-name="iphone 15"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 15"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 15">iPhone 15</h3>
       <div class="price">$ 998.300</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+      </div>
     </div>
   </article>
 
-  <article class="card" data-idx="9">
+  <article class="card"
+    data-idx="9"
+    data-name="iphone 15 pro"
+    data-status=""
+    data-storage="128gb">
     <button class="card-hit" aria-label="Ver iPhone 15 Pro"></button>
     <div class="img"><img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" /></div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
       <div class="price">$ 1.341.000</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
-      <div class="meta"><span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span></div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+      </div>
     </div>
   </article>
   </div>
@@ -345,76 +377,19 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
   // Dataset embebido
   window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6MiwiTW9kZWxvIjoiaVBob25lIDExIiwiQmF0ZXLDrWEiOiI4NyUiLCJBbG1hY2VuYW1pZW50byI6IjY0R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6MjcwLCJQcmVjaW8gQVJTIjo0MDIzMDAsIjMgQ3VvdGEiOjE1OTA0Mi42LCI2IEN1b3RhcyI6ODUwNzMuMDQsIlVTRCBIT1kiOjE0OTB9LCJOYW1lIjoiaVBob25lIDExIiwiUHJpY2VVU0QiOjI3MCwiUHJpY2VBUlMiOjQwMjMwMCwiUHJpY2VMYWJlbCI6IiQgNDAyLjMwMCIsIkJhdHRlcnkiOjg3LCJTdG9yYWdlIjoiNjRHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDE1OS4wNDMiLCJDdW90YTYiOiIkIDg1LjA3MyIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiIn0seyJfcmF3Ijp7IjE0OTAiOiIiLCJyb3dfbnVtYmVyIjozLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJCYXRlcsOtYSI6Ijg1JSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NDUwLCJQcmVjaW8gQVJTIjo2NzA1MDAsIjMgQ3VvdGEiOjI2NTA3MSwiNiBDdW90YXMiOjE0MTc4OC40LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTMiLCJQcmljZVVTRCI6NDUwLCJQcmljZUFSUyI6NjcwNTAwLCJQcmljZUxhYmVsIjoiJCA2NzAuNTAwIiwiQmF0dGVyeSI6ODUsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDI2NS4wNzEiLCJDdW90YTYiOiIkIDE0MS43ODgiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6NCwiTW9kZWxvIjoiaVBob25lIDEzIiwiQmF0ZXLDrWEiOiI4NSUiLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjQ1MCwiUHJlY2lvIEFSUyI6NjcwNTAwLCIzIEN1b3RhIjoyNjUwNzEsIjYgQ3VvdGFzIjoxNDE3ODguNCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjQ1MCwiUHJpY2VBUlMiOjY3MDUwMCwiUHJpY2VMYWJlbCI6IiQgNjcwLjUwMCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAyNjUuMDcxIiwiQ3VvdGE2IjoiJCAxNDEuNzg4IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMTQ5MCI6IiIsInJvd19udW1iZXIiOjUsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjoiODUlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiQXp1bCIsIlByZWNpbyBVU0QiOjQ1MCwiUHJlY2lvIEFSUyI6NjcwNTAwLCIzIEN1b3RhIjoyNjUwNzEsIjYgQ3VvdGFzIjoxNDE3ODguNCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjQ1MCwiUHJpY2VBUlMiOjY3MDUwMCwiUHJpY2VMYWJlbCI6IiQgNjcwLjUwMCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6IkF6dWwiLCJDdW90YTMiOiIkIDI2NS4wNzEiLCJDdW90YTYiOiIkIDE0MS43ODgiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6NiwiTW9kZWxvIjoiaVBob25lIDEzIFBybyIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IkJsYW5jbyIsIlByZWNpbyBVU0QiOjU1MCwiUHJlY2lvIEFSUyI6ODE5NTAwLCIzIEN1b3RhIjozMjM5NzUuNjY2NjY2NjY2NywiNiBDdW90YXMiOjE3MzI5Ni45MzMzMzMzMzMzMiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIFBybyIsIlByaWNlVVNEIjo1NTAsIlByaWNlQVJTIjo4MTk1MDAsIlByaWNlTGFiZWwiOiIkIDgxOS41MDAiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIyNTZHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyBQcm8iLCJDb2xvciI6IkJsYW5jbyIsIkN1b3RhMyI6IiQgMzIzLjk3NiIsIkN1b3RhNiI6IiQgMTczLjI5NyIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7IjE0OTAiOiIiLCJyb3dfbnVtYmVyIjo3LCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJCYXRlcsOtYSI6IjEwMCUiLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJSb2pvIiwiUHJlY2lvIFVTRCI6NTMwLCJQcmVjaW8gQVJTIjo3ODk3MDAsIjMgQ3VvdGEiOjMxMjE5NC43MzMzMzMzMzMzNCwiNiBDdW90YXMiOjE2Njk5NS4yMjY2NjY2NjY2NSwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE0IiwiUHJpY2VVU0QiOjUzMCwiUHJpY2VBUlMiOjc4OTcwMCwiUHJpY2VMYWJlbCI6IiQgNzg5LjcwMCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE0IiwiQ29sb3IiOiJSb2pvIiwiQ3VvdGEzIjoiJCAzMTIuMTk1IiwiQ3VvdGE2IjoiJCAxNjYuOTk1IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMy9pbWFnZV8yNTYvaVBob25lJTIwMTQifSx7Il9yYXciOnsiMTQ5MCI6IiIsInJvd19udW1iZXIiOjgsIk1vZGVsbyI6ImlQaG9uZSAxNCIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6IkNlbGVzdGUiLCJQcmVjaW8gVVNEIjo1MzAsIlByZWNpbyBBUlMiOjc4OTcwMCwiMyBDdW90YSI6MzEyMTk0LjczMzMzMzMzMzM0LCI2IEN1b3RhcyI6MTY2OTk1LjIyNjY2NjY2NjY1LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTQiLCJQcmljZVVTRCI6NTMwLCJQcmljZUFSUyI6Nzg5NzAwLCJQcmljZUxhYmVsIjoiJCA3ODkuNzAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJDb2xvciI6IkNlbGVzdGUiLCJDdW90YTMiOiIkIDMxMi4xOTUiLCJDdW90YTYiOiIkIDE2Ni45OTUiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNCJ9LHsiX3JhdyI6eyIxNDkwIjoiIiwicm93X251bWJlciI6OSwiTW9kZWxvIjoiaVBob25lIDE0IFBybyIsIkJhdGVyw61hIjoiMTAwJSIsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NzUwLCJQcmVjaW8gQVJTIjoxMTE3NTAwLCIzIEN1b3RhIjo0NDE3ODUsIjYgQ3VvdGFzIjoyMzYzMTQsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNCBQcm8iLCJQcmljZVVTRCI6NzUwLCJQcmljZUFSUyI6MTExNzUwMCwiUHJpY2VMYWJlbCI6IiQgMS4xMTcuNTAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTQgUHJvIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgNDQxLjc4NSIsIkN1b3RhNiI6IiQgMjM2LjMxNCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDMvaW1hZ2VfMjU2L2lQaG9uZSUyMDE0In0seyJfcmF3Ijp7IjE0OTAiOiIiLCJyb3dfbnVtYmVyIjoxMCwiTW9kZWxvIjoiaVBob25lIDE1IiwiQmF0ZXLDrWEiOiIxMDAlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo2NzAsIlByZWNpbyBBUlMiOjk5ODMwMCwiMyBDdW90YSI6Mzk0NjYxLjI2NjY2NjY2NjY2LCI2IEN1b3RhcyI6MjExMTA3LjE3MzMzMzMzMzM0LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUiLCJQcmljZVVTRCI6NjcwLCJQcmljZUFSUyI6OTk4MzAwLCJQcmljZUxhYmVsIjoiJCA5OTguMzAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAzOTQuNjYxIiwiQ3VvdGE2IjoiJCAyMTEuMTA3IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMS9pbWFnZV8yNTYvaVBob25lJTIwMTUifSx7Il9yYXciOnsiMTQ5MCI6IiIsInJvd19udW1iZXIiOjExLCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIiwiQmF0ZXLDrWEiOiIxMDAlIiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo5MDAsIlByZWNpbyBBUlMiOjEzNDEwMDAsIjMgQ3VvdGEiOjUzMDE0MiwiNiBDdW90YXMiOjI4MzU3Ni44LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUgUHJvIiwiUHJpY2VVU0QiOjkwMCwiUHJpY2VBUlMiOjEzNDEwMDAsIlByaWNlTGFiZWwiOiIkIDEuMzQxLjAwMCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDUzMC4xNDIiLCJDdW90YTYiOiIkIDI4My41NzciLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9XQ=='));
 
-  // ---------- Gate de formulario ----------
-  (function(){
-    const KEY = 'goapple_lead_v1';
-    const $ov  = document.getElementById('leadGate');
-    const $s1  = document.getElementById('lg-step1');
-    const $s2  = document.getElementById('lg-step2');
-    const $name= document.getElementById('lf-name');
-    const $mail= document.getElementById('lf-email');
-    const $tel = document.getElementById('lf-phone');
-    const $bud = document.getElementById('lf-budget');
-
-    const show = ()=>{ $ov.style.display='flex'; document.body.style.overflow='hidden'; $name.focus(); };
-    const hide = ()=>{ $ov.style.display='none'; document.body.style.overflow=''; };
-
-    // Solo mostrar si no lo completó en esta sesión
-    if(!sessionStorage.getItem(KEY)) show();
-
-    // Navegación pasos
-    document.getElementById('lg-next').onclick = ()=>{
-      const emailOk = /^[^@s]+@[^@s]+.[^@s]+$/.test(($mail.value||'').trim());
-      if(!($name.value||'').trim() || !emailOk || !($tel.value||'').trim()){
-        alert('Completá nombre, correo y WhatsApp válidos.');
-        return;
-      }
-      $s1.classList.add('hidden'); $s2.classList.remove('hidden'); $bud.focus();
-    };
-    document.getElementById('lg-back').onclick = ()=>{ $s2.classList.add('hidden'); $s1.classList.remove('hidden'); };
-    document.getElementById('lg-cancel').onclick = hide;
-    document.getElementById('lg-close').onclick  = hide;
-
-    // Enviar → agrega params a la URL y cierra
-    document.getElementById('lg-send').onclick = ()=>{
-      const budget = ($bud.value||'').trim();
-      const params = new URLSearchParams(location.search);
-      params.set('name',  ($name.value||'').trim());
-      params.set('email', ($mail.value||'').trim());
-      params.set('phone', ($tel.value||'').trim());
-      if(budget) params.set('budget_ars', budget);
-
-      const newUrl = location.pathname + '?' + params.toString();
-      history.replaceState({}, '', newUrl);
-
-      sessionStorage.setItem(KEY,'1');
-      hide();
-
-      // Pixel opcional
-      try{ if(window.fbq){ fbq('track','Lead',{ value: budget? Number(budget):0, currency:'ARS' }); } }catch(_){}
-
-      // Mostrar beneficios si aún no se mostró
-      window.__showWelcome && window.__showWelcome();
-    };
-  })();
-
-  // ---------- Popup beneficios (una vez por sesión) ----------
+  // Popup beneficios una vez por sesión
   (function(){
     const key = 'goapple_welcome_seen';
+    const seen = sessionStorage.getItem(key);
     const $ov = document.getElementById('welcome');
-    function open(){ if(!sessionStorage.getItem(key)) $ov.style.display='flex'; }
+    if(!seen){ $ov.style.display = 'flex'; }
     function close(){ $ov.style.display='none'; sessionStorage.setItem(key,'1'); }
-    window.__showWelcome = open;
-
     document.getElementById('dismiss')?.addEventListener('click', close);
     document.getElementById('see')?.addEventListener('click', close);
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
-
-    // Solo abrir si ya pasó el gate en esta sesión
-    if(sessionStorage.getItem('goapple_lead_v1')) open();
   })();
 
-  // Helpers cliente
+  // Helpers en el cliente
   const COLOR_MAP = {"negro":"#111827","black":"#111827","midnight":"#0b1324","graphite":"#3a3a3c","blanco":"#f9fafb","white":"#f9fafb","starlight":"#f5f1e6","silver":"#d1d5db","azul":"#1d4ed8","blue":"#1d4ed8","deep purple":"#5b21b6","purple":"#7c3aed","rojo":"#dc2626","red":"#dc2626","verde":"#16a34a","green":"#16a34a","dorado":"#eab308","gold":"#eab308","rosa":"#fb7185","pink":"#fb7185"};
   const colorToHex = (name)=>{ if(!name) return '#d1d5db'; const key=String(name).trim().toLowerCase(); for(const k in COLOR_MAP){ if(key.includes(k)) return COLOR_MAP[k]; } return '#d1d5db'; };
   const battColor = (pct)=>{ const p=Math.max(0,Math.min(100,Number(String(pct).replace('%',''))||0)); const h=Math.round(p*1.2); return `hsl(${h} 70% 45%)`; };
@@ -422,7 +397,8 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
   const fmtMoney = (v,currency)=>{ if (v==null||v==='') return null; const n=Number(v); if(!isFinite(n)) return null; if(currency==='ARS') return '$ '+n.toLocaleString('es-AR',{maximumFractionDigits:0}); if(currency==='USD') return 'USD '+n.toLocaleString('en-US',{maximumFractionDigits:0}); return '$'+n; };
 
   // Abrir detalle al click
-  document.getElementById('grid').addEventListener('click', (e)=>{
+  const grid = document.getElementById('grid');
+  grid.addEventListener('click', (e)=>{
     const el = e.target.closest('.card');
     if(!el) return;
     const idx = Number(el.dataset.idx);
@@ -441,20 +417,24 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
     $img.alt = p.Name;
     $title.textContent = p.Name;
 
+    // chips: Color • Almacenamiento • Batería
     const chips = [];
     if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
     if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
     if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
     $meta.innerHTML = chips.join('');
 
+    // precios: USD y ARS
     $usd.textContent = fmtMoney(p.PriceUSD,'USD') ?? 'USD —';
     $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
 
+    // cuotas (dos líneas)
     const lines = [];
     if (p.Cuota3) lines.push('3 cuotas de ' + '<strong>' + p.Cuota3 + '</strong>');
     if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
     $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar financiación</div>';
 
+    // WhatsApp
     document.getElementById('d-contact').onclick = function () {
       const msg = encodeURIComponent('Me interesa el ' + p.Name + '. ¿Está disponible?');
       const url = 'https://wa.me/5492646721845?text=' + msg;
@@ -474,5 +454,6 @@ src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"/></n
     window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
   })();
 </script>
+
 </body>
 </html>
