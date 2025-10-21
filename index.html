@@ -43,6 +43,45 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
     --radius:14px; --gap:10px;
   }
+
+  /* ===== Tema Halloween (opt-in mediante .halloween en <html>) ===== */
+  :root.halloween{
+    --accent:#ff6a00;               /* calabaza */
+    --line:#e9e2da;                 /* línea más cálida */
+  }
+  .halloween .season-note{
+    display:flex; align-items:center; gap:8px; margin-top:6px;
+    font-size:13px; color:#92400e; font-weight:700; opacity:.9;
+  }
+  .halloween .season-note .bat{
+    display:inline-block; transform-origin:center;
+    animation: bat-float 3.5s ease-in-out infinite;
+  }
+  @keyframes bat-float{
+    0%,100%{ transform: translateY(0) rotate(0deg); }
+    50%{ transform: translateY(-2px) rotate(-3deg); }
+  }
+  .halloween .off-badge,
+  .halloween .detail-off{
+    background:#ff6a00;
+    box-shadow:0 2px 8px rgba(255,106,0,.25);
+  }
+  .halloween .img::before{
+    content:"";
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    pointer-events:none; opacity:.08;
+    background:
+      url("data:image/svg+xml;utf8,      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'>        <g fill='none' stroke='%23b45309' stroke-width='0.6'>          <path d='M0,0 L60,0 M0,0 L0,60 M0,0 C40,10 70,40 80,80'/>          <path d='M10,0 C40,20 70,50 80,90'/>          <path d='M0,10 C20,40 50,70 90,80'/>        </g>      </svg>") no-repeat 0 0 / 160px 160px;
+  }
+  .halloween .chip{
+    background:#fff7ed; border:1px solid #fde68a; color:#1d1d1f;
+  }
+  .halloween .card:hover{
+    box-shadow:0 12px 26px rgba(255,106,0,.12);
+    border-color:#f5d0a6;
+  }
+  .halloween .sub, .halloween .p-cuotas{ color:#ff6a00; }
+
   *{box-sizing:border-box} html,body{height:100%}
   body{ margin:0; background:var(--bg); color:var(--ink);
         font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
@@ -59,11 +98,11 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
   .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
 
-  /* GRID: altura AUTO para que entren los chips */
+  /* GRID */
   main .grid{
     display:grid; gap:var(--gap);
     grid-template-columns:repeat(2, minmax(0, 1fr));
-    grid-auto-rows:auto;               /* ⬅️  antes fijo, ahora auto */
+    grid-auto-rows:auto;
     padding:10px; max-width:1200px; margin:0 auto;
   }
   @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
@@ -79,12 +118,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
   .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
 
-  /* Imagen grande con altura fija razonable; el resto fluye */
+  /* Imagen */
   .img{
     position:relative;
     background:var(--surface-2);
     display:flex; align-items:center; justify-content:center;
-    flex:0 0 210px;         /* ⬅️  altura visual de la imagen en móvil */
+    flex:0 0 210px;
     min-height:210px;
   }
   .img img{
@@ -115,7 +154,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
     display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
   .price{ font-size:18px; font-weight:800; color:#000; }
-  .sub{ font-size:12.5px; color:#0071e3; font-weight:600; }
+  .sub{ font-size:12.5px; color:var(--accent); font-weight:600; }
   .cuotas-hint{ cursor:default; }
   .meta{ display:flex; flex-wrap:wrap; gap:6px; }
   .chip{ background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
@@ -153,7 +192,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .prices{ display:grid; gap:6px; }
   .p-usd{ font-size:20px; font-weight:800; color:#000; }
   .p-ars{ font-size:16px; font-weight:700; color:#111; }
-  .p-cuotas{ font-size:13.5px; color:#0071e3; font-weight:600; }
+  .p-cuotas{ font-size:13.5px; font-weight:600; color:var(--accent); }
   .p-cuotas .linea{ margin-top:2px; color:#1d1d1f; }
   .p-cuotas .linea strong{ font-weight:800; }
   .detail-actions{ display:flex; gap:8px; justify-content:flex-end; }
@@ -180,6 +219,11 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 
 <section class="hero">
   <h1>iPhone — Catálogo</h1>
+  <!-- badge estacional (solo visible con .halloween) -->
+  <div class="season-note" aria-hidden="true">
+    <span class="bat">🦇</span>
+    <span class="copy">Especial Halloween</span>
+  </div>
 </section>
 
 <main>
@@ -197,7 +241,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
-      <div class="price">$ 608.000</div>
+      <div class="price">$ 614.000</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
@@ -217,7 +261,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
-      <div class="price">$ 608.000</div>
+      <div class="price">$ 614.000</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(108 70% 45%)"></i>90%</span>
@@ -237,7 +281,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13 Pro">iPhone 13 Pro</h3>
-      <div class="price">$ 836.000</div>
+      <div class="price">$ 844.250</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
@@ -257,7 +301,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 14">iPhone 14</h3>
-      <div class="price">$ 638.400</div>
+      <div class="price">$ 644.700</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#dc2626"></i>Rojo</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
@@ -277,7 +321,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15">iPhone 15</h3>
-      <div class="price">$ 1.018.400</div>
+      <div class="price">$ 1.028.450</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
@@ -297,7 +341,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
-      <div class="price">$ 1.368.000</div>
+      <div class="price">$ 1.381.500</div>
       <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(107 70% 45%)"></i>89%</span>
@@ -320,6 +364,10 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
       <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que pagues cómodo.</div></li>
       <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> por ser cliente GO APPLE.</div></li>
     </ul>
+    <!-- línea temática solo en Halloween -->
+    <p class="lead halloween-only" style="display:none; text-align:center; color:#92400e; font-weight:700;">
+      🎃 Consultá combos en negro/grafito — edición Halloween
+    </p>
     <footer>
       <button class="cta" id="dismiss">Después</button>
       <button class="cta primary" id="see">Ver modelos</button>
@@ -352,8 +400,21 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 </div>
 
 <script>
+  // Activa .halloween del 24/oct al 2/nov (zona America/Argentina/San_Juan)
+  (function(){
+    try{
+      const tz = 'America/Argentina/San_Juan';
+      const now = new Date();
+      const fmt = new Intl.DateTimeFormat('es-AR', { timeZone: tz, year:'numeric', month:'2-digit', day:'2-digit' });
+      const parts = fmt.formatToParts(now).reduce((a,p)=> (a[p.type]=p.value, a), {});
+      const m = Number(parts.month), d = Number(parts.day);
+      const inRange = (m === 10 && d >= 24) || (m === 11 && d <= 2);
+      if(inRange){ document.documentElement.classList.add('halloween'); }
+    }catch(_e){}
+  })();
+
   // Dataset embebido
-  window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIyIjoiIiwiMTUyMCI6IiIsInJvd19udW1iZXIiOjIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjo4NSwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo0MDAsIlByZWNpbyBBUlMiOjYwODAwMCwiMyBDdW90YSI6MjY4MTQwLjczNTA3NjA3MTcsIjYgQ3VvdGFzIjoxNTY2NjguNDg1ODc2Mzg3NTQsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMyIsIlByaWNlVVNEIjo0MDAsIlByaWNlQVJTIjo2MDgwMDAsIlByaWNlTGFiZWwiOiIkIDYwOC4wMDAiLCJCYXR0ZXJ5Ijo4NSwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDEzIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgMjY4LjE0MSIsIkN1b3RhNiI6IiQgMTU2LjY2OCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7IjIiOiIiLCIxNTIwIjoiIiwicm93X251bWJlciI6MywiTW9kZWxvIjoiaVBob25lIDEzIiwiQmF0ZXLDrWEiOjkwLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjQwMCwiUHJlY2lvIEFSUyI6NjA4MDAwLCIzIEN1b3RhIjoyNjgxNDAuNzM1MDc2MDcxNywiNiBDdW90YXMiOjE1NjY2OC40ODU4NzYzODc1NCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjQwMCwiUHJpY2VBUlMiOjYwODAwMCwiUHJpY2VMYWJlbCI6IiQgNjA4LjAwMCIsIkJhdHRlcnkiOjkwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAyNjguMTQxIiwiQ3VvdGE2IjoiJCAxNTYuNjY4IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMiI6IiIsIjE1MjAiOiIiLCJyb3dfbnVtYmVyIjo0LCJNb2RlbG8iOiJpUGhvbmUgMTMgUHJvIiwiQmF0ZXLDrWEiOjg1LCJBbG1hY2VuYW1pZW50byI6IjI1NkdCIiwiQ29sb3IiOiJCbGFuY28iLCJQcmVjaW8gVVNEIjo1NTAsIlByZWNpbyBBUlMiOjgzNjAwMCwiMyBDdW90YSI6MzY4NjkzLjUxMDcyOTU5ODYsIjYgQ3VvdGFzIjoyMTU0MTkuMTY4MDgwMDMyOSwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIFBybyIsIlByaWNlVVNEIjo1NTAsIlByaWNlQVJTIjo4MzYwMDAsIlByaWNlTGFiZWwiOiIkIDgzNi4wMDAiLCJCYXR0ZXJ5Ijo4NSwiU3RvcmFnZSI6IjI1NkdCIiwiTW9kZWxvIjoiaVBob25lIDEzIFBybyIsIkNvbG9yIjoiQmxhbmNvIiwiQ3VvdGEzIjoiJCAzNjguNjk0IiwiQ3VvdGE2IjoiJCAyMTUuNDE5IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMiI6IiIsIjE1MjAiOiIiLCJyb3dfbnVtYmVyIjo1LCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJCYXRlcsOtYSI6MTAwLCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJSb2pvIiwiUHJlY2lvIFVTRCI6NDIwLCJQcmVjaW8gQVJTIjo2Mzg0MDAsIjMgQ3VvdGEiOjI4MTU0Ny43NzE4Mjk4NzUzLCI2IEN1b3RhcyI6MTY0NTAxLjkxMDE3MDIwNjkyLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTQiLCJQcmljZVVTRCI6NDIwLCJQcmljZUFSUyI6NjM4NDAwLCJQcmljZUxhYmVsIjoiJCA2MzguNDAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJDb2xvciI6IlJvam8iLCJDdW90YTMiOiIkIDI4MS41NDgiLCJDdW90YTYiOiIkIDE2NC41MDIiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNCJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUyMCI6IiIsInJvd19udW1iZXIiOjYsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkJhdGVyw61hIjoxMDAsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NjcwLCJQcmVjaW8gQVJTIjoxMDE4NDAwLCIzIEN1b3RhIjo0NDkxMzUuNzMxMjUyNDIwMDUsIjYgQ3VvdGFzIjoyNjI0MTkuNzEzODQyOTQ5MTMsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNSIsIlByaWNlVVNEIjo2NzAsIlByaWNlQVJTIjoxMDE4NDAwLCJQcmljZUxhYmVsIjoiJCAxLjAxOC40MDAiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDQ0OS4xMzYiLCJDdW90YTYiOiIkIDI2Mi40MjAiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUyMCI6IiIsInJvd19udW1iZXIiOjcsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8iLCJCYXRlcsOtYSI6ODksIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6OTAwLCJQcmVjaW8gQVJTIjoxMzY4MDAwLCIzIEN1b3RhIjo2MDMzMTYuNjUzOTIxMTYxMywiNiBDdW90YXMiOjM1MjUwNC4wOTMyMjE4NzE5NCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE1IFBybyIsIlByaWNlVVNEIjo5MDAsIlByaWNlQVJTIjoxMzY4MDAwLCJQcmljZUxhYmVsIjoiJCAxLjM2OC4wMDAiLCJCYXR0ZXJ5Ijo4OSwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDYwMy4zMTciLCJDdW90YTYiOiIkIDM1Mi41MDQiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9XQ=='));
+  window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIyIjoiIiwiMTUzNSI6IiIsInJvd19udW1iZXIiOjIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjo4NSwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo0MDAsIlByZWNpbyBBUlMiOjYxNDAwMCwiMyBDdW90YSI6MjcwNzg2Ljg2MDc1MTE2NDU1LCI2IEN1b3RhcyI6MTU4MjE0LjU1NjQ2MDY5NCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjQwMCwiUHJpY2VBUlMiOjYxNDAwMCwiUHJpY2VMYWJlbCI6IiQgNjE0LjAwMCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAyNzAuNzg3IiwiQ3VvdGE2IjoiJCAxNTguMjE1IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMiI6IiIsIjE1MzUiOiIiLCJyb3dfbnVtYmVyIjozLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJCYXRlcsOtYSI6OTAsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NDAwLCJQcmVjaW8gQVJTIjo2MTQwMDAsIjMgQ3VvdGEiOjI3MDc4Ni44NjA3NTExNjQ1NSwiNiBDdW90YXMiOjE1ODIxNC41NTY0NjA2OTQsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMyIsIlByaWNlVVNEIjo0MDAsIlByaWNlQVJTIjo2MTQwMDAsIlByaWNlTGFiZWwiOiIkIDYxNC4wMDAiLCJCYXR0ZXJ5Ijo5MCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDEzIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgMjcwLjc4NyIsIkN1b3RhNiI6IiQgMTU4LjIxNSIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7IjIiOiIiLCIxNTM1IjoiIiwicm93X251bWJlciI6NCwiTW9kZWxvIjoiaVBob25lIDEzIFBybyIsIkJhdGVyw61hIjo4NSwiQWxtYWNlbmFtaWVudG8iOiIyNTZHQiIsIkNvbG9yIjoiQmxhbmNvIiwiUHJlY2lvIFVTRCI6NTUwLCJQcmVjaW8gQVJTIjo4NDQyNTAsIjMgQ3VvdGEiOjM3MjMzMS45MzM1MzI4NTEyLCI2IEN1b3RhcyI6MjE3NTQ1LjAxNTEzMzQ1NDIzLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTMgUHJvIiwiUHJpY2VVU0QiOjU1MCwiUHJpY2VBUlMiOjg0NDI1MCwiUHJpY2VMYWJlbCI6IiQgODQ0LjI1MCIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMjU2R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMgUHJvIiwiQ29sb3IiOiJCbGFuY28iLCJDdW90YTMiOiIkIDM3Mi4zMzIiLCJDdW90YTYiOiIkIDIxNy41NDUiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzNSI6IiIsInJvd19udW1iZXIiOjUsIk1vZGVsbyI6ImlQaG9uZSAxNCIsIkJhdGVyw61hIjoxMDAsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6IlJvam8iLCJQcmVjaW8gVVNEIjo0MjAsIlByZWNpbyBBUlMiOjY0NDcwMCwiMyBDdW90YSI6Mjg0MzI2LjIwMzc4ODcyMjc1LCI2IEN1b3RhcyI6MTY2MTI1LjI4NDI4MzcyODcyLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTQiLCJQcmljZVVTRCI6NDIwLCJQcmljZUFSUyI6NjQ0NzAwLCJQcmljZUxhYmVsIjoiJCA2NDQuNzAwIiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTQiLCJDb2xvciI6IlJvam8iLCJDdW90YTMiOiIkIDI4NC4zMjYiLCJDdW90YTYiOiIkIDE2Ni4xMjUiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNCJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzNSI6IiIsInJvd19udW1iZXIiOjYsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkJhdGVyw61hIjoxMDAsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NjcwLCJQcmVjaW8gQVJTIjoxMDI4NDUwLCIzIEN1b3RhIjo0NTM1NjcuOTkxNzU4MjAwNiwiNiBDdW90YXMiOjI2NTAwOS4zODIwNzE2NjI0NiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE1IiwiUHJpY2VVU0QiOjY3MCwiUHJpY2VBUlMiOjEwMjg0NTAsIlByaWNlTGFiZWwiOiIkIDEuMDI4LjQ1MCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgNDUzLjU2OCIsIkN1b3RhNiI6IiQgMjY1LjAwOSIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNTM1IjoiIiwicm93X251bWJlciI6NywiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkJhdGVyw61hIjo4OSwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo5MDAsIlByZWNpbyBBUlMiOjEzODE1MDAsIjMgQ3VvdGEiOjYwOTI3MC40MzY2OTAxMjAxLCI2IEN1b3RhcyI6MzU1OTgyLjc1MjAzNjU2MTUsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNSBQcm8iLCJQcmljZVVTRCI6OTAwLCJQcmljZUFSUyI6MTM4MTUwMCwiUHJpY2VMYWJlbCI6IiQgMS4zODEuNTAwIiwiQmF0dGVyeSI6ODksIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8iLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCA2MDkuMjcwIiwiQ3VvdGE2IjoiJCAzNTUuOTgzIiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMS9pbWFnZV8yNTYvaVBob25lJTIwMTUifV0='));
 
   // Popup beneficios una vez por sesión
   (function(){
@@ -367,10 +428,19 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
   })();
 
+  // Mostrar línea Halloween del popup SOLO si está activo el tema
+  (function(){
+    const isHW = document.documentElement.classList.contains('halloween');
+    if(isHW){
+      const el = document.querySelector('.halloween-only');
+      if(el) el.style.display = 'block';
+    }
+  })();
+
   // Helpers en el cliente
-  const COLOR_MAP = {"negro":"#111827","black":"#111827","midnight":"#0b1324","graphite":"#3a3a3c","blanco":"#f9fafb","white":"#f9fafb","starlight":"#f5f1e6","silver":"#d1d5db","azul":"#1d4ed8","blue":"#1d4ed8","deep purple":"#5b21b6","purple":"#7c3aed","rojo":"#dc2626","red":"#dc2626","verde":"#16a34a","green":"#16a34a","dorado":"#eab308","gold":"#eab308","rosa":"#fb7185","pink":"#fb7185"};
+  const COLOR_MAP = {"negro":"#111827","black":"#111827","midnight":"#0b1324","graphite":"#3a3a3c","blanco":"#f9fafb","white":"f9fafb","starlight":"#f5f1e6","silver":"#d1d5db","azul":"#1d4ed8","blue":"#1d4ed8","deep purple":"#5b21b6","purple":"#7c3aed","rojo":"#dc2626","red":"#dc2626","verde":"#16a34a","green":"#16a34a","dorado":"#eab308","gold":"#eab308","rosa":"#fb7185","pink":"#fb7185"};
   const colorToHex = (name)=>{ if(!name) return '#d1d5db'; const key=String(name).trim().toLowerCase(); for(const k in COLOR_MAP){ if(key.includes(k)) return COLOR_MAP[k]; } return '#d1d5db'; };
-  const battColor = (pct)=>{ const p=Math.max(0,Math.min(100,Number(String(pct).replace('%',''))||0)); const h=Math.round(p*1.2); return `hsl(${h} 70% 45%)`; };
+  const battColor = (pct)=>{ const p=Math.max(0,Math.min(100,Number(String(pct).replace('%',''))||0)); const h=Math.round(p*1.2); return 'hsl('+h+' 70% 45%)'; };
   const esc = (s)=> String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmtMoney = (v,currency)=>{ if (v==null||v==='') return null; const n=Number(v); if(!isFinite(n)) return null; if(currency==='ARS') return '$ '+n.toLocaleString('es-AR',{maximumFractionDigits:0}); if(currency==='USD') return 'USD '+n.toLocaleString('en-US',{maximumFractionDigits:0}); return '$'+n; };
 
@@ -397,9 +467,9 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 
     // chips: Color • Almacenamiento • Batería
     const chips = [];
-    if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
-    if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
-    if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
+    if(p.Color){ chips.push('<span class="chip"><i class="dot" style="--dot:'+colorToHex(p.Color)+'"></i>'+esc(p.Color)+'</span>'); }
+    if(p.Storage && p.Storage !== '—'){ chips.push('<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>'+esc(p.Storage)+'</span>'); }
+    if(p.Battery!=null){ chips.push('<span class="chip"><i class="dot" style="--dot:'+battColor(p.Battery)+'"></i>'+p.Battery+'%</span>'); }
     $meta.innerHTML = chips.join('');
 
     // precios: USD y ARS
