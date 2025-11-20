@@ -45,7 +45,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     --line:#e5e7eb;
     --ink:#1d1d1f;
     --muted:#6e6e73;
-    --accent:#065f46;           /* verde navideño premium */
+    --accent:#065f46;
     --accent-soft:#dcfce7;
     --radius:14px;
     --gap:10px;
@@ -60,7 +60,6 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     overflow-x:hidden;
   }
 
-  /* Nieve muy suave */
   body::before{
     content:"";
     pointer-events:none;
@@ -90,39 +89,164 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .logo-img{ height:22px; width:auto; display:block; }
   .logo-fallback{ font-weight:800; font-size:16px; letter-spacing:.2px; }
 
-  .xmas-banner{
-    position:relative;
-    z-index:1;
-    background:linear-gradient(90deg, #b91c1c, #16a34a);
-    color:#f9fafb;
-    font-size:13px;
-    font-weight:600;
-    text-align:center;
-    padding:6px 8px;
-  }
-  .xmas-banner span{ white-space:nowrap; }
-
+  /* HERO estilo Apple (slider) */
   .hero{
     position:relative;
     z-index:1;
-    max-width:1200px; margin:10px auto 0; padding:12px 12px 4px;
+    max-width:1200px;
+    margin:14px auto 6px;
+    padding:0 12px;
   }
-  .hero h1{
+  .hero-slider{
+    position:relative;
+    border-radius:26px;
+    overflow:hidden;
+    background:radial-gradient(circle at top left, #fef2f2 0, #eff6ff 40%, #ffffff 100%);
+    min-height:150px;
+    display:flex;
+    align-items:stretch;
+  }
+  .hero-inner{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    padding:18px 18px 16px;
+  }
+  .hero-slide{
+    display:none;
+    gap:14px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .hero-slide.is-active{
+    display:flex;
+  }
+  .hero-copy{
+    flex:1 1 60%;
+  }
+  .hero-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 10px;
+    border-radius:999px;
+    background:rgba(185,28,28,.09);
+    color:#b91c1c;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .hero-pill.cash{
+    background:rgba(234,179,8,.12);
+    color:#854d0e;
+  }
+  .hero-copy h1,
+  .hero-copy h2{
     margin:0;
-    font-size:28px;
+    font-size:22px;
     line-height:1.1;
     font-weight:800;
+  }
+  .hero-copy p{
+    margin:6px 0 8px;
+    font-size:13.5px;
+    color:#374151;
+  }
+  .hero-copy p strong{ color:#047857; }
+  .hero-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+    font-size:12.5px;
+    color:#111827;
+  }
+  .hero-list li{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:6px;
+    margin:2px 0;
   }
-  .hero h1 .emoji{ font-size:24px; }
-  .hero p{
-    margin:6px 0 0;
+  .hero-list li::before{
+    content:"•";
+    color:#047857;
+    font-weight:900;
     font-size:14px;
-    color:var(--muted);
   }
-  .hero p strong{ color:var(--accent); }
+  .hero-side{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:8px;
+  }
+  .hero-emoji{
+    font-size:40px;
+    filter:drop-shadow(0 10px 25px rgba(0,0,0,.15));
+  }
+  .hero-dots{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin-top:8px;
+  }
+  .hero-dots button{
+    width:7px; height:7px;
+    border-radius:999px;
+    border:0;
+    background:rgba(148,163,184,.7);
+    cursor:pointer;
+    padding:0;
+  }
+  .hero-dots button.on{
+    width:18px;
+    background:#047857;
+  }
+
+  /* Flechas del slider */
+  .hero-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:30px;
+    height:30px;
+    border-radius:999px;
+    border:0;
+    background:rgba(15,23,42,.08);
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    padding:0;
+    color:#111827;
+    font-size:18px;
+    font-weight:700;
+    z-index:2;
+  }
+  .hero-arrow:hover{
+    background:rgba(15,23,42,.14);
+  }
+  .hero-arrow.prev{ left:10px; }
+  .hero-arrow.next{ right:10px; }
+
+  @media (max-width:480px){
+    .hero-arrow{
+      width:26px;
+      height:26px;
+      font-size:16px;
+    }
+  }
+
+  @media (min-width:720px){
+    .hero-inner{
+      padding:22px 24px 18px;
+    }
+    .hero-copy h1{ font-size:26px; }
+    .hero-copy h2{ font-size:24px; }
+    .hero-copy p{ font-size:14px; }
+    .hero-slider{
+      min-height:190px;
+    }
+    .hero-emoji{ font-size:52px; }
+  }
 
   /* GRID */
   main{
@@ -316,12 +440,25 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     width:min(520px,88%);
     height:auto; object-fit:contain;
   }
-  .detail-off{
-    position:absolute; top:12px; right:12px;
+
+  .detail-badge{
+    position:absolute;
+    top:12px;
+    right:12px;
     background:#b91c1c;
-    color:#fff; font-weight:800; font-size:12px;
-    padding:6px 10px; border-radius:999px;
+    color:#fff;
+    font-weight:800;
+    font-size:12px;
+    padding:6px 10px;
+    border-radius:999px;
   }
+  .detail-badge.cash{
+    top:40px;
+    background:#fef3c7;
+    color:#92400e;
+    box-shadow:0 1px 4px rgba(0,0,0,.12);
+  }
+
   .detail-body{
     padding:18px 18px 20px;
     display:grid; gap:10px;
@@ -362,13 +499,48 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   </div>
 </nav>
 
-<div class="xmas-banner">
-  <span>🎄 Especial Navidad: 12 cuotas fijas + 51.8% OFF pagando en efectivo 🎁</span>
-</div>
-
 <section class="hero">
-  <h1><span class="emoji">🎁</span>Catálogo Navidad iPhone</h1>
-  <p>Elegí tu próximo iPhone para estas fiestas y <strong>pagalo en 12 cuotas fijas</strong>. Envíos y combos listos para regalar.</p>
+  <div class="hero-slider" id="hero-slider">
+    <button class="hero-arrow prev" aria-label="Anterior">&#8249;</button>
+    <button class="hero-arrow next" aria-label="Siguiente">&#8250;</button>
+
+    <div class="hero-inner">
+      <div class="hero-slide is-active" data-idx="0">
+        <div class="hero-copy">
+          <div class="hero-pill">🎄 Especial Navidad</div>
+          <h1>iPhones en 12 cuotas sin interés</h1>
+          <p>Elegí tu próximo iPhone para estas fiestas y <strong>pagalo en 12 cuotas fijas</strong>. Envíos y combos listos para regalar.</p>
+          <ul class="hero-list">
+            <li>12 cuotas sin interés en iPhones seleccionados.</li>
+            <li>Incluye funda, cargador, cable y vidrio templado.</li>
+          </ul>
+        </div>
+        <div class="hero-side">
+          <span class="hero-emoji">📱</span>
+        </div>
+      </div>
+
+      <div class="hero-slide" data-idx="1">
+        <div class="hero-copy">
+          <div class="hero-pill cash">💵 Pago en efectivo</div>
+          <h2>Hasta 51.8% OFF pagando en efectivo</h2>
+          <p>Aprovechá el mejor precio contado y llevate tu iPhone listo para regalar.</p>
+          <ul class="hero-list">
+            <li>51.8% menos vs precio en 12 cuotas.</li>
+            <li>Incluye funda, cargador, cable y vidrio templado.</li>
+          </ul>
+        </div>
+        <div class="hero-side">
+          <span class="hero-emoji">🎁</span>
+        </div>
+      </div>
+
+      <div class="hero-dots" id="hero-dots">
+        <button class="on" data-idx="0"></button>
+        <button data-idx="1"></button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <main>
@@ -553,9 +725,9 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </header>
     <ul class="benefits">
       <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado incluido.</div></li>
-      <li><span class="tick">✓</span><div><strong>Hasta 12 cuotas fijas</strong> para que lo pagues cómodo.</div></li>
+      <li><span class="tick">✓</span><div><strong>Hasta 12 cuotas sin interés</strong> en modelos seleccionados.</div></li>
+      <li><span class="tick">✓</span><div><strong>51.8% OFF en efectivo</strong> vs precio en 12 cuotas.</div></li>
       <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
-      <li><span class="tick">✓</span><div><strong>Listo para regalar</strong>: te asesoramos para elegir el modelo ideal.</div></li>
     </ul>
     <footer>
       <button class="cta" id="dismiss">Después</button>
@@ -569,7 +741,8 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   <div class="modal detail" role="dialog" aria-labelledby="d-title" aria-modal="true">
     <button class="close-x" id="d-close" aria-label="Cerrar">×</button>
     <div class="detail-media">
-      <span class="detail-off">Especial Navidad · 51.8% OFF efectivo</span>
+      <span class="detail-badge">Navidad</span>
+      <span class="detail-badge cash">51.8% OFF efectivo</span>
       <img id="d-img" alt="Producto" />
     </div>
     <div class="detail-body">
@@ -604,6 +777,86 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
   })();
 
+  // HERO slider Apple-style (auto, flechas y swipe)
+  (function(){
+    const slider = document.getElementById('hero-slider');
+    if(!slider) return;
+    const slides = Array.from(slider.querySelectorAll('.hero-slide'));
+    const dotsWrap = document.getElementById('hero-dots');
+    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('button')) : [];
+    const prevBtn = slider.querySelector('.hero-arrow.prev');
+    const nextBtn = slider.querySelector('.hero-arrow.next');
+    let idx = 0;
+    let timer;
+
+    function show(i){
+      idx = (i + slides.length) % slides.length;
+      slides.forEach((s,j)=> s.classList.toggle('is-active', j===idx));
+      dots.forEach((d,j)=> d.classList.toggle('on', j===idx));
+    }
+    function start(){
+      stop();
+      timer = setInterval(()=>{ show(idx+1); }, 4500);
+    }
+    function stop(){
+      if(timer) clearInterval(timer);
+    }
+
+    dots.forEach((btn,i)=>{
+      btn.addEventListener('click', ()=>{
+        show(i);
+        start();
+      });
+    });
+    prevBtn?.addEventListener('click', ()=>{
+      show(idx-1);
+      start();
+    });
+    nextBtn?.addEventListener('click', ()=>{
+      show(idx+1);
+      start();
+    });
+
+    // Swipe en móvil
+    let touchStartX = null;
+    let touchEndX = null;
+    const threshold = 40; // px
+
+    slider.addEventListener('touchstart', (e)=>{
+      if(e.touches && e.touches.length === 1){
+        touchStartX = e.touches[0].clientX;
+        touchEndX = null;
+        stop();
+      }
+    }, {passive:true});
+
+    slider.addEventListener('touchmove', (e)=>{
+      if(e.touches && e.touches.length === 1){
+        touchEndX = e.touches[0].clientX;
+      }
+    }, {passive:true});
+
+    slider.addEventListener('touchend', ()=>{
+      if(touchStartX != null && touchEndX != null){
+        const dx = touchEndX - touchStartX;
+        if(Math.abs(dx) > threshold){
+          if(dx < 0){ // swipe left -> siguiente
+            show(idx+1);
+          }else{      // swipe right -> anterior
+            show(idx-1);
+          }
+        }
+      }
+      start();
+    });
+
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    show(0);
+    start();
+  })();
+
   // Helpers en el cliente
   const COLOR_MAP = {"negro":"#111827","black":"#111827","midnight":"#0b1324","graphite":"#3a3a3c","blanco":"#f9fafb","white":"#f9fafb","starlight":"#f5f1e6","silver":"#d1d5db","azul":"#1d4ed8","blue":"#1d4ed8","deep purple":"#5b21b6","purple":"#7c3aed","rojo":"#dc2626","red":"#dc2626","verde":"#16a34a","green":"#16a34a","dorado":"#eab308","gold":"#eab308","rosa":"#fb7185","pink":"#fb7185"};
   const colorToHex = (name)=>{ if(!name) return '#d1d5db'; const key=String(name).trim().toLowerCase(); for(const k in COLOR_MAP){ if(key.includes(k)) return COLOR_MAP[k]; } return '#d1d5db'; };
@@ -632,14 +885,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     $img.alt = p.Name;
     $title.textContent = p.Name;
 
-    // chips: Color • Almacenamiento • Batería
     const chips = [];
     if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
     if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
     if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
     $meta.innerHTML = chips.join('');
 
-    // precios: USD y 12 cuotas en ARS
     $usd.textContent = fmtMoney(p.PriceUSD,'USD') ?? 'USD —';
     if (p.Cuota12) {
       $ars.textContent = '12 cuotas de ' + p.Cuota12;
@@ -647,13 +898,11 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
       $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
     }
 
-    // cuotas extra (3 y 6)
     const lines = [];
     if (p.Cuota3) lines.push('3 cuotas de ' + '<strong>' + p.Cuota3 + '</strong>');
     if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
     $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar otras opciones de financiación</div>';
 
-    // WhatsApp
     document.getElementById('d-contact').onclick = function () {
       const msg = encodeURIComponent('Me interesa el ' + p.Name + ' para estas fiestas. ¿Está disponible?');
       const url = 'https://wa.me/5492645763246?text=' + msg;
