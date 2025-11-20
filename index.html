@@ -90,131 +90,39 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .logo-img{ height:22px; width:auto; display:block; }
   .logo-fallback{ font-weight:800; font-size:16px; letter-spacing:.2px; }
 
-  /* HERO estilo Apple (slider) */
+  .xmas-banner{
+    position:relative;
+    z-index:1;
+    background:linear-gradient(90deg, #b91c1c, #16a34a);
+    color:#f9fafb;
+    font-size:13px;
+    font-weight:600;
+    text-align:center;
+    padding:6px 8px;
+  }
+  .xmas-banner span{ white-space:nowrap; }
+
   .hero{
     position:relative;
     z-index:1;
-    max-width:1200px;
-    margin:14px auto 6px;
-    padding:0 12px;
+    max-width:1200px; margin:10px auto 0; padding:12px 12px 4px;
   }
-  .hero-slider{
-    position:relative;
-    border-radius:26px;
-    overflow:hidden;
-    background:radial-gradient(circle at top left, #fef2f2 0, #eff6ff 40%, #ffffff 100%);
-    min-height:150px;
-    display:flex;
-    align-items:stretch;
-  }
-  .hero-inner{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    padding:18px 18px 16px;
-  }
-  .hero-slide{
-    display:none;
-    gap:14px;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .hero-slide.is-active{
-    display:flex;
-  }
-  .hero-copy{
-    flex:1 1 60%;
-  }
-  .hero-pill{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:4px 10px;
-    border-radius:999px;
-    background:rgba(185,28,28,.09);
-    color:#b91c1c;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:6px;
-  }
-  .hero-pill.cash{
-    background:rgba(234,179,8,.12);
-    color:#854d0e;
-  }
-  .hero-copy h1,
-  .hero-copy h2{
+  .hero h1{
     margin:0;
-    font-size:22px;
+    font-size:28px;
     line-height:1.1;
     font-weight:800;
-  }
-  .hero-copy p{
-    margin:6px 0 8px;
-    font-size:13.5px;
-    color:#374151;
-  }
-  .hero-copy p strong{ color:#047857; }
-  .hero-list{
-    list-style:none;
-    padding:0;
-    margin:0;
-    font-size:12.5px;
-    color:#111827;
-  }
-  .hero-list li{
     display:flex;
     align-items:center;
-    gap:6px;
-    margin:2px 0;
+    gap:8px;
   }
-  .hero-list li::before{
-    content:"•";
-    color:#047857;
-    font-weight:900;
+  .hero h1 .emoji{ font-size:24px; }
+  .hero p{
+    margin:6px 0 0;
     font-size:14px;
+    color:var(--muted);
   }
-  .hero-side{
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding-right:8px;
-  }
-  .hero-emoji{
-    font-size:40px;
-    filter:drop-shadow(0 10px 25px rgba(0,0,0,.15));
-  }
-  .hero-dots{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    margin-top:8px;
-  }
-  .hero-dots button{
-    width:7px; height:7px;
-    border-radius:999px;
-    border:0;
-    background:rgba(148,163,184,.7);
-    cursor:pointer;
-    padding:0;
-  }
-  .hero-dots button.on{
-    width:18px;
-    background:#047857;
-  }
-
-  @media (min-width:720px){
-    .hero-inner{
-      padding:22px 24px 18px;
-    }
-    .hero-copy h1{ font-size:26px; }
-    .hero-copy h2{ font-size:24px; }
-    .hero-copy p{ font-size:14px; }
-    .hero-slider{
-      min-height:190px;
-    }
-    .hero-emoji{ font-size:52px; }
-  }
+  .hero p strong{ color:var(--accent); }
 
   /* GRID */
   main{
@@ -408,25 +316,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     width:min(520px,88%);
     height:auto; object-fit:contain;
   }
-
-  .detail-badge{
-    position:absolute;
-    top:12px;
-    right:12px;
+  .detail-off{
+    position:absolute; top:12px; right:12px;
     background:#b91c1c;
-    color:#fff;
-    font-weight:800;
-    font-size:12px;
-    padding:6px 10px;
-    border-radius:999px;
+    color:#fff; font-weight:800; font-size:12px;
+    padding:6px 10px; border-radius:999px;
   }
-  .detail-badge.cash{
-    top:40px;
-    background:#fef3c7;
-    color:#92400e;
-    box-shadow:0 1px 4px rgba(0,0,0,.12);
-  }
-
   .detail-body{
     padding:18px 18px 20px;
     display:grid; gap:10px;
@@ -467,45 +362,13 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   </div>
 </nav>
 
+<div class="xmas-banner">
+  <span>🎄 Especial Navidad: 12 cuotas fijas + 51.8% OFF pagando en efectivo 🎁</span>
+</div>
+
 <section class="hero">
-  <div class="hero-slider" id="hero-slider">
-    <div class="hero-inner">
-      <div class="hero-slide is-active" data-idx="0">
-        <div class="hero-copy">
-          <div class="hero-pill">🎄 Especial Navidad</div>
-          <h1>iPhones en 12 cuotas sin interés</h1>
-          <p>Elegí tu próximo iPhone para estas fiestas y <strong>pagalo en 12 cuotas fijas</strong>. Envíos y combos listos para regalar.</p>
-          <ul class="hero-list">
-            <li>12 cuotas sin interés en iPhones seleccionados.</li>
-            <li>Incluye funda, cargador, cable y vidrio templado.</li>
-          </ul>
-        </div>
-        <div class="hero-side">
-          <span class="hero-emoji">📱</span>
-        </div>
-      </div>
-
-      <div class="hero-slide" data-idx="1">
-        <div class="hero-copy">
-          <div class="hero-pill cash">💵 Pago en efectivo</div>
-          <h2>Hasta 51.8% OFF pagando en efectivo</h2>
-          <p>Aprovechá el mejor precio contado y llevate tu iPhone listo para regalar.</p>
-          <ul class="hero-list">
-            <li>51.8% menos vs precio en 12 cuotas.</li>
-            <li>Incluye funda, cargador, cable y vidrio templado.</li>
-          </ul>
-        </div>
-        <div class="hero-side">
-          <span class="hero-emoji">🎁</span>
-        </div>
-      </div>
-
-      <div class="hero-dots" id="hero-dots">
-        <button class="on" data-idx="0"></button>
-        <button data-idx="1"></button>
-      </div>
-    </div>
-  </div>
+  <h1><span class="emoji">🎁</span>Catálogo Navidad iPhone</h1>
+  <p>Elegí tu próximo iPhone para estas fiestas y <strong>pagalo en 12 cuotas fijas</strong>. Envíos y combos listos para regalar.</p>
 </section>
 
 <main>
@@ -524,7 +387,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
-      <div class="price">12 cuotas de $ 89.048</div>
+      <div class="price">12 cuotas de $ 88.737</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(108 70% 45%)"></i>90%</span>
@@ -545,7 +408,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
-      <div class="price">12 cuotas de $ 76.680</div>
+      <div class="price">12 cuotas de $ 81.342</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
@@ -566,7 +429,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
-      <div class="price">12 cuotas de $ 76.680</div>
+      <div class="price">12 cuotas de $ 81.342</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
@@ -587,7 +450,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13 Pro Max">iPhone 13 Pro Max</h3>
-      <div class="price">12 cuotas de $ 160.782</div>
+      <div class="price">12 cuotas de $ 160.219</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Celeste</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(113 70% 45%)"></i>94%</span>
@@ -608,7 +471,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15">iPhone 15</h3>
-      <div class="price">12 cuotas de $ 155.835</div>
+      <div class="price">12 cuotas de $ 155.290</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(118 70% 45%)"></i>98%</span>
@@ -629,7 +492,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
-      <div class="price">12 cuotas de $ 173.149</div>
+      <div class="price">12 cuotas de $ 172.544</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(107 70% 45%)"></i>89%</span>
@@ -650,7 +513,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro Max">iPhone 15 Pro Max</h3>
-      <div class="price">12 cuotas de $ 225.094</div>
+      <div class="price">12 cuotas de $ 224.307</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(106 70% 45%)"></i>88%</span>
@@ -671,7 +534,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 16 Pro Max">iPhone 16 Pro Max</h3>
-      <div class="price">12 cuotas de $ 311.669</div>
+      <div class="price">12 cuotas de $ 295.790</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
@@ -690,9 +553,9 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     </header>
     <ul class="benefits">
       <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado incluido.</div></li>
-      <li><span class="tick">✓</span><div><strong>Hasta 12 cuotas sin interés</strong> en modelos seleccionados.</div></li>
-      <li><span class="tick">✓</span><div><strong>51.8% OFF en efectivo</strong> vs precio en 12 cuotas.</div></li>
+      <li><span class="tick">✓</span><div><strong>Hasta 12 cuotas fijas</strong> para que lo pagues cómodo.</div></li>
       <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
+      <li><span class="tick">✓</span><div><strong>Listo para regalar</strong>: te asesoramos para elegir el modelo ideal.</div></li>
     </ul>
     <footer>
       <button class="cta" id="dismiss">Después</button>
@@ -706,8 +569,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   <div class="modal detail" role="dialog" aria-labelledby="d-title" aria-modal="true">
     <button class="close-x" id="d-close" aria-label="Cerrar">×</button>
     <div class="detail-media">
-      <span class="detail-badge">Navidad</span>
-      <span class="detail-badge cash">51.8% OFF efectivo</span>
+      <span class="detail-off">Especial Navidad · 51.8% OFF efectivo</span>
       <img id="d-img" alt="Producto" />
     </div>
     <div class="detail-body">
@@ -728,7 +590,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 
 <script>
   // Dataset embebido
-  window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIyIjoiIiwiMTQzMCI6IiIsInJvd19udW1iZXIiOjIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjo5MCwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjozNjAsIlByZWNpbyBBUlMiOjUxNDgwMCwiMyBDdW90YSI6MjI3MDM3LjU4MjkyMjk2MzM0LCI2IEN1b3RhcyI6MTMyNjUyLjg1NjEzMzQ5MzkxLCIxMiBDdW90YXMiOjg5MDQ4LjMwNDAzNDU3MzE2LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTMiLCJQcmljZVVTRCI6MzYwLCJQcmljZUFSUyI6NTE0ODAwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICTCoDg5LjA0OCIsIkJhdHRlcnkiOjkwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJMKgMjI3LjAzOCIsIkN1b3RhNiI6IiTCoDEzMi42NTMiLCJDdW90YTEyIjoiJMKgODkuMDQ4IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMiI6IiIsIjE0MzAiOiIiLCJyb3dfbnVtYmVyIjozLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJCYXRlcsOtYSI6ODUsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6MzEwLCJQcmVjaW8gQVJTIjo0NDMzMDAsIjMgQ3VvdGEiOjE5NTUwNC41ODUyOTQ3NzQsIjYgQ3VvdGFzIjoxMTQyMjguODQ4MzM3MTc1MzIsIjEyIEN1b3RhcyI6NzY2ODAuNDg0MDI5NzcxMzQsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMyIsIlByaWNlVVNEIjozMTAsIlByaWNlQVJTIjo0NDMzMDAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJMKgNzYuNjgwIiwiQmF0dGVyeSI6ODUsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkwqAxOTUuNTA1IiwiQ3VvdGE2IjoiJMKgMTE0LjIyOSIsIkN1b3RhMTIiOiIkwqA3Ni42ODAiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIyIjoiIiwiMTQzMCI6IiIsInJvd19udW1iZXIiOjQsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjo4NSwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjozMTAsIlByZWNpbyBBUlMiOjQ0MzMwMCwiMyBDdW90YSI6MTk1NTA0LjU4NTI5NDc3NCwiNiBDdW90YXMiOjExNDIyOC44NDgzMzcxNzUzMiwiMTIgQ3VvdGFzIjo3NjY4MC40ODQwMjk3NzEzNCwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjMxMCwiUHJpY2VBUlMiOjQ0MzMwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkwqA3Ni42ODAiLCJCYXR0ZXJ5Ijo4NSwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDEzIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiTCoDE5NS41MDUiLCJDdW90YTYiOiIkwqAxMTQuMjI5IiwiQ3VvdGExMiI6IiTCoDc2LjY4MCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7IjIiOiIiLCIxNDMwIjoiIiwicm93X251bWJlciI6NSwiTW9kZWxvIjoiaVBob25lIDEzIFBybyBNYXgiLCJCYXRlcsOtYSI6OTQsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6IkNlbGVzdGUiLCJQcmVjaW8gVVNEIjo2NTAsIlByZWNpbyBBUlMiOjkyOTUwMCwiMyBDdW90YSI6NDA5OTI4Ljk2OTE2NjQ2MTYsIjYgQ3VvdGFzIjoyMzk1MTIuMTAxMzUyMTQxODIsIjEyIEN1b3RhcyI6MTYwNzgxLjY2MDA2MjQyMzc2LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTMgUHJvIE1heCIsIlByaWNlVVNEIjo2NTAsIlByaWNlQVJTIjo5Mjk1MDAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJMKgMTYwLjc4MiIsIkJhdHRlcnkiOjk0LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMgUHJvIE1heCIsIkNvbG9yIjoiQ2VsZXN0ZSIsIkN1b3RhMyI6IiTCoDQwOS45MjkiLCJDdW90YTYiOiIkwqAyMzkuNTEyIiwiQ3VvdGExMiI6IiTCoDE2MC43ODIiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIyIjoiIiwiMTQzMCI6IiIsInJvd19udW1iZXIiOjYsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkJhdGVyw61hIjo5OCwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo2MzAsIlByZWNpbyBBUlMiOjkwMDkwMCwiMyBDdW90YSI6Mzk3MzE1Ljc3MDExNTE4NTgsIjYgQ3VvdGFzIjoyMzIxNDIuNDk4MjMzNjE0MzcsIjEyIEN1b3RhcyI6MTU1ODM0LjUzMjA2MDUwMzAzLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUiLCJQcmljZVVTRCI6NjMwLCJQcmljZUFSUyI6OTAwOTAwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICTCoDE1NS44MzUiLCJCYXR0ZXJ5Ijo5OCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiTCoDM5Ny4zMTYiLCJDdW90YTYiOiIkwqAyMzIuMTQyIiwiQ3VvdGExMiI6IiTCoDE1NS44MzUiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9LHsiX3JhdyI6eyIyIjoiIiwiMTQzMCI6IiIsInJvd19udW1iZXIiOjcsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8iLCJCYXRlcsOtYSI6ODksIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NzAwLCJQcmVjaW8gQVJTIjoxMDAxMDAwLCIzIEN1b3RhIjo0NDE0NjEuOTY2Nzk0NjUwOTQsIjYgQ3VvdGFzIjoyNTc5MzYuMTA5MTQ4NDYwNCwiMTIgQ3VvdGFzIjoxNzMxNDkuNDgwMDY3MjI1NTgsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNSBQcm8iLCJQcmljZVVTRCI6NzAwLCJQcmljZUFSUyI6MTAwMTAwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkwqAxNzMuMTQ5IiwiQmF0dGVyeSI6ODksIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8iLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJMKgNDQxLjQ2MiIsIkN1b3RhNiI6IiTCoDI1Ny45MzYiLCJDdW90YTEyIjoiJMKgMTczLjE0OSIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNDMwIjoiIiwicm93X251bWJlciI6OCwiTW9kZWxvIjoiaVBob25lIDE1IFBybyBNYXgiLCJCYXRlcsOtYSI6ODgsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IkJsYW5jbyIsIlByZWNpbyBVU0QiOjkxMCwiUHJlY2lvIEFSUyI6MTMwMTMwMCwiMyBDdW90YSI6NTczOTAwLjU1NjgzMzA0NjMsIjYgQ3VvdGFzIjozMzUzMTYuOTQxODkyOTk4NSwiMTIgQ3VvdGFzIjoyMjUwOTQuMzI0MDg3MzkzMjcsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNSBQcm8gTWF4IiwiUHJpY2VVU0QiOjkxMCwiUHJpY2VBUlMiOjEzMDEzMDAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJMKgMjI1LjA5NCIsIkJhdHRlcnkiOjg4LCJTdG9yYWdlIjoiMjU2R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIE1heCIsIkNvbG9yIjoiQmxhbmNvIiwiQ3VvdGEzIjoiJMKgNTczLjkwMSIsIkN1b3RhNiI6IiTCoDMzNS4zMTciLCJDdW90YTEyIjoiJMKgMjI1LjA5NCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNDMwIjoiIiwicm93X251bWJlciI6OSwiTW9kZWxvIjoiaVBob25lIDE2IFBybyBNYXgiLCJCYXRlcsOtYSI6MTAwLCJBbG1hY2VuYW1pZW50byI6IjI1NkdCIiwiQ29sb3IiOiJHcmlzIiwiUHJlY2lvIFVTRCI6MTI2MCwiUHJlY2lvIEFSUyI6MTgwMTgwMCwiMyBDdW90YSI6Nzk0NjMxLjU0MDIzMDM3MTYsIjYgQ3VvdGFzIjo0NjQyODQuOTk2NDY3MjI4NzUsIjEyIEN1b3RhcyI6MzExNjY5LjA2NDEyMTAwNjA2LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTYgUHJvIE1heCIsIlByaWNlVVNEIjoxMjYwLCJQcmljZUFSUyI6MTgwMTgwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkwqAzMTEuNjY5IiwiQmF0dGVyeSI6MTAwLCJTdG9yYWdlIjoiMjU2R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTYgUHJvIE1heCIsIkNvbG9yIjoiR3JpcyIsIkN1b3RhMyI6IiTCoDc5NC42MzIiLCJDdW90YTYiOiIkwqA0NjQuMjg1IiwiQ3VvdGExMiI6IiTCoDMxMS42NjkiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NTkzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNiUyMFBybyJ9XQ=='));
+  window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIyIjoiIiwiMTQyNSI6IiIsInJvd19udW1iZXIiOjIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjo5MCwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjozNjAsIlByZWNpbyBBUlMiOjUxMzAwMCwiMyBDdW90YSI6MjI2MjQzLjc0NTIyMDQzNTUyLCI2IEN1b3RhcyI6MTMyMTg5LjAzNDk1ODIwMTk4LCIxMiBDdW90YXMiOjg4NzM2Ljk0NjMyODE1ODU2LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTMiLCJQcmljZVVTRCI6MzYwLCJQcmljZUFSUyI6NTEzMDAwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgODguNzM3IiwiQmF0dGVyeSI6OTAsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDIyNi4yNDQiLCJDdW90YTYiOiIkIDEzMi4xODkiLCJDdW90YTEyIjoiJCA4OC43MzciLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjA0L2ltYWdlXzI1Ni9pUGhvbmUlMjAxMyJ9LHsiX3JhdyI6eyIyIjoiIiwiMTQyNSI6IiIsInJvd19udW1iZXIiOjMsIk1vZGVsbyI6ImlQaG9uZSAxMyIsIkJhdGVyw61hIjo4NSwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjozMzAsIlByZWNpbyBBUlMiOjQ3MDI1MCwiMyBDdW90YSI6MjA3MzkwLjA5OTc4NTM5OTIsIjYgQ3VvdGFzIjoxMjExNzMuMjgyMDQ1MDE4NSwiMTIgQ3VvdGFzIjo4MTM0Mi4yMDA4MDA4MTIwMiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDEzIiwiUHJpY2VVU0QiOjMzMCwiUHJpY2VBUlMiOjQ3MDI1MCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkIDgxLjM0MiIsIkJhdHRlcnkiOjg1LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAyMDcuMzkwIiwiQ3VvdGE2IjoiJCAxMjEuMTczIiwiQ3VvdGExMiI6IiQgODEuMzQyIiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMiI6IiIsIjE0MjUiOiIiLCJyb3dfbnVtYmVyIjo0LCJNb2RlbG8iOiJpUGhvbmUgMTMiLCJCYXRlcsOtYSI6ODUsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6MzMwLCJQcmVjaW8gQVJTIjo0NzAyNTAsIjMgQ3VvdGEiOjIwNzM5MC4wOTk3ODUzOTkyLCI2IEN1b3RhcyI6MTIxMTczLjI4MjA0NTAxODUsIjEyIEN1b3RhcyI6ODEzNDIuMjAwODAwODEyMDIsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMyIsIlByaWNlVVNEIjozMzAsIlByaWNlQVJTIjo0NzAyNTAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJCA4MS4zNDIiLCJCYXR0ZXJ5Ijo4NSwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDEzIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgMjA3LjM5MCIsIkN1b3RhNiI6IiQgMTIxLjE3MyIsIkN1b3RhMTIiOiIkIDgxLjM0MiIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDQvaW1hZ2VfMjU2L2lQaG9uZSUyMDEzIn0seyJfcmF3Ijp7IjIiOiIiLCIxNDI1IjoiIiwicm93X251bWJlciI6NSwiTW9kZWxvIjoiaVBob25lIDEzIFBybyBNYXgiLCJCYXRlcsOtYSI6OTQsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6IkNlbGVzdGUiLCJQcmVjaW8gVVNEIjo2NTAsIlByZWNpbyBBUlMiOjkyNjI1MCwiMyBDdW90YSI6NDA4NDk1LjY1MTA5MjQ1MywiNiBDdW90YXMiOjIzODY3NC42NDY0NTIzMDkxMywiMTIgQ3VvdGFzIjoxNjAyMTkuNDg2NDI1ODQxODcsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMyBQcm8gTWF4IiwiUHJpY2VVU0QiOjY1MCwiUHJpY2VBUlMiOjkyNjI1MCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkIDE2MC4yMTkiLCJCYXR0ZXJ5Ijo5NCwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDEzIFBybyBNYXgiLCJDb2xvciI6IkNlbGVzdGUiLCJDdW90YTMiOiIkIDQwOC40OTYiLCJDdW90YTYiOiIkIDIzOC42NzUiLCJDdW90YTEyIjoiJCAxNjAuMjE5IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwNC9pbWFnZV8yNTYvaVBob25lJTIwMTMifSx7Il9yYXciOnsiMiI6IiIsIjE0MjUiOiIiLCJyb3dfbnVtYmVyIjo2LCJNb2RlbG8iOiJpUGhvbmUgMTUiLCJCYXRlcsOtYSI6OTgsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NjMwLCJQcmVjaW8gQVJTIjo4OTc3NTAsIjMgQ3VvdGEiOjM5NTkyNi41NTQxMzU3NjIxNiwiNiBDdW90YXMiOjIzMTMzMC44MTExNzY4NTM1LCIxMiBDdW90YXMiOjE1NTI4OS42NTYwNzQyNzc1LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUiLCJQcmljZVVTRCI6NjMwLCJQcmljZUFSUyI6ODk3NzUwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgMTU1LjI5MCIsIkJhdHRlcnkiOjk4LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAzOTUuOTI3IiwiQ3VvdGE2IjoiJCAyMzEuMzMxIiwiQ3VvdGExMiI6IiQgMTU1LjI5MCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNDI1IjoiIiwicm93X251bWJlciI6NywiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkJhdGVyw61hIjo4OSwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo3MDAsIlByZWNpbyBBUlMiOjk5NzUwMCwiMyBDdW90YSI6NDM5OTE4LjM5MzQ4NDE4MDE1LCI2IEN1b3RhcyI6MjU3MDM0LjIzNDY0MDk0ODMzLCIxMiBDdW90YXMiOjE3MjU0NC4wNjIzMDQ3NTI4LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUgUHJvIiwiUHJpY2VVU0QiOjcwMCwiUHJpY2VBUlMiOjk5NzUwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkIDE3Mi41NDQiLCJCYXR0ZXJ5Ijo4OSwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDQzOS45MTgiLCJDdW90YTYiOiIkIDI1Ny4wMzQiLCJDdW90YTEyIjoiJCAxNzIuNTQ0IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMS9pbWFnZV8yNTYvaVBob25lJTIwMTUifSx7Il9yYXciOnsiMiI6IiIsIjE0MjUiOiIiLCJyb3dfbnVtYmVyIjo4LCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIE1heCIsIkJhdGVyw61hIjo4OCwiQWxtYWNlbmFtaWVudG8iOiIyNTZHQiIsIkNvbG9yIjoiQmxhbmNvIiwiUHJlY2lvIFVTRCI6OTEwLCJQcmVjaW8gQVJTIjoxMjk2NzUwLCIzIEN1b3RhIjo1NzE4OTMuOTExNTI5NDM0MSwiNiBDdW90YXMiOjMzNDE0NC41MDUwMzMyMzI4LCIxMiBDdW90YXMiOjIyNDMwNy4yODA5OTYxNzg2LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUgUHJvIE1heCIsIlByaWNlVVNEIjo5MTAsIlByaWNlQVJTIjoxMjk2NzUwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgMjI0LjMwNyIsIkJhdHRlcnkiOjg4LCJTdG9yYWdlIjoiMjU2R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIE1heCIsIkNvbG9yIjoiQmxhbmNvIiwiQ3VvdGEzIjoiJCA1NzEuODk0IiwiQ3VvdGE2IjoiJCAzMzQuMTQ1IiwiQ3VvdGExMiI6IiQgMjI0LjMwNyIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNDI1IjoiIiwicm93X251bWJlciI6OSwiTW9kZWxvIjoiaVBob25lIDE2IFBybyBNYXgiLCJCYXRlcsOtYSI6MTAwLCJBbG1hY2VuYW1pZW50byI6IjI1NkdCIiwiQ29sb3IiOiJHcmlzIiwiUHJlY2lvIFVTRCI6MTIwMCwiUHJlY2lvIEFSUyI6MTcxMDAwMCwiMyBDdW90YSI6NzU0MTQ1LjgxNzQwMTQ1MTYsIjYgQ3VvdGFzIjo0NDA2MzAuMTE2NTI3MzM5OTcsIjEyIEN1b3RhcyI6Mjk1Nzg5LjgyMTA5Mzg2MTksIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNiBQcm8gTWF4IiwiUHJpY2VVU0QiOjEyMDAsIlByaWNlQVJTIjoxNzEwMDAwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgMjk1Ljc5MCIsIkJhdHRlcnkiOjEwMCwiU3RvcmFnZSI6IjI1NkdCIiwiTW9kZWxvIjoiaVBob25lIDE2IFBybyBNYXgiLCJDb2xvciI6IkdyaXMiLCJDdW90YTMiOiIkIDc1NC4xNDYiLCJDdW90YTYiOiIkIDQ0MC42MzAiLCJDdW90YTEyIjoiJCAyOTUuNzkwIiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODU5My9pbWFnZV8yNTYvaVBob25lJTIwMTYlMjBQcm8ifV0='));
 
   // Popup beneficios una vez por sesión
   (function(){
@@ -742,46 +604,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
   })();
 
-  // HERO slider Apple-style
-  (function(){
-    const slider = document.getElementById('hero-slider');
-    if(!slider) return;
-    const slides = Array.from(slider.querySelectorAll('.hero-slide'));
-    const dotsWrap = document.getElementById('hero-dots');
-    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('button')) : [];
-    let idx = 0;
-    let timer;
-
-    function show(i){
-      idx = i;
-      slides.forEach((s,j)=> s.classList.toggle('is-active', j===i));
-      dots.forEach((d,j)=> d.classList.toggle('on', j===i));
-    }
-    function start(){
-      stop();
-      timer = setInterval(()=>{ show((idx+1)%slides.length); }, 4500);
-    }
-    function stop(){
-      if(timer) clearInterval(timer);
-    }
-    dots.forEach((btn,i)=>{
-      btn.addEventListener('click', ()=>{
-        show(i);
-        start();
-      });
-    });
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', start);
-    show(0);
-    start();
-  })();
-
   // Helpers en el cliente
   const COLOR_MAP = {"negro":"#111827","black":"#111827","midnight":"#0b1324","graphite":"#3a3a3c","blanco":"#f9fafb","white":"#f9fafb","starlight":"#f5f1e6","silver":"#d1d5db","azul":"#1d4ed8","blue":"#1d4ed8","deep purple":"#5b21b6","purple":"#7c3aed","rojo":"#dc2626","red":"#dc2626","verde":"#16a34a","green":"#16a34a","dorado":"#eab308","gold":"#eab308","rosa":"#fb7185","pink":"#fb7185"};
   const colorToHex = (name)=>{ if(!name) return '#d1d5db'; const key=String(name).trim().toLowerCase(); for(const k in COLOR_MAP){ if(key.includes(k)) return COLOR_MAP[k]; } return '#d1d5db'; };
   const battColor = (pct)=>{ const p=Math.max(0,Math.min(100,Number(String(pct).replace('%',''))||0)); const h=Math.round(p*1.2); return `hsl(${h} 70% 45%)`; };
   const esc = (s)=> String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const fmtMoney = (v,currency)=>{ if (v==null||v==='') return null; const n=Number(v); if(!isFinite(n)) return null; if(currency==='ARS') return '$\u00a0'+n.toLocaleString('es-AR',{maximumFractionDigits:0}); if(currency==='USD') return 'USD '+n.toLocaleString('en-US',{maximumFractionDigits:0}); return '$'+n; };
+  const fmtMoney = (v,currency)=>{ if (v==null||v==='') return null; const n=Number(v); if(!isFinite(n)) return null; if(currency==='ARS') return '$ '+n.toLocaleString('es-AR',{maximumFractionDigits:0}); if(currency==='USD') return 'USD '+n.toLocaleString('en-US',{maximumFractionDigits:0}); return '$'+n; };
 
   // Abrir detalle al click
   const grid = document.getElementById('grid');
@@ -804,12 +632,14 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     $img.alt = p.Name;
     $title.textContent = p.Name;
 
+    // chips: Color • Almacenamiento • Batería
     const chips = [];
     if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
     if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
     if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
     $meta.innerHTML = chips.join('');
 
+    // precios: USD y 12 cuotas en ARS
     $usd.textContent = fmtMoney(p.PriceUSD,'USD') ?? 'USD —';
     if (p.Cuota12) {
       $ars.textContent = '12 cuotas de ' + p.Cuota12;
@@ -817,11 +647,13 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
       $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
     }
 
+    // cuotas extra (3 y 6)
     const lines = [];
     if (p.Cuota3) lines.push('3 cuotas de ' + '<strong>' + p.Cuota3 + '</strong>');
     if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
     $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar otras opciones de financiación</div>';
 
+    // WhatsApp
     document.getElementById('d-contact').onclick = function () {
       const msg = encodeURIComponent('Me interesa el ' + p.Name + ' para estas fiestas. ¿Está disponible?');
       const url = 'https://wa.me/5492645763246?text=' + msg;
