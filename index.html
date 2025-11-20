@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>GO APPLE — Catálogo</title>
+<title>GO APPLE — Catálogo Navidad</title>
 
 <!-- Meta Pixel Code -->
 <script>
@@ -39,32 +39,101 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 
 <style>
   :root{
-    --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
-    --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
-    --radius:14px; --gap:10px;
+    --bg:#f3f4f6;
+    --surface:#ffffff;
+    --surface-2:#f5f5f7;
+    --line:#e5e7eb;
+    --ink:#1d1d1f;
+    --muted:#6e6e73;
+    --accent:#065f46;           /* verde navideño premium */
+    --accent-soft:#dcfce7;
+    --radius:14px;
+    --gap:10px;
   }
   *{box-sizing:border-box} html,body{height:100%}
-  body{ margin:0; background:var(--bg); color:var(--ink);
-        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+  body{
+    margin:0;
+    background:radial-gradient(circle at top, #e5f2ff 0, #f3f4f6 40%, #ffffff 100%);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    position:relative;
+    overflow-x:hidden;
+  }
 
-  .apple-nav{ position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
+  /* Nieve muy suave */
+  body::before{
+    content:"";
+    pointer-events:none;
+    position:fixed;
+    inset:0;
+    background-image:
+      radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.8) 0, transparent 60%),
+      radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,.7) 0, transparent 60%),
+      radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,.8) 0, transparent 60%);
+    opacity:.5;
+    animation:snow 18s linear infinite;
+    z-index:0;
+  }
+  @keyframes snow{
+    0%{ transform:translateY(-20px); }
+    100%{ transform:translateY(20px); }
+  }
+
+  .apple-nav{
+    position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
     -webkit-backdrop-filter:saturate(1.8) blur(20px); backdrop-filter:saturate(1.8) blur(20px);
-    background:rgba(255,255,255,.86); }
+    background:rgba(255,255,255,.92);
+  }
   .nav-inner{ max-width:1200px; margin:0 auto; height:100%;
     display:flex; align-items:center; justify-content:center; padding:0 12px; }
   .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; color:inherit; }
   .logo-img{ height:22px; width:auto; display:block; }
   .logo-fallback{ font-weight:800; font-size:16px; letter-spacing:.2px; }
 
-  .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
-  .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
+  .xmas-banner{
+    position:relative;
+    z-index:1;
+    background:linear-gradient(90deg, #b91c1c, #16a34a);
+    color:#f9fafb;
+    font-size:13px;
+    font-weight:600;
+    text-align:center;
+    padding:6px 8px;
+  }
+  .xmas-banner span{ white-space:nowrap; }
 
-  /* GRID: altura AUTO para que entren los chips */
+  .hero{
+    position:relative;
+    z-index:1;
+    max-width:1200px; margin:10px auto 0; padding:12px 12px 4px;
+  }
+  .hero h1{
+    margin:0;
+    font-size:28px;
+    line-height:1.1;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .hero h1 .emoji{ font-size:24px; }
+  .hero p{
+    margin:6px 0 0;
+    font-size:14px;
+    color:var(--muted);
+  }
+  .hero p strong{ color:var(--accent); }
+
+  /* GRID */
+  main{
+    position:relative;
+    z-index:1;
+  }
   main .grid{
     display:grid; gap:var(--gap);
     grid-template-columns:repeat(2, minmax(0, 1fr));
     grid-auto-rows:auto;
-    padding:10px; max-width:1200px; margin:0 auto;
+    padding:10px; max-width:1200px; margin:0 auto 16px;
   }
   @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
   @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); } }
@@ -72,14 +141,20 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   /* CARD */
   .card{
     position:relative;
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
     display:flex; flex-direction:column; overflow:hidden;
-    transition:transform .2s, box-shadow .2s, border-color .2s;
+    transition:transform .2s, box-shadow .2s, border-color .2s, background .2s;
   }
-  .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
+  .card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 26px rgba(0,0,0,.06);
+    border-color:#d1d5db;
+    background:linear-gradient(to bottom, #fdfdfd, #ffffff);
+  }
   .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
 
-  /* Imagen grande con altura fija razonable; el resto fluye */
   .img{
     position:relative;
     background:var(--surface-2);
@@ -103,61 +178,149 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .no-img{ color:var(--muted); font-size:13px; }
   .status{
     position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
-    background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
+    background:#fef3c7; border:1px solid #facc15; color:#92400e; font-size:11px; font-weight:600;
   }
   .off-badge{
     position:absolute; top:10px; right:10px; padding:6px 10px;
-    background:#ff3b30; color:#fff; font-size:12px; font-weight:800; border-radius:999px;
-    box-shadow:0 2px 8px rgba(255,59,48,.25); pointer-events:none;
+    background:#b91c1c;
+    color:#fff; font-size:12px; font-weight:800; border-radius:999px;
+    box-shadow:0 2px 8px rgba(185,28,28,.35); pointer-events:none;
   }
 
   .info{ padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
   .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
     display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
-  .price{ font-size:18px; font-weight:800; color:#000; }
-  .sub{ font-size:12.5px; color:#0071e3; font-weight:600; }
+  .price{ font-size:17px; font-weight:800; color:#111827; }
+  .sub{ font-size:12.5px; color:var(--accent); font-weight:600; }
   .cuotas-hint{ cursor:default; }
   .meta{ display:flex; flex-wrap:wrap; gap:6px; }
-  .chip{ background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
-    font-size:12px; padding:5px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; }
-  .dot{ width:10px; height:10px; border-radius:999px; background:var(--dot, #d1d5db); border:1px solid rgba(0,0,0,.08); }
+  .chip{
+    background:#f6f7f8;
+    border:1px solid var(--line);
+    color:#1d1d1f;
+    font-size:12px;
+    padding:5px 8px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .dot{
+    width:10px; height:10px; border-radius:999px;
+    background:var(--dot, #d1d5db);
+    border:1px solid rgba(0,0,0,.08);
+  }
 
-  [data-status="vendido"] .status{ background:#fff0f0; color:#b00020; border-color:#ffd6d6; }
-  [data-status="reservado"] .status{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
-  [data-status="disponible"] .status{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
+  [data-status="vendido"] .status{ background:#fee2e2; color:#991b1b; border-color:#fecaca; }
+  [data-status="reservado"] .status{ background:#fef9c3; color:#854d0e; border-color:#fef08a; }
+  [data-status="disponible"] .status{ background:#dcfce7; color:#166534; border-color:#bbf7d0; }
 
   /* POPUP beneficios */
-  .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:40; }
-  .modal{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,.25); overflow:hidden; }
-  .modal header{ padding:18px 22px 0; text-align:center; }
+  .overlay{
+    position:fixed; inset:0; background:rgba(15,23,42,.55);
+    display:none; align-items:center; justify-content:center; z-index:40;
+  }
+  .modal{
+    width:min(560px,92vw); background:#ffffff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,.25);
+    overflow:hidden;
+  }
+  .modal header{
+    padding:18px 22px 0;
+    text-align:center;
+    background:radial-gradient(circle at top, #fef2f2 0, #ffffff 55%);
+  }
   .modal h2{ margin:0; font-size:24px; font-weight:800; }
   .modal p.lead{ margin:6px 0 14px; color:#424245; font-size:15px; }
+  .modal p.lead .emoji{ margin-left:4px; }
+
   .benefits{ padding:0 18px 6px; }
-  .benefits li{ list-style:none; display:flex; align-items:flex-start; gap:10px; margin:10px 0; color:#1d1d1f; }
-  .benefits li .tick{ flex:0 0 auto; width:22px; height:22px; border-radius:999px; display:grid; place-items:center; background:#e6f0ff; color:#0071e3; font-weight:800; }
-  .modal footer{ display:flex; gap:10px; justify-content:center; padding:16px 18px 22px; background:#f5f5f7; border-top:1px solid var(--line); }
-  .cta{ appearance:none; padding:10px 16px; border-radius:999px; font-weight:700; cursor:pointer; border:1px solid #cfd2d8; background:#fff; }
-  .cta.primary{ background:#0071e3; color:#fff; border-color:#0071e3; }
+  .benefits li{
+    list-style:none;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:10px 0;
+    color:#1d1d1f;
+  }
+  .benefits li .tick{
+    flex:0 0 auto;
+    width:22px; height:22px;
+    border-radius:999px;
+    display:grid; place-items:center;
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-weight:800;
+  }
+  .modal footer{
+    display:flex; gap:10px; justify-content:center;
+    padding:16px 18px 22px;
+    background:#f5f5f7;
+    border-top:1px solid var(--line);
+  }
+  .cta{
+    appearance:none;
+    padding:10px 16px;
+    border-radius:999px;
+    font-weight:700;
+    cursor:pointer;
+    border:1px solid #cfd2d8;
+    background:#fff;
+  }
+  .cta.primary{
+    background:var(--accent);
+    color:#fff;
+    border-color:var(--accent);
+  }
   .cta.primary:hover{ filter:brightness(.98); }
   .cta:hover{ border-color:#bfc4cc; }
 
   /* DETALLE PRODUCTO */
   .overlay.detail{ z-index:50; }
-  .modal.detail{ width:min(900px,96vw); display:grid; grid-template-columns:1fr; }
-  .detail-media{ background:var(--surface-2); display:grid; place-items:center; padding:24px; border-bottom:1px solid var(--line); position:relative; }
-  .detail-media img{ width:min(520px,88%); height:auto; object-fit:contain; }
-  .detail-off{ position:absolute; top:12px; right:12px; background:#ff3b30; color:#fff; font-weight:800; font-size:12px; padding:6px 10px; border-radius:999px; }
-  .detail-body{ padding:18px 18px 20px; display:grid; gap:10px; }
+  .modal.detail{
+    width:min(900px,96vw);
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  .detail-media{
+    background:linear-gradient(135deg, #fef2f2, #f0f9ff);
+    display:grid; place-items:center;
+    padding:24px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .detail-media img{
+    width:min(520px,88%);
+    height:auto; object-fit:contain;
+  }
+  .detail-off{
+    position:absolute; top:12px; right:12px;
+    background:#b91c1c;
+    color:#fff; font-weight:800; font-size:12px;
+    padding:6px 10px; border-radius:999px;
+  }
+  .detail-body{
+    padding:18px 18px 20px;
+    display:grid; gap:10px;
+    background:#ffffff;
+  }
   .detail-title{ margin:0; font-size:22px; font-weight:800; }
   .detail-meta{ display:flex; flex-wrap:wrap; gap:8px; }
   .prices{ display:grid; gap:6px; }
   .p-usd{ font-size:20px; font-weight:800; color:#000; }
   .p-ars{ font-size:16px; font-weight:700; color:#111; }
-  .p-cuotas{ font-size:13.5px; color:#0071e3; font-weight:600; }
+  .p-cuotas{ font-size:13.5px; color:var(--accent); font-weight:600; }
   .p-cuotas .linea{ margin-top:2px; color:#1d1d1f; }
   .p-cuotas .linea strong{ font-weight:800; }
   .detail-actions{ display:flex; gap:8px; justify-content:flex-end; }
-  .close-x{ position:absolute; top:10px; right:12px; border:0; background:transparent; font-size:24px; line-height:1; cursor:pointer; }
+  .close-x{
+    position:absolute; top:10px; right:12px;
+    border:0; background:transparent;
+    font-size:24px; line-height:1;
+    cursor:pointer;
+  }
 
   @media (min-width:780px){
     .modal.detail{ grid-template-columns:1.1fr 1fr; }
@@ -178,8 +341,13 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   </div>
 </nav>
 
+<div class="xmas-banner">
+  <span>🎄 Especial Navidad: 12 cuotas fijas en iPhones seleccionados + combos listos para regalo 🎁</span>
+</div>
+
 <section class="hero">
-  <h1>iPhone — Catálogo</h1>
+  <h1><span class="emoji">🎁</span>Catálogo Navidad iPhone</h1>
+  <p>Elegí tu próximo iPhone para estas fiestas y <strong>pagalo en 12 cuotas fijas</strong>. Envíos y combos listos para regalar.</p>
 </section>
 
 <main>
@@ -193,12 +361,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">12 cuotas de $ 89.048</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(108 70% 45%)"></i>90%</span>
       </div>
@@ -213,12 +381,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">12 cuotas de $ 76.680</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
       </div>
@@ -233,12 +401,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 13"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13">iPhone 13</h3>
       <div class="price">12 cuotas de $ 76.680</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(102 70% 45%)"></i>85%</span>
       </div>
@@ -253,12 +421,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 13 Pro Max"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98604/image_256/iPhone%2013" alt="iPhone 13 Pro Max" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 13 Pro Max">iPhone 13 Pro Max</h3>
       <div class="price">12 cuotas de $ 160.782</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Celeste</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(113 70% 45%)"></i>94%</span>
       </div>
@@ -273,12 +441,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 15"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15">iPhone 15</h3>
       <div class="price">12 cuotas de $ 155.835</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(118 70% 45%)"></i>98%</span>
       </div>
@@ -293,12 +461,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 15 Pro"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
       <div class="price">12 cuotas de $ 173.149</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(107 70% 45%)"></i>89%</span>
       </div>
@@ -313,12 +481,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 15 Pro Max"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro Max" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro Max">iPhone 15 Pro Max</h3>
       <div class="price">12 cuotas de $ 225.094</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(106 70% 45%)"></i>88%</span>
       </div>
@@ -333,12 +501,12 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 16 Pro Max"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98593/image_256/iPhone%2016%20Pro" alt="iPhone 16 Pro Max" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">10% OFF</span>
+      <span class="off-badge" aria-hidden="true">Navidad</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 16 Pro Max">iPhone 16 Pro Max</h3>
       <div class="price">12 cuotas de $ 311.669</div>
-      <div class="sub cuotas-hint">Ver cuotas</div>
+      <div class="sub cuotas-hint">Ver más opciones de cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
@@ -351,18 +519,18 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 <div class="overlay" id="welcome">
   <div class="modal" role="dialog" aria-labelledby="w-title" aria-modal="true">
     <header>
-      <h2 id="w-title">Bienvenido a GO APPLE</h2>
-      <p class="lead">Elegí tu iPhone con beneficios que suman de verdad.</p>
+      <h2 id="w-title">Edición Navidad GO APPLE</h2>
+      <p class="lead">Hacé tu regalo de Navidad con un iPhone listo para usar. <span class="emoji">🎄</span></p>
     </header>
     <ul class="benefits">
-      <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado.</div></li>
+      <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado incluido.</div></li>
+      <li><span class="tick">✓</span><div><strong>Hasta 12 cuotas fijas</strong> para que lo pagues cómodo.</div></li>
       <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
-      <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que pagues cómodo.</div></li>
-      <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> por ser cliente GO APPLE.</div></li>
+      <li><span class="tick">✓</span><div><strong>Listo para regalar</strong>: te asesoramos para elegir el modelo ideal.</div></li>
     </ul>
     <footer>
       <button class="cta" id="dismiss">Después</button>
-      <button class="cta primary" id="see">Ver modelos</button>
+      <button class="cta primary" id="see">Ver modelos navideños</button>
     </footer>
   </div>
 </div>
@@ -372,7 +540,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   <div class="modal detail" role="dialog" aria-labelledby="d-title" aria-modal="true">
     <button class="close-x" id="d-close" aria-label="Cerrar">×</button>
     <div class="detail-media">
-      <span class="detail-off">10% OFF</span>
+      <span class="detail-off">Especial Navidad</span>
       <img id="d-img" alt="Producto" />
     </div>
     <div class="detail-body">
@@ -385,7 +553,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
       </div>
       <div class="detail-actions">
         <button class="cta" id="d-later">Después</button>
-        <button class="cta primary" id="d-contact">Consultar</button>
+        <button class="cta primary" id="d-contact">Consultar por este iPhone</button>
       </div>
     </div>
   </div>
@@ -397,7 +565,7 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 
   // Popup beneficios una vez por sesión
   (function(){
-    const key = 'goapple_welcome_seen';
+    const key = 'goapple_welcome_seen_navidad';
     const seen = sessionStorage.getItem(key);
     const $ov = document.getElementById('welcome');
     if(!seen){ $ov.style.display = 'flex'; }
@@ -427,9 +595,9 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     const $img = document.getElementById('d-img');
     const $title = document.getElementById('d-title');
     const $meta = document.getElementById('d-meta');
-    const $usd = document.getElementById('d-usd');
-    const $ars = document.getElementById('d-ars');
-    const $cuo = document.getElementById('d-cuotas');
+    const $usd  = document.getElementById('d-usd');
+    const $ars  = document.getElementById('d-ars');
+    const $cuo  = document.getElementById('d-cuotas');
 
     $img.src = p.ImageURL || '';
     $img.alt = p.Name;
@@ -454,11 +622,11 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     const lines = [];
     if (p.Cuota3) lines.push('3 cuotas de ' + '<strong>' + p.Cuota3 + '</strong>');
     if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
-    $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar financiación</div>';
+    $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar otras opciones de financiación</div>';
 
     // WhatsApp
     document.getElementById('d-contact').onclick = function () {
-      const msg = encodeURIComponent('Me interesa el ' + p.Name + '. ¿Está disponible?');
+      const msg = encodeURIComponent('Me interesa el ' + p.Name + ' para estas fiestas. ¿Está disponible?');
       const url = 'https://wa.me/5492645763246?text=' + msg;
       window.open(url, '_blank');
     };
