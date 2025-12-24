@@ -83,16 +83,9 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   *{box-sizing:border-box} html,body{height:100%}
   body{
     margin:0;
-    background:
-      radial-gradient(circle at 20% 10%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(251, 113, 133, 0.06) 0%, transparent 50%),
-      radial-gradient(circle at 40% 60%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-      linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+    background:radial-gradient(circle at top, #e5f2ff 0, #f3f4f6 40%, #ffffff 100%);
     color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
     position:relative;
     overflow-x:hidden;
   }
@@ -103,24 +96,11 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     position:fixed;
     inset:0;
     background-image:
-      radial-gradient(2px 2px at 15% 25%, rgba(255,255,255,.9) 0, transparent 70%),
-      radial-gradient(3px 3px at 75% 15%, rgba(255,255,255,.8) 0, transparent 65%),
-      radial-gradient(2px 2px at 35% 75%, rgba(255,255,255,.85) 0, transparent 70%),
-      radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,.7) 0, transparent 60%);
+      radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.8) 0, transparent 60%),
+      radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,.7) 0, transparent 60%),
+      radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,.8) 0, transparent 60%);
     opacity:.5;
-    animation:snow 25s ease-in-out infinite;
-    z-index:0;
-  }
-  body::after{
-    content:"";
-    pointer-events:none;
-    position:fixed;
-    inset:0;
-    background-image:
-      radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,.6) 0, transparent 50%),
-      radial-gradient(2px 2px at 85% 65%, rgba(255,255,255,.5) 0, transparent 55%);
-    animation:snow 18s ease-in-out infinite reverse;
-    opacity:.4;
+    animation:snow 18s linear infinite;
     z-index:0;
   }
   @keyframes snow{
@@ -129,16 +109,9 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   }
 
   .apple-nav{
-    position:sticky; top:0; z-index:20;
-    height:44px;
-    padding-top:env(safe-area-inset-top);
-    border-bottom:1px solid rgba(255, 255, 255, 0.18);
-    -webkit-backdrop-filter:saturate(1.8) blur(20px);
-    backdrop-filter:saturate(1.8) blur(20px);
-    background:rgba(255,255,255,.75);
-    box-shadow:
-      0 1px 3px rgba(0, 0, 0, 0.04),
-      0 1px 2px rgba(0, 0, 0, 0.02);
+    position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
+    -webkit-backdrop-filter:saturate(1.8) blur(20px); backdrop-filter:saturate(1.8) blur(20px);
+    background:rgba(255,255,255,.92);
   }
   .nav-inner{ max-width:1200px; margin:0 auto; height:100%;
     display:flex; align-items:center; justify-content:center; padding:0 12px; }
@@ -158,17 +131,10 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     position:relative;
     border-radius:26px;
     overflow:hidden;
-    background:
-      radial-gradient(circle at top left, rgba(254, 242, 242, 0.8) 0%, transparent 60%),
-      radial-gradient(circle at bottom right, rgba(239, 246, 255, 0.8) 0%, transparent 60%),
-      #ffffff;
+    background:radial-gradient(circle at top left, #fef2f2 0, #eff6ff 40%, #ffffff 100%);
     min-height:150px;
     display:flex;
     align-items:stretch;
-    border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow:
-      0 1px 3px rgba(0, 0, 0, 0.05),
-      0 10px 25px rgba(0, 0, 0, 0.03);
   }
   .hero-inner{
     width:100%;
@@ -181,14 +147,9 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     gap:14px;
     align-items:center;
     justify-content:space-between;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    opacity: 0;
-    transform: translateX(20px);
   }
   .hero-slide.is-active{
     display:flex;
-    opacity: 1;
-    transform: translateX(0);
   }
   .hero-copy{
     flex:1 1 60%;
@@ -199,30 +160,21 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     gap:6px;
     padding:4px 10px;
     border-radius:999px;
-    background:rgba(185,28,28,.12);
-    backdrop-filter:blur(8px);
+    background:rgba(185,28,28,.09);
     color:#b91c1c;
     font-size:12px;
     font-weight:700;
     margin-bottom:6px;
-    box-shadow:
-      0 2px 8px rgba(185, 28, 28, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
   .hero-pill.cash{
-    background:rgba(234,179,8,.14);
-    backdrop-filter:blur(8px);
+    background:rgba(234,179,8,.12);
     color:#854d0e;
-    box-shadow:
-      0 2px 8px rgba(234, 179, 8, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
   .hero-copy h1,
   .hero-copy h2{
     margin:0;
     font-size:22px;
-    line-height:1.15;
-    letter-spacing:-0.02em;
+    line-height:1.1;
     font-weight:800;
   }
   .hero-copy p{
@@ -288,9 +240,8 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     width:30px;
     height:30px;
     border-radius:999px;
-    border:1px solid rgba(0, 0, 0, 0.06);
-    background:rgba(255, 255, 255, 0.85);
-    backdrop-filter:blur(10px);
+    border:0;
+    background:rgba(15,23,42,.08);
     display:grid;
     place-items:center;
     cursor:pointer;
@@ -299,32 +250,18 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     font-size:18px;
     font-weight:700;
     z-index:2;
-    box-shadow:0 2px 8px rgba(0, 0, 0, 0.1);
-    transition:all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .hero-arrow:hover{
-    transform:translateY(-50%) scale(1.1);
-    background:rgba(255, 255, 255, 0.95);
-    box-shadow:0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-  .hero-arrow:active{
-    transform:translateY(-50%) scale(0.95);
+    background:rgba(15,23,42,.14);
   }
   .hero-arrow.prev{ left:10px; }
   .hero-arrow.next{ right:10px; }
 
-  @media (max-width:768px){
-    .hero-arrow{
-      width:44px;
-      height:44px;
-      font-size:20px;
-    }
-  }
   @media (max-width:480px){
     .hero-arrow{
-      width:40px;
-      height:40px;
-      font-size:18px;
+      width:26px;
+      height:26px;
+      font-size:16px;
     }
   }
 
@@ -356,74 +293,28 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); } }
 
   /* CARD */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
   .card{
     position:relative;
-    background:rgba(255, 255, 255, 0.9);
-    border:1px solid rgba(229, 231, 235, 0.8);
+    background:var(--surface);
+    border:1px solid var(--line);
     border-radius:var(--radius);
     display:flex; flex-direction:column; overflow:hidden;
-    box-shadow:
-      0 1px 3px rgba(0, 0, 0, 0.05),
-      0 10px 25px rgba(0, 0, 0, 0.03);
-    transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    animation: fadeInUp 0.6s ease-out backwards;
+    transition:transform .2s, box-shadow .2s, border-color .2s, background .2s;
   }
-  .card:nth-child(1) { animation-delay: 0.05s; }
-  .card:nth-child(2) { animation-delay: 0.1s; }
-  .card:nth-child(3) { animation-delay: 0.15s; }
-  .card:nth-child(4) { animation-delay: 0.2s; }
-  .card:nth-child(5) { animation-delay: 0.25s; }
-  .card:nth-child(6) { animation-delay: 0.3s; }
-  .card:nth-child(7) { animation-delay: 0.35s; }
-  .card:nth-child(8) { animation-delay: 0.4s; }
-  .card:nth-child(9) { animation-delay: 0.45s; }
-  .card:nth-child(10) { animation-delay: 0.5s; }
-  .card:nth-child(11) { animation-delay: 0.55s; }
-  .card:nth-child(12) { animation-delay: 0.6s; }
   .card:hover{
-    transform:translateY(-4px) scale(1.01);
-    box-shadow:
-      0 4px 6px rgba(0, 0, 0, 0.07),
-      0 20px 40px rgba(0, 0, 0, 0.08);
-    border-color:rgba(209, 213, 219, 0.9);
-    background:linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    transform:translateY(-2px);
+    box-shadow:0 12px 26px rgba(0,0,0,.06);
+    border-color:#d1d5db;
+    background:linear-gradient(to bottom, #fdfdfd, #ffffff);
   }
-  .card:active{
-    transform:scale(0.98);
-    transition:transform 0.1s;
-  }
-  .card-hit{
-    position:absolute;
-    inset:0;
-    border:0;
-    background:transparent;
-    cursor:pointer;
-    min-height:44px;
-  }
+  .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
 
-  @keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
-  }
   .img{
     position:relative;
-    background:
-      linear-gradient(90deg, #f5f5f7 25%, #ececee 50%, #f5f5f7 75%);
-    background-size:1000px 100%;
+    background:var(--surface-2);
     display:flex; align-items:center; justify-content:center;
     flex:0 0 210px;
     min-height:210px;
-  }
-  .img:has(img){
-    background:var(--surface-2);
-    animation:none;
-  }
-  .img:not(:has(img)){
-    animation:shimmer 2s infinite linear;
   }
   .img img{
     max-width:95%;
@@ -444,63 +335,43 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     background:#fef3c7; border:1px solid #facc15; color:#92400e; font-size:11px; font-weight:600;
   }
 
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
   .off-badge{
     position:absolute;
     top:10px;
     right:10px;
     padding:6px 12px;
-    background:linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    background:#b91c1c;
     color:#fff;
     font-size:12px;
     font-weight:800;
     border-radius:999px;
-    box-shadow:
-      0 4px 12px rgba(185, 28, 28, 0.4),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow:0 2px 8px rgba(185,28,28,.35);
     pointer-events:none;
-    transform:translateZ(0);
-    animation:pulse 2s ease-in-out infinite;
   }
   .cash-badge{
     position:absolute;
     top:40px;
     right:10px;
     padding:4px 10px;
-    background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    background:#fef3c7;
     color:#92400e;
     font-size:11px;
     font-weight:700;
     border-radius:999px;
-    box-shadow:
-      0 2px 6px rgba(234, 179, 8, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow:0 1px 4px rgba(0,0,0,.12);
     pointer-events:none;
   }
 
   .info{ padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
-  .name{
-    margin:0;
-    font-weight:800;
-    font-size:15px;
-    line-height:1.2;
-    letter-spacing:-0.01em;
-    display:-webkit-box;
-    -webkit-line-clamp:1;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-  }
+  .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
+    display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
   .price{ font-size:17px; font-weight:800; color:#111827; }
   .sub{ font-size:12.5px; color:var(--accent); font-weight:600; }
   .cuotas-hint{ cursor:default; }
   .meta{ display:flex; flex-wrap:wrap; gap:6px; }
   .chip{
-    background:rgba(246, 247, 248, 0.8);
-    backdrop-filter:blur(8px);
-    border:1px solid rgba(0, 0, 0, 0.06);
+    background:#f6f7f8;
+    border:1px solid var(--line);
     color:#1d1d1f;
     font-size:12px;
     padding:5px 8px;
@@ -508,12 +379,6 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     display:inline-flex;
     align-items:center;
     gap:6px;
-    box-shadow:0 1px 3px rgba(0, 0, 0, 0.05);
-    transition:all 0.2s ease;
-  }
-  .chip:hover{
-    transform:translateY(-1px);
-    box-shadow:0 2px 6px rgba(0, 0, 0, 0.08);
   }
   .dot{
     width:10px; height:10px; border-radius:999px;
@@ -526,43 +391,16 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   [data-status="disponible"] .status{ background:#dcfce7; color:#166534; border-color:#bbf7d0; }
 
   /* POPUP beneficios */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9) translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
   .overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(15,23,42,.60);
-    backdrop-filter:blur(4px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:40;
-    animation:fadeIn 0.3s ease-out;
+    position:fixed; inset:0; background:rgba(15,23,42,.55);
+    display:none; align-items:center; justify-content:center; z-index:40;
   }
   .modal{
-    width:min(560px,92vw);
-    background:rgba(255, 255, 255, 0.95);
-    backdrop-filter:blur(20px) saturate(180%);
-    border:1px solid rgba(255, 255, 255, 0.18);
+    width:min(560px,92vw); background:#ffffff;
+    border:1px solid var(--line);
     border-radius:20px;
-    box-shadow:
-      0 25px 50px rgba(0, 0, 0, 0.15),
-      0 10px 25px rgba(0, 0, 0, 0.1),
-      0 0 1px rgba(0, 0, 0, 0.05);
+    box-shadow:0 30px 80px rgba(0,0,0,.25);
     overflow:hidden;
-    animation:scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .modal header{
     padding:18px 22px 0;
@@ -600,35 +438,19 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .cta{
     appearance:none;
     padding:10px 16px;
-    min-height:44px;
     border-radius:999px;
     font-weight:700;
     cursor:pointer;
     border:1px solid #cfd2d8;
     background:#fff;
-    transition:all 0.2s ease;
   }
   .cta.primary{
     background:var(--accent);
     color:#fff;
     border-color:var(--accent);
-    box-shadow:0 2px 8px rgba(6, 95, 70, 0.25);
   }
-  .cta.primary:hover{
-    filter:brightness(.98);
-    box-shadow:0 4px 12px rgba(6, 95, 70, 0.3);
-    transform:translateY(-1px);
-  }
-  .cta.primary:active{
-    transform:scale(0.95);
-  }
-  .cta:hover{
-    border-color:#bfc4cc;
-    transform:translateY(-1px);
-  }
-  .cta:active{
-    transform:scale(0.95);
-  }
+  .cta.primary:hover{ filter:brightness(.98); }
+  .cta:hover{ border-color:#bfc4cc; }
 
   /* DETALLE PRODUCTO */
   .overlay.detail{ z-index:50; }
@@ -653,23 +475,18 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     position:absolute;
     top:12px;
     right:12px;
-    background:linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    background:#b91c1c;
     color:#fff;
     font-weight:800;
     font-size:12px;
     padding:6px 10px;
     border-radius:999px;
-    box-shadow:
-      0 4px 12px rgba(185, 28, 28, 0.4),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
   }
   .detail-badge.cash{
     top:40px;
-    background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    background:#fef3c7;
     color:#92400e;
-    box-shadow:
-      0 2px 6px rgba(234, 179, 8, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow:0 1px 4px rgba(0,0,0,.12);
   }
 
   .detail-body{
@@ -685,88 +502,6 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   .p-cuotas{ font-size:13.5px; color:var(--accent); font-weight:600; }
   .p-cuotas .linea{ margin-top:2px; color:#1d1d1f; }
   .p-cuotas .linea strong{ font-weight:800; }
-
-  /* Toggle de cuotas */
-  .cuotas-toggle{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:8px 12px;
-    margin-top:4px;
-    background:rgba(0, 122, 255, 0.06);
-    border:1px solid rgba(0, 122, 255, 0.15);
-    border-radius:8px;
-    color:var(--accent);
-    font-size:13px;
-    font-weight:600;
-    cursor:pointer;
-    transition:all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    user-select:none;
-    -webkit-tap-highlight-color:transparent;
-  }
-  .cuotas-toggle:hover{
-    background:rgba(0, 122, 255, 0.1);
-    border-color:rgba(0, 122, 255, 0.25);
-    transform:translateY(-1px);
-  }
-  .cuotas-toggle:active{
-    transform:scale(0.98);
-  }
-  .cuotas-toggle-icon{
-    display:inline-block;
-    transition:transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    font-size:10px;
-  }
-  .cuotas-toggle.is-open .cuotas-toggle-icon{
-    transform:rotate(180deg);
-  }
-
-  .cuotas-content{
-    display:grid;
-    gap:8px;
-    margin-top:8px;
-    padding:12px;
-    background:rgba(246, 247, 248, 0.6);
-    backdrop-filter:blur(10px);
-    border-radius:10px;
-    border:1px solid rgba(0, 0, 0, 0.06);
-    overflow:hidden;
-    max-height:0;
-    opacity:0;
-    transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  .cuotas-content.is-open{
-    max-height:500px;
-    opacity:1;
-    margin-top:12px;
-  }
-
-  .cuota-option{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 12px;
-    background:rgba(255, 255, 255, 0.9);
-    border:1px solid rgba(0, 0, 0, 0.08);
-    border-radius:8px;
-    transition:all 0.2s ease;
-  }
-  .cuota-option:hover{
-    background:#fff;
-    border-color:rgba(0, 122, 255, 0.2);
-    transform:translateX(2px);
-  }
-  .cuota-option-label{
-    font-size:13px;
-    font-weight:600;
-    color:#1d1d1f;
-  }
-  .cuota-option-value{
-    font-size:14px;
-    font-weight:800;
-    color:var(--accent);
-  }
-
   .detail-actions{ display:flex; gap:8px; justify-content:flex-end; }
   .close-x{
     position:absolute; top:10px; right:12px;
@@ -775,157 +510,10 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     cursor:pointer;
   }
 
-  @media (max-width:768px){
-    .cta{
-      min-height:44px;
-      padding:12px 18px;
-    }
-  }
-  @media (max-width:480px){
-    main .grid{
-      gap:12px;
-      padding:12px;
-    }
-    .card{
-      border-radius:16px;
-    }
-    .info{
-      padding:12px;
-    }
-    .hero-inner{
-      padding:16px;
-    }
-  }
   @media (min-width:780px){
     .modal.detail{ grid-template-columns:1.1fr 1fr; }
     .detail-media{ border-bottom:0; border-right:1px solid var(--line); }
     .close-x{ top:6px; right:10px; }
-  }
-
-  /* EXIT INTENT POPUP */
-  .overlay.exit-intent{
-    z-index:60;
-  }
-  .exit-modal{
-    width:min(480px,90vw);
-    max-width:480px;
-  }
-  .exit-modal header{
-    padding:24px 20px 16px;
-    text-align:center;
-    background:radial-gradient(circle at top, #fef2f2 0%, #ffffff 60%);
-  }
-  .exit-emoji{
-    font-size:48px;
-    margin-bottom:12px;
-    animation:bounce 0.6s ease-in-out;
-  }
-  @keyframes bounce{
-    0%, 100%{ transform:translateY(0); }
-    50%{ transform:translateY(-10px); }
-  }
-  .exit-modal h2{
-    margin:0 0 8px;
-    font-size:24px;
-    font-weight:800;
-    line-height:1.2;
-    color:#111827;
-  }
-  .exit-lead{
-    margin:0;
-    font-size:15px;
-    color:#6b7280;
-  }
-  .exit-content{
-    padding:20px;
-  }
-  .exit-highlight{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    padding:16px;
-    background:linear-gradient(135deg, #fef2f2 0%, #fef3c7 100%);
-    border-radius:12px;
-    margin-bottom:20px;
-    border:2px dashed #f59e0b;
-  }
-  .exit-badge-large{
-    flex:0 0 auto;
-    font-size:32px;
-    font-weight:900;
-    background:linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-    color:#fff;
-    padding:12px 16px;
-    border-radius:12px;
-    box-shadow:
-      0 4px 12px rgba(185, 28, 28, 0.4),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-    line-height:1;
-  }
-  .exit-text{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-  }
-  .exit-text strong{
-    font-size:18px;
-    font-weight:800;
-    color:#111827;
-  }
-  .exit-text span{
-    font-size:13px;
-    color:#6b7280;
-  }
-  .exit-benefits{
-    list-style:none;
-    padding:0;
-    margin:0;
-  }
-  .exit-benefits li{
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-    margin:12px 0;
-  }
-  .exit-benefits li .tick{
-    flex:0 0 auto;
-    width:22px;
-    height:22px;
-    border-radius:999px;
-    display:grid;
-    place-items:center;
-    background:var(--accent-soft);
-    color:var(--accent);
-    font-weight:800;
-    font-size:14px;
-  }
-  .exit-benefits li div{
-    flex:1;
-    font-size:14px;
-    color:#374151;
-    line-height:1.5;
-  }
-  .exit-modal footer{
-    display:flex;
-    gap:10px;
-    justify-content:center;
-    padding:16px 20px 24px;
-    background:#f5f5f7;
-    border-top:1px solid var(--line);
-  }
-  .pulse-btn{
-    animation:pulse-glow 1.5s ease-in-out infinite;
-  }
-  @keyframes pulse-glow{
-    0%, 100%{
-      box-shadow:0 2px 8px rgba(6, 95, 70, 0.25);
-      transform:scale(1);
-    }
-    50%{
-      box-shadow:0 4px 16px rgba(6, 95, 70, 0.4);
-      transform:scale(1.02);
-    }
   }
 </style>
 </head>
@@ -986,88 +574,92 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 </section>
 
 <main>
-    <div class="grid" id="grid">
+  <div class="grid" id="grid">
     
   <article class="card"
     data-idx="0"
-    data-name="iphone 16 pro max"
+    data-name="iphone 11"
     data-status=""
-    data-storage="256gb">
-    <button class="card-hit" aria-label="Ver iPhone 16 Pro Max"></button>
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 11"></button>
     <div class="img">
-      <img src="https://www.macstation.com.ar/web/image/product.template/98593/image_256/iPhone%2016%20Pro" alt="iPhone 16 Pro Max" loading="lazy" />
+      <div class="no-img">Sin imagen</div>
       <span class="off-badge" aria-hidden="true">Navidad</span>
       <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
     </div>
     <div class="info">
-      <h3 class="name" title="iPhone 16 Pro Max">iPhone 16 Pro Max</h3>
-      <div class="price">12 cuotas de $ 312.396</div>
+      <h3 class="name" title="iPhone 11">iPhone 11</h3>
+      <div class="price">12 cuotas de $ 70.289</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(103 70% 45%)"></i>86%</span>
       </div>
     </div>
   </article>
+
   <article class="card"
     data-idx="1"
-    data-name="iphone 15 pro max"
+    data-name="iphone 11"
     data-status=""
-    data-storage="256gb">
-    <button class="card-hit" aria-label="Ver iPhone 15 Pro Max"></button>
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 11"></button>
     <div class="img">
-      <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro Max" loading="lazy" />
+      <div class="no-img">Sin imagen</div>
       <span class="off-badge" aria-hidden="true">Navidad</span>
       <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
     </div>
     <div class="info">
-      <h3 class="name" title="iPhone 15 Pro Max">iPhone 15 Pro Max</h3>
-      <div class="price">12 cuotas de $ 236.900</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <h3 class="name" title="iPhone 11">iPhone 11</h3>
+      <div class="price">$ 376.250</div>
+      
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(106 70% 45%)"></i>88%</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(96 70% 45%)"></i>80%</span>
       </div>
     </div>
   </article>
+
   <article class="card"
     data-idx="2"
-    data-name="iphone 15 pro"
+    data-name="iphone 11"
     data-status=""
     data-storage="128gb">
-    <button class="card-hit" aria-label="Ver iPhone 15 Pro"></button>
+    <button class="card-hit" aria-label="Ver iPhone 11"></button>
     <div class="img">
-      <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" />
+      <div class="no-img">Sin imagen</div>
       <span class="off-badge" aria-hidden="true">Navidad</span>
       <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
     </div>
     <div class="info">
-      <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
-      <div class="price">12 cuotas de $ 182.231</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <h3 class="name" title="iPhone 11">iPhone 11</h3>
+      <div class="price">$ 346.150</div>
+      
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(107 70% 45%)"></i>89%</span>
+        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(89 70% 45%)"></i>74%</span>
       </div>
     </div>
   </article>
+
   <article class="card"
     data-idx="3"
-    data-name="iphone 15"
+    data-name="iphone 11 pro max"
     data-status=""
-    data-storage="128gb">
-    <button class="card-hit" aria-label="Ver iPhone 15"></button>
+    data-storage="256gb">
+    <button class="card-hit" aria-label="Ver iPhone 11 Pro Max"></button>
     <div class="img">
-      <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" />
+      <div class="no-img">Sin imagen</div>
       <span class="off-badge" aria-hidden="true">Navidad</span>
       <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
     </div>
     <div class="info">
-      <h3 class="name" title="iPhone 15">iPhone 15</h3>
-      <div class="price">12 cuotas de $ 164.008</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <h3 class="name" title="iPhone 11 Pro Max">iPhone 11 Pro Max</h3>
+      <div class="price">$ 451.500</div>
+      
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(118 70% 45%)"></i>98%</span>
+        <span class="chip"><i class="dot" style="--dot:#16a34a"></i>Verde</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(103 70% 45%)"></i>86%</span>
       </div>
     </div>
   </article>
+
   <article class="card"
     data-idx="4"
     data-name="iphone 14 pro"
@@ -1088,83 +680,87 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
       </div>
     </div>
   </article>
+
   <article class="card"
     data-idx="5"
-    data-name="iphone 11 pro max"
-    data-status=""
-    data-storage="256gb">
-    <button class="card-hit" aria-label="Ver iPhone 11 Pro Max"></button>
-    <div class="img">
-      <img src="https://pngimg.com/uploads/iphone_11/iphone_11_PNG36.png" alt="iPhone 11 Pro Max" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
-    </div>
-    <div class="info">
-      <h3 class="name" title="iPhone 11 Pro Max">iPhone 11 Pro Max</h3>
-      <div class="price">$ 451.500</div>
-      
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#16a34a"></i>Verde</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(103 70% 45%)"></i>86%</span>
-      </div>
-    </div>
-  </article>
-  <article class="card"
-    data-idx="6"
-    data-name="iphone 11"
+    data-name="iphone 15"
     data-status=""
     data-storage="128gb">
-    <button class="card-hit" aria-label="Ver iPhone 11"></button>
+    <button class="card-hit" aria-label="Ver iPhone 15"></button>
     <div class="img">
-      <img src="https://pngimg.com/uploads/iphone_11/iphone_11_PNG38.png" alt="iPhone 11" loading="lazy" />
+      <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" />
       <span class="off-badge" aria-hidden="true">Navidad</span>
       <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
     </div>
     <div class="info">
-      <h3 class="name" title="iPhone 11">iPhone 11</h3>
-      <div class="price">$ 346.150</div>
-      
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(89 70% 45%)"></i>74%</span>
-      </div>
-    </div>
-  </article>
-  <article class="card"
-    data-idx="7"
-    data-name="iphone 11"
-    data-status=""
-    data-storage="128gb">
-    <button class="card-hit" aria-label="Ver iPhone 11"></button>
-    <div class="img">
-      <img src="https://pngimg.com/uploads/iphone_11/iphone_11_PNG20.png" alt="iPhone 11" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
-    </div>
-    <div class="info">
-      <h3 class="name" title="iPhone 11">iPhone 11</h3>
-      <div class="price">$ 376.250</div>
-      
-      <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(96 70% 45%)"></i>80%</span>
-      </div>
-    </div>
-  </article>
-  <article class="card"
-    data-idx="8"
-    data-name="iphone 11"
-    data-status=""
-    data-storage="128gb">
-    <button class="card-hit" aria-label="Ver iPhone 11"></button>
-    <div class="img">
-      <img src="https://pngimg.com/uploads/iphone_11/iphone_11_PNG20.png" alt="iPhone 11" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
-    </div>
-    <div class="info">
-      <h3 class="name" title="iPhone 11">iPhone 11</h3>
-      <div class="price">12 cuotas de $ 70.289</div>
+      <h3 class="name" title="iPhone 15">iPhone 15</h3>
+      <div class="price">12 cuotas de $ 164.008</div>
       <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
       <div class="meta">
-        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(103 70% 45%)"></i>86%</span>
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(118 70% 45%)"></i>98%</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-idx="6"
+    data-name="iphone 15 pro"
+    data-status=""
+    data-storage="128gb">
+    <button class="card-hit" aria-label="Ver iPhone 15 Pro"></button>
+    <div class="img">
+      <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" />
+      <span class="off-badge" aria-hidden="true">Navidad</span>
+      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+    </div>
+    <div class="info">
+      <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
+      <div class="price">12 cuotas de $ 182.231</div>
+      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(107 70% 45%)"></i>89%</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-idx="7"
+    data-name="iphone 15 pro max"
+    data-status=""
+    data-storage="256gb">
+    <button class="card-hit" aria-label="Ver iPhone 15 Pro Max"></button>
+    <div class="img">
+      <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro Max" loading="lazy" />
+      <span class="off-badge" aria-hidden="true">Navidad</span>
+      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+    </div>
+    <div class="info">
+      <h3 class="name" title="iPhone 15 Pro Max">iPhone 15 Pro Max</h3>
+      <div class="price">12 cuotas de $ 236.900</div>
+      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(106 70% 45%)"></i>88%</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="card"
+    data-idx="8"
+    data-name="iphone 16 pro max"
+    data-status=""
+    data-storage="256gb">
+    <button class="card-hit" aria-label="Ver iPhone 16 Pro Max"></button>
+    <div class="img">
+      <img src="https://www.macstation.com.ar/web/image/product.template/98593/image_256/iPhone%2016%20Pro" alt="iPhone 16 Pro Max" loading="lazy" />
+      <span class="off-badge" aria-hidden="true">Navidad</span>
+      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+    </div>
+    <div class="info">
+      <h3 class="name" title="iPhone 16 Pro Max">iPhone 16 Pro Max</h3>
+      <div class="price">12 cuotas de $ 312.396</div>
+      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="meta">
+        <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
     </div>
   </article>
@@ -1216,37 +812,6 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
   </div>
 </div>
 
-<!-- Exit Intent Popup -->
-<div class="overlay exit-intent" id="exit-intent">
-  <div class="modal exit-modal" role="dialog" aria-labelledby="exit-title" aria-modal="true">
-    <button class="close-x" id="exit-close" aria-label="Cerrar">×</button>
-    <header>
-      <div class="exit-emoji">⚡</div>
-      <h2 id="exit-title">¡Espera! No te vayas sin tu iPhone</h2>
-      <p class="exit-lead">Las mejores ofertas navideñas terminan pronto 🎄</p>
-    </header>
-    <div class="exit-content">
-      <div class="exit-highlight">
-        <div class="exit-badge-large">51.8% OFF</div>
-        <div class="exit-text">
-          <strong>Pago en efectivo</strong>
-          <span>vs precio en 12 cuotas</span>
-        </div>
-      </div>
-      <ul class="exit-benefits">
-        <li><span class="tick">✓</span><div>12 cuotas sin interés disponibles</div></li>
-        <li><span class="tick">✓</span><div>Pack completo: funda + cargador + cable + vidrio</div></li>
-        <li><span class="tick">✓</span><div>30 días de garantía incluidos</div></li>
-        <li><span class="tick">✓</span><div>Stock limitado para Navidad</div></li>
-      </ul>
-    </div>
-    <footer>
-      <button class="cta" id="exit-dismiss">Salir de todos modos</button>
-      <button class="cta primary pulse-btn" id="exit-stay">Ver ofertas navideñas</button>
-    </footer>
-  </div>
-</div>
-
 <script>
   // Dataset embebido
   window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIyIjoiIiwiMTUwNSI6IiIsInJvd19udW1iZXIiOjIsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkJhdGVyw61hIjo4NiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjoyNzAsIlByZWNpbyBBUlMiOjQwNjM1MCwiMyBDdW90YSI6MTc5MjA4Ljg2MTM0NTY2MDc2LCI2IEN1b3RhcyI6MTA0NzA3LjYzMDMyMjE1NDczLCIxMiBDdW90YXMiOjcwMjg5LjAwMjIyMzA5NDAyLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTEiLCJQcmljZVVTRCI6MjcwLCJQcmljZUFSUyI6NDA2MzUwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgNzAuMjg5IiwiQmF0dGVyeSI6ODYsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDE3OS4yMDkiLCJDdW90YTYiOiIkIDEwNC43MDgiLCJDdW90YTEyIjoiJCA3MC4yODkiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6IiJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUwNSI6IiIsInJvd19udW1iZXIiOjMsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkJhdGVyw61hIjo4MCwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjoyNTAsIlByZWNpbyBBUlMiOjM3NjI1MCwiMyBDdW90YSI6IiIsIjYgQ3VvdGFzIjoiIiwiMTIgQ3VvdGFzIjoiIiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDExIiwiUHJpY2VVU0QiOjI1MCwiUHJpY2VBUlMiOjM3NjI1MCwiUHJpY2VMYWJlbCI6IiQgMzc2LjI1MCIsIkJhdHRlcnkiOjgwLCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTEiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjpudWxsLCJDdW90YTYiOm51bGwsIkN1b3RhMTIiOm51bGwsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiIn0seyJfcmF3Ijp7IjIiOiIiLCIxNTA1IjoiIiwicm93X251bWJlciI6NCwiTW9kZWxvIjoiaVBob25lIDExIiwiQmF0ZXLDrWEiOjc0LCJBbG1hY2VuYW1pZW50byI6IjEyOGdiIiwiQ29sb3IiOiJCbGFuY28iLCJQcmVjaW8gVVNEIjoyMzAsIlByZWNpbyBBUlMiOjM0NjE1MCwiMyBDdW90YSI6IiIsIjYgQ3VvdGFzIjoiIiwiMTIgQ3VvdGFzIjoiIiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDExIiwiUHJpY2VVU0QiOjIzMCwiUHJpY2VBUlMiOjM0NjE1MCwiUHJpY2VMYWJlbCI6IiQgMzQ2LjE1MCIsIkJhdHRlcnkiOjc0LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTEiLCJDb2xvciI6IkJsYW5jbyIsIkN1b3RhMyI6bnVsbCwiQ3VvdGE2IjpudWxsLCJDdW90YTEyIjpudWxsLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6IiJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUwNSI6IiIsInJvd19udW1iZXIiOjUsIk1vZGVsbyI6ImlQaG9uZSAxMSBQcm8gTWF4IiwiQmF0ZXLDrWEiOjg2LCJBbG1hY2VuYW1pZW50byI6IjI1NkdCIiwiQ29sb3IiOiJWZXJkZSIsIlByZWNpbyBVU0QiOjMwMCwiUHJlY2lvIEFSUyI6NDUxNTAwLCIzIEN1b3RhIjoiIiwiNiBDdW90YXMiOiIiLCIxMiBDdW90YXMiOiIiLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTEgUHJvIE1heCIsIlByaWNlVVNEIjozMDAsIlByaWNlQVJTIjo0NTE1MDAsIlByaWNlTGFiZWwiOiIkIDQ1MS41MDAiLCJCYXR0ZXJ5Ijo4NiwiU3RvcmFnZSI6IjI1NkdCIiwiTW9kZWxvIjoiaVBob25lIDExIFBybyBNYXgiLCJDb2xvciI6IlZlcmRlIiwiQ3VvdGEzIjpudWxsLCJDdW90YTYiOm51bGwsIkN1b3RhMTIiOm51bGwsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiIn0seyJfcmF3Ijp7IjIiOiIiLCIxNTA1IjoiIiwicm93X251bWJlciI6NiwiTW9kZWxvIjoiaVBob25lIDE0IFBybyIsIkJhdGVyw61hIjo4NiwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo1ODAsIlByZWNpbyBBUlMiOjg3MjkwMCwiMyBDdW90YSI6IiIsIjYgQ3VvdGFzIjoiIiwiMTIgQ3VvdGFzIjoiIiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE0IFBybyIsIlByaWNlVVNEIjo1ODAsIlByaWNlQVJTIjo4NzI5MDAsIlByaWNlTGFiZWwiOiIkIDg3Mi45MDAiLCJCYXR0ZXJ5Ijo4NiwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE0IFBybyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOm51bGwsIkN1b3RhNiI6bnVsbCwiQ3VvdGExMiI6bnVsbCwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMy9pbWFnZV8yNTYvaVBob25lJTIwMTQifSx7Il9yYXciOnsiMiI6IiIsIjE1MDUiOiIiLCJyb3dfbnVtYmVyIjo3LCJNb2RlbG8iOiJpUGhvbmUgMTUiLCJCYXRlcsOtYSI6OTgsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NjMwLCJQcmVjaW8gQVJTIjo5NDgxNTAsIjMgQ3VvdGEiOjQxODE1NC4wMDk4MDY1NDE3LCI2IEN1b3RhcyI6MjQ0MzE3LjgwNDA4NTAyNzcsIjEyIEN1b3RhcyI6MTY0MDA3LjY3MTg1Mzg4NjA3LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUiLCJQcmljZVVTRCI6NjMwLCJQcmljZUFSUyI6OTQ4MTUwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgMTY0LjAwOCIsIkJhdHRlcnkiOjk4LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCA0MTguMTU0IiwiQ3VvdGE2IjoiJCAyNDQuMzE4IiwiQ3VvdGExMiI6IiQgMTY0LjAwOCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNTA1IjoiIiwicm93X251bWJlciI6OCwiTW9kZWxvIjoiaVBob25lIDE1IFBybyIsIkJhdGVyw61hIjo4OSwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo3MDAsIlByZWNpbyBBUlMiOjEwNTM1MDAsIjMgQ3VvdGEiOjQ2NDYxNS41NjY0NTE3MTMwNCwiNiBDdW90YXMiOjI3MTQ2NC4yMjY3NjExNDE5LCIxMiBDdW90YXMiOjE4MjIzMC43NDY1MDQzMTc4NSwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE1IFBybyIsIlByaWNlVVNEIjo3MDAsIlByaWNlQVJTIjoxMDUzNTAwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgMTgyLjIzMSIsIkJhdHRlcnkiOjg5LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgNDY0LjYxNiIsIkN1b3RhNiI6IiQgMjcxLjQ2NCIsIkN1b3RhMTIiOiIkIDE4Mi4yMzEiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUwNSI6IiIsInJvd19udW1iZXIiOjksIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8gTWF4IiwiQmF0ZXLDrWEiOjg4LCJBbG1hY2VuYW1pZW50byI6IjI1NkdCIiwiQ29sb3IiOiJHcmlzIiwiUHJlY2lvIFVTRCI6OTEwLCJQcmVjaW8gQVJTIjoxMzY5NTUwLCIzIEN1b3RhIjo2MDQwMDAuMjM2Mzg3MjI3LCI2IEN1b3RhcyI6MzUyOTAzLjQ5NDc4OTQ4NDUsIjEyIEN1b3RhcyI6MjM2ODk5Ljk3MDQ1NTYxMzIsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNSBQcm8gTWF4IiwiUHJpY2VVU0QiOjkxMCwiUHJpY2VBUlMiOjEzNjk1NTAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJCAyMzYuOTAwIiwiQmF0dGVyeSI6ODgsIlN0b3JhZ2UiOiIyNTZHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8gTWF4IiwiQ29sb3IiOiJHcmlzIiwiQ3VvdGEzIjoiJCA2MDQuMDAwIiwiQ3VvdGE2IjoiJCAzNTIuOTAzIiwiQ3VvdGExMiI6IiQgMjM2LjkwMCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNTA1IjoiIiwicm93X251bWJlciI6MTAsIk1vZGVsbyI6ImlQaG9uZSAxNiBQcm8gTWF4IiwiQmF0ZXLDrWEiOjEwMCwiQWxtYWNlbmFtaWVudG8iOiIyNTZHQiIsIkNvbG9yIjoiR3JpcyIsIlByZWNpbyBVU0QiOjEyMDAsIlByZWNpbyBBUlMiOjE4MDYwMDAsIjMgQ3VvdGEiOjc5NjQ4My44MjgyMDI5MzY3LCI2IEN1b3RhcyI6NDY1MzY3LjI0NTg3NjI0MzMsIjEyIEN1b3RhcyI6MzEyMzk1LjU2NTQzNTk3MzQ2LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTYgUHJvIE1heCIsIlByaWNlVVNEIjoxMjAwLCJQcmljZUFSUyI6MTgwNjAwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkIDMxMi4zOTYiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIyNTZHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNiBQcm8gTWF4IiwiQ29sb3IiOiJHcmlzIiwiQ3VvdGEzIjoiJCA3OTYuNDg0IiwiQ3VvdGE2IjoiJCA0NjUuMzY3IiwiQ3VvdGExMiI6IiQgMzEyLjM5NiIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg1OTMvaW1hZ2VfMjU2L2lQaG9uZSUyMDE2JTIwUHJvIn1d'));
@@ -1261,47 +826,6 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
     document.getElementById('dismiss')?.addEventListener('click', close);
     document.getElementById('see')?.addEventListener('click', close);
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
-  })();
-
-  // Exit Intent Popup (solo desktop)
-  (function(){
-    const key = 'goapple_exit_intent_seen';
-    const $ov = document.getElementById('exit-intent');
-    let shown = sessionStorage.getItem(key);
-    let delay = 3000; // Esperar 3 segundos antes de habilitar
-    let enabled = false;
-
-    // Solo habilitar en desktop (no mobile)
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if(isMobile) return;
-
-    // Esperar delay antes de habilitar detección
-    setTimeout(() => { enabled = true; }, delay);
-
-    // Detectar cuando el mouse sale hacia arriba
-    document.addEventListener('mouseleave', (e) => {
-      if(shown || !enabled) return;
-      // Solo si el mouse sale por arriba (y < 10px)
-      if(e.clientY < 10){
-        $ov.style.display = 'flex';
-        shown = true;
-        sessionStorage.setItem(key, '1');
-      }
-    });
-
-    // Cerrar popup
-    function close(){
-      $ov.style.display = 'none';
-    }
-
-    document.getElementById('exit-close')?.addEventListener('click', close);
-    document.getElementById('exit-dismiss')?.addEventListener('click', close);
-    document.getElementById('exit-stay')?.addEventListener('click', () => {
-      close();
-      // Scroll suave al grid de productos
-      document.getElementById('grid')?.scrollIntoView({ behavior: 'smooth' });
-    });
-    $ov.addEventListener('click', (e) => { if(e.target === $ov) close(); });
   })();
 
   // HERO slider Apple-style (auto, flechas y swipe)
@@ -1425,40 +949,10 @@ src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
       $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
     }
 
-    // Sistema desplegable de cuotas
-    const cuotasOptions = [];
-    if (p.Cuota3) cuotasOptions.push({ cuotas: 3, valor: p.Cuota3 });
-    if (p.Cuota6) cuotasOptions.push({ cuotas: 6, valor: p.Cuota6 });
-    if (p.Cuota12) cuotasOptions.push({ cuotas: 12, valor: p.Cuota12 });
-
-    if (cuotasOptions.length > 0) {
-      const optionsHTML = cuotasOptions.map(opt =>
-        `<div class="cuota-option">
-          <span class="cuota-option-label">${opt.cuotas} cuotas de</span>
-          <span class="cuota-option-value">${opt.valor}</span>
-        </div>`
-      ).join('');
-
-      $cuo.innerHTML = `
-        <div class="cuotas-toggle is-open" id="cuotas-toggle">
-          <span>Opciones de pago en cuotas</span>
-          <span class="cuotas-toggle-icon">▼</span>
-        </div>
-        <div class="cuotas-content is-open" id="cuotas-content">
-          ${optionsHTML}
-        </div>
-      `;
-
-      // Toggle functionality
-      const toggle = document.getElementById('cuotas-toggle');
-      const content = document.getElementById('cuotas-content');
-      toggle.onclick = function() {
-        toggle.classList.toggle('is-open');
-        content.classList.toggle('is-open');
-      };
-    } else {
-      $cuo.innerHTML = '<div class="linea">Consultar otras opciones de financiación</div>';
-    }
+    const lines = [];
+    if (p.Cuota3) lines.push('3 cuotas de ' + '<strong>' + p.Cuota3 + '</strong>');
+    if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
+    $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar otras opciones de financiación</div>';
 
     document.getElementById('d-contact').onclick = function () {
       const msg = encodeURIComponent('Me interesa el ' + p.Name + ' para estas fiestas. ¿Está disponible?');
