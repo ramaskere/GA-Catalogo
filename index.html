@@ -3,7 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>GO APPLE — Catálogo Navidad</title>
+<title>GO APPLE — Catálogo</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '650415544428771'); fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=650415544428771&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
 <!-- Meta Pixel Code -->
 <script>
@@ -15,235 +29,42 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1571045467377481');
+fbq('init', '3997634023847682');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=3997634023847682&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
 <style>
   :root{
-    --bg:#f3f4f6;
-    --surface:#ffffff;
-    --surface-2:#f5f5f7;
-    --line:#e5e7eb;
-    --ink:#1d1d1f;
-    --muted:#6e6e73;
-    --accent:#065f46;
-    --accent-soft:#dcfce7;
-    --radius:14px;
-    --gap:10px;
+    --bg:#ffffff; --surface:#ffffff; --surface-2:#f5f5f7; --line:#e6e6e9;
+    --ink:#1d1d1f; --muted:#6e6e73; --accent:#0071e3;
+    --radius:14px; --gap:10px;
   }
   *{box-sizing:border-box} html,body{height:100%}
-  body{
-    margin:0;
-    background:radial-gradient(circle at top, #e5f2ff 0, #f3f4f6 40%, #ffffff 100%);
-    color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    position:relative;
-    overflow-x:hidden;
-  }
+  body{ margin:0; background:var(--bg); color:var(--ink);
+        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
 
-  body::before{
-    content:"";
-    pointer-events:none;
-    position:fixed;
-    inset:0;
-    background-image:
-      radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.8) 0, transparent 60%),
-      radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,.7) 0, transparent 60%),
-      radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,.8) 0, transparent 60%);
-    opacity:.5;
-    animation:snow 18s linear infinite;
-    z-index:0;
-  }
-  @keyframes snow{
-    0%{ transform:translateY(-20px); }
-    100%{ transform:translateY(20px); }
-  }
-
-  .apple-nav{
-    position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
+  .apple-nav{ position:sticky; top:0; z-index:20; height:44px; border-bottom:1px solid var(--line);
     -webkit-backdrop-filter:saturate(1.8) blur(20px); backdrop-filter:saturate(1.8) blur(20px);
-    background:rgba(255,255,255,.92);
-  }
+    background:rgba(255,255,255,.86); }
   .nav-inner{ max-width:1200px; margin:0 auto; height:100%;
     display:flex; align-items:center; justify-content:center; padding:0 12px; }
   .brand{ display:flex; align-items:center; gap:8px; text-decoration:none; color:inherit; }
   .logo-img{ height:22px; width:auto; display:block; }
   .logo-fallback{ font-weight:800; font-size:16px; letter-spacing:.2px; }
 
-  /* HERO estilo Apple (slider) */
-  .hero{
-    position:relative;
-    z-index:1;
-    max-width:1200px;
-    margin:14px auto 6px;
-    padding:0 12px;
-  }
-  .hero-slider{
-    position:relative;
-    border-radius:26px;
-    overflow:hidden;
-    background:radial-gradient(circle at top left, #fef2f2 0, #eff6ff 40%, #ffffff 100%);
-    min-height:150px;
-    display:flex;
-    align-items:stretch;
-  }
-  .hero-inner{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    padding:18px 18px 16px;
-  }
-  .hero-slide{
-    display:none;
-    gap:14px;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .hero-slide.is-active{
-    display:flex;
-  }
-  .hero-copy{
-    flex:1 1 60%;
-  }
-  .hero-pill{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:4px 10px;
-    border-radius:999px;
-    background:rgba(185,28,28,.09);
-    color:#b91c1c;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:6px;
-  }
-  .hero-pill.cash{
-    background:rgba(234,179,8,.12);
-    color:#854d0e;
-  }
-  .hero-copy h1,
-  .hero-copy h2{
-    margin:0;
-    font-size:22px;
-    line-height:1.1;
-    font-weight:800;
-  }
-  .hero-copy p{
-    margin:6px 0 8px;
-    font-size:13.5px;
-    color:#374151;
-  }
-  .hero-copy p strong{ color:#047857; }
-  .hero-list{
-    list-style:none;
-    padding:0;
-    margin:0;
-    font-size:12.5px;
-    color:#111827;
-  }
-  .hero-list li{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    margin:2px 0;
-  }
-  .hero-list li::before{
-    content:"•";
-    color:#047857;
-    font-weight:900;
-    font-size:14px;
-  }
-  .hero-side{
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding-right:8px;
-  }
-  .hero-emoji{
-    font-size:40px;
-    filter:drop-shadow(0 10px 25px rgba(0,0,0,.15));
-  }
-  .hero-dots{
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    margin-top:8px;
-  }
-  .hero-dots button{
-    width:7px; height:7px;
-    border-radius:999px;
-    border:0;
-    background:rgba(148,163,184,.7);
-    cursor:pointer;
-    padding:0;
-  }
-  .hero-dots button.on{
-    width:18px;
-    background:#047857;
-  }
+  .hero{ max-width:1200px; margin:10px auto 0; padding:8px 12px 0; }
+  .hero h1{ margin:0; font-size:28px; line-height:1.1; font-weight:800; }
 
-  /* Flechas del slider */
-  .hero-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:30px;
-    height:30px;
-    border-radius:999px;
-    border:0;
-    background:rgba(15,23,42,.08);
-    display:grid;
-    place-items:center;
-    cursor:pointer;
-    padding:0;
-    color:#111827;
-    font-size:18px;
-    font-weight:700;
-    z-index:2;
-  }
-  .hero-arrow:hover{
-    background:rgba(15,23,42,.14);
-  }
-  .hero-arrow.prev{ left:10px; }
-  .hero-arrow.next{ right:10px; }
-
-  @media (max-width:480px){
-    .hero-arrow{
-      width:26px;
-      height:26px;
-      font-size:16px;
-    }
-  }
-
-  @media (min-width:720px){
-    .hero-inner{
-      padding:22px 24px 18px;
-    }
-    .hero-copy h1{ font-size:26px; }
-    .hero-copy h2{ font-size:24px; }
-    .hero-copy p{ font-size:14px; }
-    .hero-slider{
-      min-height:190px;
-    }
-    .hero-emoji{ font-size:52px; }
-  }
-
-  /* GRID */
-  main{
-    position:relative;
-    z-index:1;
-  }
+  /* GRID: altura AUTO para que entren los chips */
   main .grid{
     display:grid; gap:var(--gap);
     grid-template-columns:repeat(2, minmax(0, 1fr));
-    grid-auto-rows:auto;
-    padding:10px; max-width:1200px; margin:0 auto 16px;
+    grid-auto-rows:auto;               /* ⬅️  antes fijo, ahora auto */
+    padding:10px; max-width:1200px; margin:0 auto;
   }
   @media (min-width:600px){ main .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
   @media (min-width:992px){ main .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); } }
@@ -251,25 +72,19 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
   /* CARD */
   .card{
     position:relative;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
     display:flex; flex-direction:column; overflow:hidden;
-    transition:transform .2s, box-shadow .2s, border-color .2s, background .2s;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
   }
-  .card:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 26px rgba(0,0,0,.06);
-    border-color:#d1d5db;
-    background:linear-gradient(to bottom, #fdfdfd, #ffffff);
-  }
+  .card:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.06); border-color:#dcdde2; }
   .card-hit{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; }
 
+  /* Imagen grande con altura fija razonable; el resto fluye */
   .img{
     position:relative;
     background:var(--surface-2);
     display:flex; align-items:center; justify-content:center;
-    flex:0 0 210px;
+    flex:0 0 210px;         /* ⬅️  altura visual de la imagen en móvil */
     min-height:210px;
   }
   .img img{
@@ -288,183 +103,61 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
   .no-img{ color:var(--muted); font-size:13px; }
   .status{
     position:absolute; top:8px; left:8px; padding:4px 10px; border-radius:999px;
-    background:#fef3c7; border:1px solid #facc15; color:#92400e; font-size:11px; font-weight:600;
+    background:#f2f2f7; border:1px solid var(--line); color:#3a3a3c; font-size:11px; font-weight:600;
   }
-
   .off-badge{
-    position:absolute;
-    top:10px;
-    right:10px;
-    padding:6px 12px;
-    background:#b91c1c;
-    color:#fff;
-    font-size:12px;
-    font-weight:800;
-    border-radius:999px;
-    box-shadow:0 2px 8px rgba(185,28,28,.35);
-    pointer-events:none;
-  }
-  .cash-badge{
-    position:absolute;
-    top:40px;
-    right:10px;
-    padding:4px 10px;
-    background:#fef3c7;
-    color:#92400e;
-    font-size:11px;
-    font-weight:700;
-    border-radius:999px;
-    box-shadow:0 1px 4px rgba(0,0,0,.12);
-    pointer-events:none;
+    position:absolute; top:10px; right:10px; padding:6px 10px;
+    background:#ff3b30; color:#fff; font-size:12px; font-weight:800; border-radius:999px;
+    box-shadow:0 2px 8px rgba(255,59,48,.25); pointer-events:none;
   }
 
   .info{ padding:10px 10px 12px; display:flex; flex-direction:column; gap:6px; }
   .name{ margin:0; font-weight:800; font-size:15px; line-height:1.15;
     display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
-  .price{ font-size:17px; font-weight:800; color:#111827; }
-  .sub{ font-size:12.5px; color:var(--accent); font-weight:600; }
+  .price{ font-size:18px; font-weight:800; color:#000; }
+  .sub{ font-size:12.5px; color:#0071e3; font-weight:600; }
   .cuotas-hint{ cursor:default; }
   .meta{ display:flex; flex-wrap:wrap; gap:6px; }
-  .chip{
-    background:#f6f7f8;
-    border:1px solid var(--line);
-    color:#1d1d1f;
-    font-size:12px;
-    padding:5px 8px;
-    border-radius:999px;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-  }
-  .dot{
-    width:10px; height:10px; border-radius:999px;
-    background:var(--dot, #d1d5db);
-    border:1px solid rgba(0,0,0,.08);
-  }
+  .chip{ background:#f6f7f8; border:1px solid var(--line); color:#1d1d1f;
+    font-size:12px; padding:5px 8px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:10px; height:10px; border-radius:999px; background:var(--dot, #d1d5db); border:1px solid rgba(0,0,0,.08); }
 
-  [data-status="vendido"] .status{ background:#fee2e2; color:#991b1b; border-color:#fecaca; }
-  [data-status="reservado"] .status{ background:#fef9c3; color:#854d0e; border-color:#fef08a; }
-  [data-status="disponible"] .status{ background:#dcfce7; color:#166534; border-color:#bbf7d0; }
+  [data-status="vendido"] .status{ background:#fff0f0; color:#b00020; border-color:#ffd6d6; }
+  [data-status="reservado"] .status{ background:#fff8e1; color:#8a6d1f; border-color:#ffe8a3; }
+  [data-status="disponible"] .status{ background:#e7f7ee; color:#1b6f43; border-color:#cdebdc; }
 
   /* POPUP beneficios */
-  .overlay{
-    position:fixed; inset:0; background:rgba(15,23,42,.55);
-    display:none; align-items:center; justify-content:center; z-index:40;
-  }
-  .modal{
-    width:min(560px,92vw); background:#ffffff;
-    border:1px solid var(--line);
-    border-radius:20px;
-    box-shadow:0 30px 80px rgba(0,0,0,.25);
-    overflow:hidden;
-  }
-  .modal header{
-    padding:18px 22px 0;
-    text-align:center;
-    background:radial-gradient(circle at top, #fef2f2 0, #ffffff 55%);
-  }
+  .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:40; }
+  .modal{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,.25); overflow:hidden; }
+  .modal header{ padding:18px 22px 0; text-align:center; }
   .modal h2{ margin:0; font-size:24px; font-weight:800; }
   .modal p.lead{ margin:6px 0 14px; color:#424245; font-size:15px; }
-  .modal p.lead .emoji{ margin-left:4px; }
-
   .benefits{ padding:0 18px 6px; }
-  .benefits li{
-    list-style:none;
-    display:flex;
-    align-items:flex-start;
-    gap:10px;
-    margin:10px 0;
-    color:#1d1d1f;
-  }
-  .benefits li .tick{
-    flex:0 0 auto;
-    width:22px; height:22px;
-    border-radius:999px;
-    display:grid; place-items:center;
-    background:var(--accent-soft);
-    color:var(--accent);
-    font-weight:800;
-  }
-  .modal footer{
-    display:flex; gap:10px; justify-content:center;
-    padding:16px 18px 22px;
-    background:#f5f5f7;
-    border-top:1px solid var(--line);
-  }
-  .cta{
-    appearance:none;
-    padding:10px 16px;
-    border-radius:999px;
-    font-weight:700;
-    cursor:pointer;
-    border:1px solid #cfd2d8;
-    background:#fff;
-  }
-  .cta.primary{
-    background:var(--accent);
-    color:#fff;
-    border-color:var(--accent);
-  }
+  .benefits li{ list-style:none; display:flex; align-items:flex-start; gap:10px; margin:10px 0; color:#1d1d1f; }
+  .benefits li .tick{ flex:0 0 auto; width:22px; height:22px; border-radius:999px; display:grid; place-items:center; background:#e6f0ff; color:#0071e3; font-weight:800; }
+  .modal footer{ display:flex; gap:10px; justify-content:center; padding:16px 18px 22px; background:#f5f5f7; border-top:1px solid var(--line); }
+  .cta{ appearance:none; padding:10px 16px; border-radius:999px; font-weight:700; cursor:pointer; border:1px solid #cfd2d8; background:#fff; }
+  .cta.primary{ background:#0071e3; color:#fff; border-color:#0071e3; }
   .cta.primary:hover{ filter:brightness(.98); }
   .cta:hover{ border-color:#bfc4cc; }
 
   /* DETALLE PRODUCTO */
   .overlay.detail{ z-index:50; }
-  .modal.detail{
-    width:min(900px,96vw);
-    display:grid;
-    grid-template-columns:1fr;
-  }
-  .detail-media{
-    background:linear-gradient(135deg, #fef2f2, #f0f9ff);
-    display:grid; place-items:center;
-    padding:24px;
-    border-bottom:1px solid var(--line);
-    position:relative;
-  }
-  .detail-media img{
-    width:min(520px,88%);
-    height:auto; object-fit:contain;
-  }
-
-  .detail-badge{
-    position:absolute;
-    top:12px;
-    right:12px;
-    background:#b91c1c;
-    color:#fff;
-    font-weight:800;
-    font-size:12px;
-    padding:6px 10px;
-    border-radius:999px;
-  }
-  .detail-badge.cash{
-    top:40px;
-    background:#fef3c7;
-    color:#92400e;
-    box-shadow:0 1px 4px rgba(0,0,0,.12);
-  }
-
-  .detail-body{
-    padding:18px 18px 20px;
-    display:grid; gap:10px;
-    background:#ffffff;
-  }
+  .modal.detail{ width:min(900px,96vw); display:grid; grid-template-columns:1fr; }
+  .detail-media{ background:var(--surface-2); display:grid; place-items:center; padding:24px; border-bottom:1px solid var(--line); position:relative; }
+  .detail-media img{ width:min(520px,88%); height:auto; object-fit:contain; }
+  .detail-off{ position:absolute; top:12px; right:12px; background:#ff3b30; color:#fff; font-weight:800; font-size:12px; padding:6px 10px; border-radius:999px; }
+  .detail-body{ padding:18px 18px 20px; display:grid; gap:10px; }
   .detail-title{ margin:0; font-size:22px; font-weight:800; }
   .detail-meta{ display:flex; flex-wrap:wrap; gap:8px; }
   .prices{ display:grid; gap:6px; }
   .p-usd{ font-size:20px; font-weight:800; color:#000; }
   .p-ars{ font-size:16px; font-weight:700; color:#111; }
-  .p-cuotas{ font-size:13.5px; color:var(--accent); font-weight:600; }
+  .p-cuotas{ font-size:13.5px; color:#0071e3; font-weight:600; }
   .p-cuotas .linea{ margin-top:2px; color:#1d1d1f; }
   .p-cuotas .linea strong{ font-weight:800; }
   .detail-actions{ display:flex; gap:8px; justify-content:flex-end; }
-  .close-x{
-    position:absolute; top:10px; right:12px;
-    border:0; background:transparent;
-    font-size:24px; line-height:1;
-    cursor:pointer;
-  }
+  .close-x{ position:absolute; top:10px; right:12px; border:0; background:transparent; font-size:24px; line-height:1; cursor:pointer; }
 
   @media (min-width:780px){
     .modal.detail{ grid-template-columns:1.1fr 1fr; }
@@ -486,47 +179,7 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
 </nav>
 
 <section class="hero">
-  <div class="hero-slider" id="hero-slider">
-    <button class="hero-arrow prev" aria-label="Anterior">&#8249;</button>
-    <button class="hero-arrow next" aria-label="Siguiente">&#8250;</button>
-
-    <div class="hero-inner">
-      <div class="hero-slide is-active" data-idx="0">
-        <div class="hero-copy">
-          <div class="hero-pill">🎄 Especial Navidad</div>
-          <h1>iPhones en 12 cuotas sin interés</h1>
-          <p>Elegí tu próximo iPhone para estas fiestas y <strong>pagalo en 12 cuotas fijas</strong>. Envíos y combos listos para regalar.</p>
-          <ul class="hero-list">
-            <li>12 cuotas sin interés en iPhones seleccionados.</li>
-            <li>Incluye funda, cargador, cable y vidrio templado.</li>
-          </ul>
-        </div>
-        <div class="hero-side">
-          <span class="hero-emoji">📱</span>
-        </div>
-      </div>
-
-      <div class="hero-slide" data-idx="1">
-        <div class="hero-copy">
-          <div class="hero-pill cash">💵 Pago en efectivo</div>
-          <h2>Hasta 51.8% OFF pagando en efectivo</h2>
-          <p>Aprovechá el mejor precio contado y llevate tu iPhone listo para regalar.</p>
-          <ul class="hero-list">
-            <li>51.8% menos vs precio en 12 cuotas.</li>
-            <li>Incluye funda, cargador, cable y vidrio templado.</li>
-          </ul>
-        </div>
-        <div class="hero-side">
-          <span class="hero-emoji">🎁</span>
-        </div>
-      </div>
-
-      <div class="hero-dots" id="hero-dots">
-        <button class="on" data-idx="0"></button>
-        <button data-idx="1"></button>
-      </div>
-    </div>
-  </div>
+  <h1>iPhone — Catálogo</h1>
 </section>
 
 <main>
@@ -540,13 +193,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 11"></button>
     <div class="img">
       <div class="no-img">Sin imagen</div>
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 11">iPhone 11</h3>
-      <div class="price">12 cuotas de $ 71.457</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 413.100</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>64GB</span><span class="chip"><i class="dot" style="--dot:hsl(103 70% 45%)"></i>86%</span>
       </div>
@@ -561,13 +213,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 11"></button>
     <div class="img">
       <div class="no-img">Sin imagen</div>
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 11">iPhone 11</h3>
-      <div class="price">12 cuotas de $ 60.870</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 351.900</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#f9fafb"></i>Blanco</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>64GB</span><span class="chip"><i class="dot" style="--dot:hsl(89 70% 45%)"></i>74%</span>
       </div>
@@ -582,13 +233,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 11 Pro Max"></button>
     <div class="img">
       <div class="no-img">Sin imagen</div>
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 11 Pro Max">iPhone 11 Pro Max</h3>
-      <div class="price">12 cuotas de $ 79.396</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 459.000</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#16a34a"></i>Verde</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(103 70% 45%)"></i>86%</span>
       </div>
@@ -603,13 +253,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 14 Pro"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98603/image_256/iPhone%2014" alt="iPhone 14 Pro" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 14 Pro">iPhone 14 Pro</h3>
-      <div class="price">12 cuotas de $ 153.499</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 887.400</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(103 70% 45%)"></i>86%</span>
       </div>
@@ -624,13 +273,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 15"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15">iPhone 15</h3>
-      <div class="price">12 cuotas de $ 166.732</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 963.900</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(118 70% 45%)"></i>98%</span>
       </div>
@@ -645,13 +293,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 15 Pro"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro">iPhone 15 Pro</h3>
-      <div class="price">12 cuotas de $ 185.258</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 1.071.000</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#111827"></i>Negro</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>128GB</span><span class="chip"><i class="dot" style="--dot:hsl(107 70% 45%)"></i>89%</span>
       </div>
@@ -666,13 +313,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 15 Pro Max"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98601/image_256/iPhone%2015" alt="iPhone 15 Pro Max" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 15 Pro Max">iPhone 15 Pro Max</h3>
-      <div class="price">12 cuotas de $ 240.835</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 1.392.300</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(106 70% 45%)"></i>88%</span>
       </div>
@@ -687,13 +333,12 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     <button class="card-hit" aria-label="Ver iPhone 16 Pro Max"></button>
     <div class="img">
       <img src="https://www.macstation.com.ar/web/image/product.template/98593/image_256/iPhone%2016%20Pro" alt="iPhone 16 Pro Max" loading="lazy" />
-      <span class="off-badge" aria-hidden="true">Navidad</span>
-      <span class="cash-badge" aria-hidden="true">51.8% OFF efectivo</span>
+      <span class="off-badge" aria-hidden="true">10% OFF</span>
     </div>
     <div class="info">
       <h3 class="name" title="iPhone 16 Pro Max">iPhone 16 Pro Max</h3>
-      <div class="price">12 cuotas de $ 317.585</div>
-      <div class="sub cuotas-hint">Se entrega con funda, cargador, cable y vidrio templado</div>
+      <div class="price">$ 1.836.000</div>
+      <div class="sub cuotas-hint">Ver cuotas</div>
       <div class="meta">
         <span class="chip"><i class="dot" style="--dot:#d1d5db"></i>Gris</span><span class="chip"><i class="dot" style="--dot:#9ca3af"></i>256GB</span><span class="chip"><i class="dot" style="--dot:hsl(120 70% 45%)"></i>100%</span>
       </div>
@@ -706,18 +351,18 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
 <div class="overlay" id="welcome">
   <div class="modal" role="dialog" aria-labelledby="w-title" aria-modal="true">
     <header>
-      <h2 id="w-title">Edición Navidad GO APPLE</h2>
-      <p class="lead">Hacé tu regalo de Navidad con un iPhone listo para usar. <span class="emoji">🎄</span></p>
+      <h2 id="w-title">Bienvenido a GO APPLE</h2>
+      <p class="lead">Elegí tu iPhone con beneficios que suman de verdad.</p>
     </header>
     <ul class="benefits">
-      <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado incluido.</div></li>
-      <li><span class="tick">✓</span><div><strong>Hasta 12 cuotas sin interés</strong> en modelos seleccionados.</div></li>
-      <li><span class="tick">✓</span><div><strong>51.8% OFF en efectivo</strong> vs precio en 12 cuotas.</div></li>
+      <li><span class="tick">✓</span><div><strong>Pack de regalo</strong>: funda, cargador, cable y vidrio templado.</div></li>
       <li><span class="tick">✓</span><div><strong>30 días de garantía</strong> de funcionamiento.</div></li>
+      <li><span class="tick">✓</span><div><strong>Hasta 6 cuotas fijas</strong> para que pagues cómodo.</div></li>
+      <li><span class="tick">✓</span><div><strong>Servicio técnico con descuento</strong> por ser cliente GO APPLE.</div></li>
     </ul>
     <footer>
       <button class="cta" id="dismiss">Después</button>
-      <button class="cta primary" id="see">Ver modelos navideños</button>
+      <button class="cta primary" id="see">Ver modelos</button>
     </footer>
   </div>
 </div>
@@ -727,8 +372,7 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
   <div class="modal detail" role="dialog" aria-labelledby="d-title" aria-modal="true">
     <button class="close-x" id="d-close" aria-label="Cerrar">×</button>
     <div class="detail-media">
-      <span class="detail-badge">Navidad</span>
-      <span class="detail-badge cash">51.8% OFF efectivo</span>
+      <span class="detail-off">10% OFF</span>
       <img id="d-img" alt="Producto" />
     </div>
     <div class="detail-body">
@@ -741,7 +385,7 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
       </div>
       <div class="detail-actions">
         <button class="cta" id="d-later">Después</button>
-        <button class="cta primary" id="d-contact">Consultar por este iPhone</button>
+        <button class="cta primary" id="d-contact">Consultar</button>
       </div>
     </div>
   </div>
@@ -749,11 +393,11 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
 
 <script>
   // Dataset embebido
-  window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjIsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkJhdGVyw61hIjo4NiwiQWxtYWNlbmFtaWVudG8iOiI2NEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjI3MCwiUHJlY2lvIEFSUyI6NDEzMTAwLCIzIEN1b3RhIjoxODIxODUuNzUyNzMwMTQwMTQsIjYgQ3VvdGFzIjoxMDY0NDYuOTU5NzI5NDk5NDksIjEyIEN1b3RhcyI6NzE0NTYuNTkzNjIyMTQ4NzUsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMSIsIlByaWNlVVNEIjoyNzAsIlByaWNlQVJTIjo0MTMxMDAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJCA3MS40NTciLCJCYXR0ZXJ5Ijo4NiwiU3RvcmFnZSI6IjY0R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTEiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAxODIuMTg2IiwiQ3VvdGE2IjoiJCAxMDYuNDQ3IiwiQ3VvdGExMiI6IiQgNzEuNDU3IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiIifSx7Il9yYXciOnsiMiI6IiIsIjE1MzAiOiIiLCJyb3dfbnVtYmVyIjozLCJNb2RlbG8iOiJpUGhvbmUgMTEiLCJCYXRlcsOtYSI6NzQsIkFsbWFjZW5hbWllbnRvIjoiNjRnYiIsIkNvbG9yIjoiQmxhbmNvIiwiUHJlY2lvIFVTRCI6MjMwLCJQcmVjaW8gQVJTIjozNTE5MDAsIjMgQ3VvdGEiOjE1NTE5NS4yNzA4NDQxOTM0NywiNiBDdW90YXMiOjkwNjc3LjAzOTc2OTU3MzY1LCIxMiBDdW90YXMiOjYwODcwLjQzMTYwNDA1MjYzLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTEiLCJQcmljZVVTRCI6MjMwLCJQcmljZUFSUyI6MzUxOTAwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgNjAuODcwIiwiQmF0dGVyeSI6NzQsIlN0b3JhZ2UiOiI2NEdCIiwiTW9kZWxvIjoiaVBob25lIDExIiwiQ29sb3IiOiJCbGFuY28iLCJDdW90YTMiOiIkIDE1NS4xOTUiLCJDdW90YTYiOiIkIDkwLjY3NyIsIkN1b3RhMTIiOiIkIDYwLjg3MCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiIn0seyJfcmF3Ijp7IjIiOiIiLCIxNTMwIjoiIiwicm93X251bWJlciI6NCwiTW9kZWxvIjoiaVBob25lIDExIFBybyBNYXgiLCJCYXRlcsOtYSI6ODYsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IlZlcmRlIiwiUHJlY2lvIFVTRCI6MzAwLCJQcmVjaW8gQVJTIjo0NTkwMDAsIjMgQ3VvdGEiOjIwMjQyOC42MTQxNDQ2MDAyLCI2IEN1b3RhcyI6MTE4Mjc0LjM5OTY5OTQ0MzksIjEyIEN1b3RhcyI6NzkzOTYuMjE1MTM1NzIwODIsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMSBQcm8gTWF4IiwiUHJpY2VVU0QiOjMwMCwiUHJpY2VBUlMiOjQ1OTAwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkIDc5LjM5NiIsIkJhdHRlcnkiOjg2LCJTdG9yYWdlIjoiMjU2R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTEgUHJvIE1heCIsIkNvbG9yIjoiVmVyZGUiLCJDdW90YTMiOiIkIDIwMi40MjkiLCJDdW90YTYiOiIkIDExOC4yNzQiLCJDdW90YTEyIjoiJCA3OS4zOTYiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6IiJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjUsIk1vZGVsbyI6ImlQaG9uZSAxNCBQcm8iLCJCYXRlcsOtYSI6ODYsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NTgwLCJQcmVjaW8gQVJTIjo4ODc0MDAsIjMgQ3VvdGEiOjM5MTM2MS45ODczNDYyMjcwNSwiNiBDdW90YXMiOjIyODY2My44Mzk0MTg5MjQ4NSwiMTIgQ3VvdGFzIjoxNTM0OTkuMzQ5MjYyMzkzNiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE0IFBybyIsIlByaWNlVVNEIjo1ODAsIlByaWNlQVJTIjo4ODc0MDAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJCAxNTMuNDk5IiwiQmF0dGVyeSI6ODYsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNCBQcm8iLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAzOTEuMzYyIiwiQ3VvdGE2IjoiJCAyMjguNjY0IiwiQ3VvdGExMiI6IiQgMTUzLjQ5OSIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDMvaW1hZ2VfMjU2L2lQaG9uZSUyMDE0In0seyJfcmF3Ijp7IjIiOiIiLCIxNTMwIjoiIiwicm93X251bWJlciI6NiwiTW9kZWxvIjoiaVBob25lIDE1IiwiQmF0ZXLDrWEiOjk4LCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjYzMCwiUHJlY2lvIEFSUyI6OTYzOTAwLCIzIEN1b3RhIjo0MjUxMDAuMDg5NzAzNjYwNCwiNiBDdW90YXMiOjI0ODM3Ni4yMzkzNjg4MzIxOCwiMTIgQ3VvdGFzIjoxNjY3MzIuMDUxNzg1MDEzNzMsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNSIsIlByaWNlVVNEIjo2MzAsIlByaWNlQVJTIjo5NjM5MDAsIlByaWNlTGFiZWwiOiIxMiBjdW90YXMgZGUgJCAxNjYuNzMyIiwiQmF0dGVyeSI6OTgsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDQyNS4xMDAiLCJDdW90YTYiOiIkIDI0OC4zNzYiLCJDdW90YTEyIjoiJCAxNjYuNzMyIiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMS9pbWFnZV8yNTYvaVBob25lJTIwMTUifSx7Il9yYXciOnsiMiI6IiIsIjE1MzAiOiIiLCJyb3dfbnVtYmVyIjo3LCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIiwiQmF0ZXLDrWEiOjg5LCJBbG1hY2VuYW1pZW50byI6IjEyOEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjcwMCwiUHJlY2lvIEFSUyI6MTA3MTAwMCwiMyBDdW90YSI6NDcyMzMzLjQzMzAwNDA2NzEsIjYgQ3VvdGFzIjoyNzU5NzMuNTk5Mjk4NzAyNCwiMTIgQ3VvdGFzIjoxODUyNTcuODM1MzE2NjgxOSwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE1IFBybyIsIlByaWNlVVNEIjo3MDAsIlByaWNlQVJTIjoxMDcxMDAwLCJQcmljZUxhYmVsIjoiMTIgY3VvdGFzIGRlICQgMTg1LjI1OCIsIkJhdHRlcnkiOjg5LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgNDcyLjMzMyIsIkN1b3RhNiI6IiQgMjc1Ljk3NCIsIkN1b3RhMTIiOiIkIDE4NS4yNTgiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjgsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8gTWF4IiwiQmF0ZXLDrWEiOjg4LCJBbG1hY2VuYW1pZW50byI6IjI1NkdCIiwiQ29sb3IiOiJHcmlzIiwiUHJlY2lvIFVTRCI6OTEwLCJQcmVjaW8gQVJTIjoxMzkyMzAwLCIzIEN1b3RhIjo2MTQwMzMuNDYyOTA1Mjg3MiwiNiBDdW90YXMiOjM1ODc2NS42NzkwODgzMTMxMywiMTIgQ3VvdGFzIjoyNDA4MzUuMTg1OTExNjg2NSwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE1IFBybyBNYXgiLCJQcmljZVVTRCI6OTEwLCJQcmljZUFSUyI6MTM5MjMwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkIDI0MC44MzUiLCJCYXR0ZXJ5Ijo4OCwiU3RvcmFnZSI6IjI1NkdCIiwiTW9kZWxvIjoiaVBob25lIDE1IFBybyBNYXgiLCJDb2xvciI6IkdyaXMiLCJDdW90YTMiOiIkIDYxNC4wMzMiLCJDdW90YTYiOiIkIDM1OC43NjYiLCJDdW90YTEyIjoiJCAyNDAuODM1IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODYwMS9pbWFnZV8yNTYvaVBob25lJTIwMTUifSx7Il9yYXciOnsiMiI6IiIsIjE1MzAiOiIiLCJyb3dfbnVtYmVyIjo5LCJNb2RlbG8iOiJpUGhvbmUgMTYgUHJvIE1heCIsIkJhdGVyw61hIjoxMDAsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IkdyaXMiLCJQcmVjaW8gVVNEIjoxMjAwLCJQcmVjaW8gQVJTIjoxODM2MDAwLCIzIEN1b3RhIjo4MDk3MTQuNDU2NTc4NDAwOCwiNiBDdW90YXMiOjQ3MzA5Ny41OTg3OTc3NzU2LCIxMiBDdW90YXMiOjMxNzU4NC44NjA1NDI4ODMzLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTYgUHJvIE1heCIsIlByaWNlVVNEIjoxMjAwLCJQcmljZUFSUyI6MTgzNjAwMCwiUHJpY2VMYWJlbCI6IjEyIGN1b3RhcyBkZSAkIDMxNy41ODUiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIyNTZHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNiBQcm8gTWF4IiwiQ29sb3IiOiJHcmlzIiwiQ3VvdGEzIjoiJCA4MDkuNzE0IiwiQ3VvdGE2IjoiJCA0NzMuMDk4IiwiQ3VvdGExMiI6IiQgMzE3LjU4NSIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg1OTMvaW1hZ2VfMjU2L2lQaG9uZSUyMDE2JTIwUHJvIn1d'));
+  window.__PRODUCTS__ = JSON.parse(atob('W3siX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjIsIk1vZGVsbyI6ImlQaG9uZSAxMSIsIkJhdGVyw61hIjo4NiwiQWxtYWNlbmFtaWVudG8iOiI2NEdCIiwiQ29sb3IiOiJOZWdybyIsIlByZWNpbyBVU0QiOjI3MCwiUHJlY2lvIEFSUyI6NDEzMTAwLCIzIEN1b3RhIjoxODIxODUuNzUyNzMwMTQwMTQsIjYgQ3VvdGFzIjoxMDY0NDYuOTU5NzI5NDk5NDksIjEyIEN1b3RhcyI6NzE0NTYuNTkzNjIyMTQ4NzUsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMSIsIlByaWNlVVNEIjoyNzAsIlByaWNlQVJTIjo0MTMxMDAsIlByaWNlTGFiZWwiOiIkIDQxMy4xMDAiLCJCYXR0ZXJ5Ijo4NiwiU3RvcmFnZSI6IjY0R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTEiLCJDb2xvciI6Ik5lZ3JvIiwiQ3VvdGEzIjoiJCAxODIuMTg2IiwiQ3VvdGE2IjoiJCAxMDYuNDQ3IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiIifSx7Il9yYXciOnsiMiI6IiIsIjE1MzAiOiIiLCJyb3dfbnVtYmVyIjozLCJNb2RlbG8iOiJpUGhvbmUgMTEiLCJCYXRlcsOtYSI6NzQsIkFsbWFjZW5hbWllbnRvIjoiNjRnYiIsIkNvbG9yIjoiQmxhbmNvIiwiUHJlY2lvIFVTRCI6MjMwLCJQcmVjaW8gQVJTIjozNTE5MDAsIjMgQ3VvdGEiOjE1NTE5NS4yNzA4NDQxOTM0NywiNiBDdW90YXMiOjkwNjc3LjAzOTc2OTU3MzY1LCIxMiBDdW90YXMiOjYwODcwLjQzMTYwNDA1MjYzLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTEiLCJQcmljZVVTRCI6MjMwLCJQcmljZUFSUyI6MzUxOTAwLCJQcmljZUxhYmVsIjoiJCAzNTEuOTAwIiwiQmF0dGVyeSI6NzQsIlN0b3JhZ2UiOiI2NEdCIiwiTW9kZWxvIjoiaVBob25lIDExIiwiQ29sb3IiOiJCbGFuY28iLCJDdW90YTMiOiIkIDE1NS4xOTUiLCJDdW90YTYiOiIkIDkwLjY3NyIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiIn0seyJfcmF3Ijp7IjIiOiIiLCIxNTMwIjoiIiwicm93X251bWJlciI6NCwiTW9kZWxvIjoiaVBob25lIDExIFBybyBNYXgiLCJCYXRlcsOtYSI6ODYsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IlZlcmRlIiwiUHJlY2lvIFVTRCI6MzAwLCJQcmVjaW8gQVJTIjo0NTkwMDAsIjMgQ3VvdGEiOjIwMjQyOC42MTQxNDQ2MDAyLCI2IEN1b3RhcyI6MTE4Mjc0LjM5OTY5OTQ0MzksIjEyIEN1b3RhcyI6NzkzOTYuMjE1MTM1NzIwODIsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxMSBQcm8gTWF4IiwiUHJpY2VVU0QiOjMwMCwiUHJpY2VBUlMiOjQ1OTAwMCwiUHJpY2VMYWJlbCI6IiQgNDU5LjAwMCIsIkJhdHRlcnkiOjg2LCJTdG9yYWdlIjoiMjU2R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTEgUHJvIE1heCIsIkNvbG9yIjoiVmVyZGUiLCJDdW90YTMiOiIkIDIwMi40MjkiLCJDdW90YTYiOiIkIDExOC4yNzQiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6IiJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjUsIk1vZGVsbyI6ImlQaG9uZSAxNCBQcm8iLCJCYXRlcsOtYSI6ODYsIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NTgwLCJQcmVjaW8gQVJTIjo4ODc0MDAsIjMgQ3VvdGEiOjM5MTM2MS45ODczNDYyMjcwNSwiNiBDdW90YXMiOjIyODY2My44Mzk0MTg5MjQ4NSwiMTIgQ3VvdGFzIjoxNTM0OTkuMzQ5MjYyMzkzNiwiVVNEIEhPWSI6IiJ9LCJOYW1lIjoiaVBob25lIDE0IFBybyIsIlByaWNlVVNEIjo1ODAsIlByaWNlQVJTIjo4ODc0MDAsIlByaWNlTGFiZWwiOiIkIDg4Ny40MDAiLCJCYXR0ZXJ5Ijo4NiwiU3RvcmFnZSI6IjEyOEdCIiwiTW9kZWxvIjoiaVBob25lIDE0IFBybyIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDM5MS4zNjIiLCJDdW90YTYiOiIkIDIyOC42NjQiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAzL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNCJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjYsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkJhdGVyw61hIjo5OCwiQWxtYWNlbmFtaWVudG8iOiIxMjhHQiIsIkNvbG9yIjoiTmVncm8iLCJQcmVjaW8gVVNEIjo2MzAsIlByZWNpbyBBUlMiOjk2MzkwMCwiMyBDdW90YSI6NDI1MTAwLjA4OTcwMzY2MDQsIjYgQ3VvdGFzIjoyNDgzNzYuMjM5MzY4ODMyMTgsIjEyIEN1b3RhcyI6MTY2NzMyLjA1MTc4NTAxMzczLCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUiLCJQcmljZVVTRCI6NjMwLCJQcmljZUFSUyI6OTYzOTAwLCJQcmljZUxhYmVsIjoiJCA5NjMuOTAwIiwiQmF0dGVyeSI6OTgsIlN0b3JhZ2UiOiIxMjhHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNSIsIkNvbG9yIjoiTmVncm8iLCJDdW90YTMiOiIkIDQyNS4xMDAiLCJDdW90YTYiOiIkIDI0OC4zNzYiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjcsIk1vZGVsbyI6ImlQaG9uZSAxNSBQcm8iLCJCYXRlcsOtYSI6ODksIkFsbWFjZW5hbWllbnRvIjoiMTI4R0IiLCJDb2xvciI6Ik5lZ3JvIiwiUHJlY2lvIFVTRCI6NzAwLCJQcmVjaW8gQVJTIjoxMDcxMDAwLCIzIEN1b3RhIjo0NzIzMzMuNDMzMDA0MDY3MSwiNiBDdW90YXMiOjI3NTk3My41OTkyOTg3MDI0LCIxMiBDdW90YXMiOjE4NTI1Ny44MzUzMTY2ODE5LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUgUHJvIiwiUHJpY2VVU0QiOjcwMCwiUHJpY2VBUlMiOjEwNzEwMDAsIlByaWNlTGFiZWwiOiIkIDEuMDcxLjAwMCIsIkJhdHRlcnkiOjg5LCJTdG9yYWdlIjoiMTI4R0IiLCJNb2RlbG8iOiJpUGhvbmUgMTUgUHJvIiwiQ29sb3IiOiJOZWdybyIsIkN1b3RhMyI6IiQgNDcyLjMzMyIsIkN1b3RhNiI6IiQgMjc1Ljk3NCIsIlN0YXR1cyI6IiIsIkltYWdlVVJMIjoiaHR0cHM6Ly93d3cubWFjc3RhdGlvbi5jb20uYXIvd2ViL2ltYWdlL3Byb2R1Y3QudGVtcGxhdGUvOTg2MDEvaW1hZ2VfMjU2L2lQaG9uZSUyMDE1In0seyJfcmF3Ijp7IjIiOiIiLCIxNTMwIjoiIiwicm93X251bWJlciI6OCwiTW9kZWxvIjoiaVBob25lIDE1IFBybyBNYXgiLCJCYXRlcsOtYSI6ODgsIkFsbWFjZW5hbWllbnRvIjoiMjU2R0IiLCJDb2xvciI6IkdyaXMiLCJQcmVjaW8gVVNEIjo5MTAsIlByZWNpbyBBUlMiOjEzOTIzMDAsIjMgQ3VvdGEiOjYxNDAzMy40NjI5MDUyODcyLCI2IEN1b3RhcyI6MzU4NzY1LjY3OTA4ODMxMzEzLCIxMiBDdW90YXMiOjI0MDgzNS4xODU5MTE2ODY1LCJVU0QgSE9ZIjoiIn0sIk5hbWUiOiJpUGhvbmUgMTUgUHJvIE1heCIsIlByaWNlVVNEIjo5MTAsIlByaWNlQVJTIjoxMzkyMzAwLCJQcmljZUxhYmVsIjoiJCAxLjM5Mi4zMDAiLCJCYXR0ZXJ5Ijo4OCwiU3RvcmFnZSI6IjI1NkdCIiwiTW9kZWxvIjoiaVBob25lIDE1IFBybyBNYXgiLCJDb2xvciI6IkdyaXMiLCJDdW90YTMiOiIkIDYxNC4wMzMiLCJDdW90YTYiOiIkIDM1OC43NjYiLCJTdGF0dXMiOiIiLCJJbWFnZVVSTCI6Imh0dHBzOi8vd3d3Lm1hY3N0YXRpb24uY29tLmFyL3dlYi9pbWFnZS9wcm9kdWN0LnRlbXBsYXRlLzk4NjAxL2ltYWdlXzI1Ni9pUGhvbmUlMjAxNSJ9LHsiX3JhdyI6eyIyIjoiIiwiMTUzMCI6IiIsInJvd19udW1iZXIiOjksIk1vZGVsbyI6ImlQaG9uZSAxNiBQcm8gTWF4IiwiQmF0ZXLDrWEiOjEwMCwiQWxtYWNlbmFtaWVudG8iOiIyNTZHQiIsIkNvbG9yIjoiR3JpcyIsIlByZWNpbyBVU0QiOjEyMDAsIlByZWNpbyBBUlMiOjE4MzYwMDAsIjMgQ3VvdGEiOjgwOTcxNC40NTY1Nzg0MDA4LCI2IEN1b3RhcyI6NDczMDk3LjU5ODc5Nzc3NTYsIjEyIEN1b3RhcyI6MzE3NTg0Ljg2MDU0Mjg4MzMsIlVTRCBIT1kiOiIifSwiTmFtZSI6ImlQaG9uZSAxNiBQcm8gTWF4IiwiUHJpY2VVU0QiOjEyMDAsIlByaWNlQVJTIjoxODM2MDAwLCJQcmljZUxhYmVsIjoiJCAxLjgzNi4wMDAiLCJCYXR0ZXJ5IjoxMDAsIlN0b3JhZ2UiOiIyNTZHQiIsIk1vZGVsbyI6ImlQaG9uZSAxNiBQcm8gTWF4IiwiQ29sb3IiOiJHcmlzIiwiQ3VvdGEzIjoiJCA4MDkuNzE0IiwiQ3VvdGE2IjoiJCA0NzMuMDk4IiwiU3RhdHVzIjoiIiwiSW1hZ2VVUkwiOiJodHRwczovL3d3dy5tYWNzdGF0aW9uLmNvbS5hci93ZWIvaW1hZ2UvcHJvZHVjdC50ZW1wbGF0ZS85ODU5My9pbWFnZV8yNTYvaVBob25lJTIwMTYlMjBQcm8ifV0='));
 
   // Popup beneficios una vez por sesión
   (function(){
-    const key = 'goapple_welcome_seen_navidad';
+    const key = 'goapple_welcome_seen';
     const seen = sessionStorage.getItem(key);
     const $ov = document.getElementById('welcome');
     if(!seen){ $ov.style.display = 'flex'; }
@@ -761,86 +405,6 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     document.getElementById('dismiss')?.addEventListener('click', close);
     document.getElementById('see')?.addEventListener('click', close);
     $ov.addEventListener('click', (e)=>{ if(e.target === $ov) close(); });
-  })();
-
-  // HERO slider Apple-style (auto, flechas y swipe)
-  (function(){
-    const slider = document.getElementById('hero-slider');
-    if(!slider) return;
-    const slides = Array.from(slider.querySelectorAll('.hero-slide'));
-    const dotsWrap = document.getElementById('hero-dots');
-    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('button')) : [];
-    const prevBtn = slider.querySelector('.hero-arrow.prev');
-    const nextBtn = slider.querySelector('.hero-arrow.next');
-    let idx = 0;
-    let timer;
-
-    function show(i){
-      idx = (i + slides.length) % slides.length;
-      slides.forEach((s,j)=> s.classList.toggle('is-active', j===idx));
-      dots.forEach((d,j)=> d.classList.toggle('on', j===idx));
-    }
-    function start(){
-      stop();
-      timer = setInterval(()=>{ show(idx+1); }, 4500);
-    }
-    function stop(){
-      if(timer) clearInterval(timer);
-    }
-
-    dots.forEach((btn,i)=>{
-      btn.addEventListener('click', ()=>{
-        show(i);
-        start();
-      });
-    });
-    prevBtn?.addEventListener('click', ()=>{
-      show(idx-1);
-      start();
-    });
-    nextBtn?.addEventListener('click', ()=>{
-      show(idx+1);
-      start();
-    });
-
-    // Swipe en móvil
-    let touchStartX = null;
-    let touchEndX = null;
-    const threshold = 40; // px
-
-    slider.addEventListener('touchstart', (e)=>{
-      if(e.touches && e.touches.length === 1){
-        touchStartX = e.touches[0].clientX;
-        touchEndX = null;
-        stop();
-      }
-    }, {passive:true});
-
-    slider.addEventListener('touchmove', (e)=>{
-      if(e.touches && e.touches.length === 1){
-        touchEndX = e.touches[0].clientX;
-      }
-    }, {passive:true});
-
-    slider.addEventListener('touchend', ()=>{
-      if(touchStartX != null && touchEndX != null){
-        const dx = touchEndX - touchStartX;
-        if(Math.abs(dx) > threshold){
-          if(dx < 0){ // swipe left -> siguiente
-            show(idx+1);
-          }else{      // swipe right -> anterior
-            show(idx-1);
-          }
-        }
-      }
-      start();
-    });
-
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', start);
-
-    show(0);
-    start();
   })();
 
   // Helpers en el cliente
@@ -863,35 +427,35 @@ src="https://www.facebook.com/tr?id=1571045467377481&ev=PageView&noscript=1"
     const $img = document.getElementById('d-img');
     const $title = document.getElementById('d-title');
     const $meta = document.getElementById('d-meta');
-    const $usd  = document.getElementById('d-usd');
-    const $ars  = document.getElementById('d-ars');
-    const $cuo  = document.getElementById('d-cuotas');
+    const $usd = document.getElementById('d-usd');
+    const $ars = document.getElementById('d-ars');
+    const $cuo = document.getElementById('d-cuotas');
 
     $img.src = p.ImageURL || '';
     $img.alt = p.Name;
     $title.textContent = p.Name;
 
+    // chips: Color • Almacenamiento • Batería
     const chips = [];
     if(p.Color){ chips.push(`<span class="chip"><i class="dot" style="--dot:${colorToHex(p.Color)}"></i>${esc(p.Color)}</span>`); }
     if(p.Storage && p.Storage !== '—'){ chips.push(`<span class="chip"><i class="dot" style="--dot:#9ca3af"></i>${esc(p.Storage)}</span>`); }
     if(p.Battery!=null){ chips.push(`<span class="chip"><i class="dot" style="--dot:${battColor(p.Battery)}"></i>${p.Battery}%</span>`); }
     $meta.innerHTML = chips.join('');
 
+    // precios: USD y ARS
     $usd.textContent = fmtMoney(p.PriceUSD,'USD') ?? 'USD —';
-    if (p.Cuota12) {
-      $ars.textContent = '12 cuotas de ' + p.Cuota12;
-    } else {
-      $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
-    }
+    $ars.textContent = fmtMoney(p.PriceARS,'ARS') ?? '$ —';
 
+    // cuotas (dos líneas)
     const lines = [];
     if (p.Cuota3) lines.push('3 cuotas de ' + '<strong>' + p.Cuota3 + '</strong>');
     if (p.Cuota6) lines.push('6 cuotas de ' + '<strong>' + p.Cuota6 + '</strong>');
-    $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar otras opciones de financiación</div>';
+    $cuo.innerHTML = lines.length ? lines.map(l => '<div class="linea">'+l+'</div>').join('') : '<div class="linea">Consultar financiación</div>';
 
+    // WhatsApp
     document.getElementById('d-contact').onclick = function () {
-      const msg = encodeURIComponent('Me interesa el ' + p.Name + ' para estas fiestas. ¿Está disponible?');
-      const url = 'https://wa.me/5492645763246?text=' + msg;
+      const msg = encodeURIComponent('Me interesa el ' + p.Name + '. ¿Está disponible?');
+      const url = 'https://wa.me/5492644018925?text=' + msg;
       window.open(url, '_blank');
     };
 
